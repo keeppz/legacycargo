@@ -6,10 +6,10 @@ import { faTwitter, faFacebook, faInstagram, faGithub } from '@fortawesome/free-
 const Main = (props) => (
     <div id="main" style={props.timeout ? { display: 'flex' } : { display: 'none' }}>
         <article id="intro" className={`${props.article === 'intro' ? 'active' : ''} ${props.articleTimeout ? 'timeout' : ''}`} style={{ display: 'none' }}>
-            <h2 className="major">Intro</h2>
+            <h2 className="major">Historia</h2>
             <span className="image main"><img src="/static/images/pic01.jpg" alt="" /></span>
-            <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. By the way, check out my <a href="#work">awesome work</a>.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.</p>
+            <p>Legacy Cargo es una empresa de envíos que nació en 2021 con la misión de transformar la forma en que las personas y las empresas envían y reciben paquetes. Fundada por dos jovenes de emprendedores apasionados por la logística y el comercio, Legacy Cargo se estableció en un momento en que el comercio electrónico estaba en auge y la demanda de soluciones de envío rápidas y confiables nunca había sido tan alta.</p>
+            <p>Desde sus inicios, Legacy Cargo se ha enfocado en ofrecer un servicio al cliente excepcional y soluciones logísticas innovadoras. Con una visión clara de ser un referente en la industria de envíos. A medida que avanza hacia el futuro, Legacy Cargo se mantiene firme en su compromiso de ser un líder en la industria de envíos, construyendo un legado de confianza, eficiencia y sostenibilidad.</p>
             <div className="close" onClick={() => { props.onCloseArticle() }}></div>
         </article>
 
