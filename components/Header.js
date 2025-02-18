@@ -27,10 +27,10 @@ const Header = (props) => (
         </div>
         <nav>
             <ul>
-                <li><a href="#" onClick={() => { props.onOpenArticle('intro') }}>Intro</a></li>
-                <li><a href="#" onClick={() => { props.onOpenArticle('work') }}>Work</a></li>
-                <li><a href="#" onClick={() => { props.onOpenArticle('about') }}>About</a></li>
-                <li><a href="#" onClick={() => { props.onOpenArticle('contact') }}>Contact</a></li>
+                <li><a href="#" onClick={() => { props.onOpenArticle('intro') }}>Historia</a></li>
+                <li><a href="#" onClick={() => { props.onOpenArticle('work') }}>Servicios</a></li>
+                <li><a href="#" onClick={() => { props.onOpenArticle('about') }}>Calculadora</a></li>
+                <li><a href="#" onClick={() => { props.onOpenArticle('contact') }}>Contacto</a></li>
             </ul>
         </nav>
     </header>
