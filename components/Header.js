@@ -20,7 +20,7 @@ const Header = (props) => (
         <div className="content">
             <div className="inner">
                 <h1>Legacy Cargo</h1>
-                <p>Un sitio web totalmente responsivo diseñado para Legacy Cargo &copy <br />
+                <p>Un sitio web totalmente responsivo diseñado para Legacy Cargo  <br />
                  <a href="https://html5up.net/license">Creative Commons</a>.</p>
                 <p>Proporcionamos soluciones logísticas eficientes y confiables para su negocio.</p>
             </div>
