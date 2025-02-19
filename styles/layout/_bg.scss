@@ -51,6 +51,7 @@
 			background-size:		cover;
 			background-repeat:		no-repeat;
 			z-index: 1;
+			filter: brightness(0.3);
 		}
 
 		.body.is-article-visible & {
