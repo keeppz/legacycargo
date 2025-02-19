@@ -1,46 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faFacebook, faInstagram, faGithub, faTiktok, faWhatsapp, faXTwitter } from '@fortawesome/free-brands-svg-icons';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-
-export function AccordionDemo() {
-  return (
-    <Accordion type="single" collapsible className="w-full">
-      <AccordionItem value="item-1">
-        <AccordionTrigger>Is it accessible?</AccordionTrigger>
-        <AccordionContent>
-          Yes. It adheres to the WAI-ARIA design pattern.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="item-2">
-        <AccordionTrigger>Is it styled?</AccordionTrigger>
-        <AccordionContent>
-          Yes. It comes with default styles that matches the other
-          components&apos; aesthetic.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="item-3">
-        <AccordionTrigger>Is it animated?</AccordionTrigger>
-        <AccordionContent>
-          Yes. It's animated by default, but you can disable it if you prefer.
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
-  )
-}
-
+import { faTwitter, faFacebook, faInstagram, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 const Main = (props) => (
     <div id="main" style={props.timeout ? { display: 'flex' } : { display: 'none' }}>
         <article id="intro" className={`${props.article === 'intro' ? 'active' : ''} ${props.articleTimeout ? 'timeout' : ''}`} style={{ display: 'none' }}>
             <h2 className="major">Historia</h2>
-            <span className="image main"><img src="/static/images/pic01.jpg" alt="" /></span>
+            <span className="image main"><img src="/static/images/pic1.jpg" alt="" /></span>
             <p>Legacy Cargo es una empresa de envíos que nació en 2021 con la misión de transformar la forma en que las personas y las empresas envían y reciben paquetes. Fundada por dos jovenes de emprendedores apasionados por la logística y el comercio, Legacy Cargo se estableció en un momento en que el comercio electrónico estaba en auge y la demanda de soluciones de envío rápidas y confiables nunca había sido tan alta.</p>
             <p>Desde sus inicios, Legacy Cargo se ha enfocado en ofrecer un servicio al cliente excepcional y soluciones logísticas innovadoras. Con una visión clara de ser un referente en la industria de envíos. A medida que avanza hacia el futuro, Legacy Cargo se mantiene firme en su compromiso de ser un líder en la industria de envíos, construyendo un legado de confianza, eficiencia y sostenibilidad.</p>
             <div className="close" onClick={() => { props.onCloseArticle() }}></div>
@@ -85,7 +52,7 @@ const Main = (props) => (
           </form>
           <ul className="icons">
             <li><a href="#" onClick={() => { /* Manejar click */ }}>
-              <FontAwesomeIcon icon={faXTwitter} />
+              <FontAwesomeIcon icon={faTwitter} />
             </a></li>
             <li><a href="#" onClick={() => { /* Manejar click */ }}>
               <FontAwesomeIcon icon={faFacebook} />
@@ -94,10 +61,7 @@ const Main = (props) => (
               <FontAwesomeIcon icon={faInstagram} />
             </a></li>
             <li><a href="#" onClick={() => { /* Manejar click */ }}>
-              <FontAwesomeIcon icon={faTiktok} />
-            </a></li>
-            <li><a href="#" onClick={() => { /* Manejar click */ }}>
-              <FontAwesomeIcon icon={faWhatsapp} />
+              <FontAwesomeIcon icon={faGithub} />
             </a></li>
           </ul>
           <div className="close" onClick={() => { props.onCloseArticle() }}></div>
