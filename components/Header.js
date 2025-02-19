@@ -29,7 +29,7 @@ const Header = (props) => (
             <ul>
                 <li><a href="#" onClick={() => { props.onOpenArticle('intro') }}>Historia</a></li>
                 <li><a href="#" onClick={() => { props.onOpenArticle('work') }}>Servicios</a></li>
-                <li><a href="#" onClick={() => { props.onOpenArticle('about') }}>Calculadora</a></li>
+                <li><a href="#" onClick={() => { props.onOpenArticle('about') }}>Tarifas</a></li>
                 <li><a href="#" onClick={() => { props.onOpenArticle('contact') }}>Contacto</a></li>
             </ul>
         </nav>

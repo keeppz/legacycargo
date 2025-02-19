@@ -1,7 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faFacebook, faInstagram, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faTwitter, faFacebook, faInstagram, faGithub, faTiktok, faWhatsapp, faXTwitter } from '@fortawesome/free-brands-svg-icons';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+
+export function AccordionDemo() {
+  return (
+    <Accordion type="single" collapsible className="w-full">
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It adheres to the WAI-ARIA design pattern.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Is it styled?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It comes with default styles that matches the other
+          components&apos; aesthetic.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger>Is it animated?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It's animated by default, but you can disable it if you prefer.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  )
+}
+
 
 const Main = (props) => (
     <div id="main" style={props.timeout ? { display: 'flex' } : { display: 'none' }}>
@@ -26,7 +59,8 @@ const Main = (props) => (
         <article id="about" className={`${props.article === 'about' ? 'active' : ''} ${props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
           <h2 className="major">Calculadora</h2>
           <span className="image main"><img src="/static/images/pic03.jpg" alt="" /></span>
-          <p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
+          <p>Hemos desarrollado una calculadora para permitir a los clientes cotizar sus envíos de manera rápida y sencilla. Esta herramienta les ayudará a obtener estimaciones precisas de costos y tiempos de entrega, facilitando la planificación de sus envíos.</p>
+          <CubicajeCalculator />
           <div className="close" onClick={() => { props.onCloseArticle() }}></div>
         </article>
 
@@ -63,6 +97,7 @@ const Main = (props) => (
             <li><a href="#" onClick={() => { /* Manejar click */ }}>
               <FontAwesomeIcon icon={faGithub} />
             </a></li>
+
           </ul>
           <div className="close" onClick={() => { props.onCloseArticle() }}></div>
         </article>
