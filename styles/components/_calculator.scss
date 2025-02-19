@@ -9,6 +9,10 @@
     border-radius: 8px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    
+    h2.major {
+        border-bottom: solid 3px #FF2A30;
+    }
 }
 
 .input-group {
@@ -36,21 +40,94 @@ input:focus, select:focus {
 }
 
 button {
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #000 !important;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
-}
+    transition: background-color 0.3s;
+    font-weight: 600;
+    
+    /* Asegurando que el texto esté centrado */
+    display: flex; /* Usar flexbox */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    text-align: center; /* Asegurar que el texto esté centrado */
 
-button:hover {
-    background-color: #0056b3;
+    &:hover {
+        background-color: #e02428;
+        color: #fff !important;
+    }
+
+    &:active {
+        background-color: #c92024;
+    }
 }
 
 p {
     margin-top: 20px;
     font-size: 16px;
     color: #ffffff;
+}
+
+.resultado-container {
+    margin-top: 15px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+
+    .resultado-content {
+        flex: 1;
+
+        p {
+            margin: 0;
+            font-size: 16px;
+            color: #ffffff;
+
+            &.disclaimer {
+                margin-top: 8px;
+                font-size: 12px;
+                color: #888;
+                font-style: italic;
+                line-height: 1.4;
+            }
+        }
+    }
+}
+
+.whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background-color: #25D366;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s;
+    font-size: 14px;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #128C7E;
+        color: white !important;
+        text-decoration: none;
+        transform: translateY(-1px);
+    }
+
+    .whatsapp-icon {
+        font-size: 20px;
+        width: 20px !important;
+        height: 20px !important;
+        color: white !important;
+    }
+
+    span {
+        font-weight: 500;
+    }
 }

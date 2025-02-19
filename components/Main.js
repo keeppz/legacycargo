@@ -54,21 +54,20 @@ const Main = (props) => (
           </form>
           <ul className="icons">
             <li><a href="#" onClick={() => { /* Manejar click */ }}>
-              <FontAwesomeIcon icon={faXTwitter} />
+              <FontAwesomeIcon icon={faXTwitter} style={{ fontSize: '1em' }} />
             </a></li>
             <li><a href="#" onClick={() => { /* Manejar click */ }}>
-              <FontAwesomeIcon icon={faFacebook} />
+              <FontAwesomeIcon icon={faFacebook} style={{ fontSize: '2em' }} />
             </a></li>
             <li><a href="#" onClick={() => { /* Manejar click */ }}>
-              <FontAwesomeIcon icon={faInstagram} />
+              <FontAwesomeIcon icon={faInstagram} style={{ fontSize: '2em' }} />
             </a></li>
             <li><a href="#" onClick={() => { /* Manejar click */ }}>
-              <FontAwesomeIcon icon={faTiktok} />
+              <FontAwesomeIcon icon={faTiktok} style={{ fontSize: '2em' }} />
             </a></li>
             <li><a href="#" onClick={() => { /* Manejar click */ }}>
-              <FontAwesomeIcon icon={faWhatsapp} />
+              <FontAwesomeIcon icon={faWhatsapp} style={{ fontSize: '2em' }} />
             </a></li>
-
           </ul>
           <div className="close" onClick={() => { props.onCloseArticle() }}></div>
         </article>
