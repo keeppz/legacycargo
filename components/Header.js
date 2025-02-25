@@ -15,6 +15,7 @@ const Header = (props) => (
                 height={50}
                 alt="logotipo"
                 style={{ marginTop: '15px' }}
+                className='image'
             />
         </div>
         <div className="content">
