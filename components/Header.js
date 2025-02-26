@@ -13,7 +13,7 @@ const Header = (props) => (
                 src="/static/images/logo.png"
                 width={40}
                 height={50}
-                alt="logotipo"
+                alt="Logotipo de Legacy Cargo"
                 style={{ marginTop: '15px' }}
                 className='image'
             />
@@ -21,9 +21,11 @@ const Header = (props) => (
         <div className="content">
             <div className="inner">
                 <h1>Legacy Cargo</h1>
-                <p>Un sitio web totalmente responsivo diseñado para Legacy Cargo  <br />
-                 <a href="https://html5up.net/license">Creative Commons</a>.</p>
-                <p>Proporcionamos soluciones logísticas eficientes y confiables para su negocio.</p>
+                
+                <p>
+                    Su socio confiable en soluciones logísticas y de importación,<br />
+                    ofreciendo servicios personalizados para satisfacer sus necesidades.
+                </p>
             </div>
         </div>
         <nav>
@@ -31,7 +33,7 @@ const Header = (props) => (
                 <li><a href="#" onClick={() => { props.onOpenArticle('intro') }}>Historia</a></li>
                 <li><a href="#" onClick={() => { props.onOpenArticle('work') }}>Servicios</a></li>
                 <li><a href="#" onClick={() => { props.onOpenArticle('about') }}>Cotizar</a></li>
-                <li><a href="#" onClick={() => { props.onOpenArticle('contact') }}>Contacto</a></li>
+                <li><a href="#" onClick={() => { props.onOpenArticle('contact') }}>Contácto</a></li>
             </ul>
         </nav>
     </header>

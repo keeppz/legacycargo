@@ -216,7 +216,7 @@ const CubicajeCalculator = () => {
 
     return (
         <div className="calculator">
-            <h2>Calculadora de Cubicaje</h2>
+            <h2>Calculadora de Envios</h2>
             <div className="input-group">
                 <label>Tipo de Calculadora</label>
                 <select 
