@@ -20,6 +20,7 @@ const CubicajeCalculator = () => {
     const [tipoCalculadora, setTipoCalculadora] = useState('dimensiones'); // 'dimensiones' o 'volumen'
     const [volumenDirecto, setVolumenDirecto] = useState(0);
     const [unidadVolumen, setUnidadVolumen] = useState('cbm'); // 'cbm' o 'cuft'
+    const [cantidadPaquetes, setCantidadPaquetes] = useState(1); // Nueva variable para la cantidad de paquetes
     const [rubroSeleccionado, setRubroSeleccionado] = useState(null);
     const [estadoSeleccionado, setEstadoSeleccionado] = useState(null);
 
@@ -140,16 +141,19 @@ const CubicajeCalculator = () => {
             const pesoVolumetricoCalc = calcularPesoVolumetrico(largo, ancho, alto);
             setPesoVolumetrico(pesoVolumetricoCalc);
 
+            // Calcular el costo basado en la cantidad de paquetes
+            const cantidadPaquetesNum = parseInt(cantidadPaquetes, 10) || 1; // Asegurarse de que sea un número
+
             if (tipoEnvio === 'maritimo') {
                 if (origen === 'estados_unidos') {
                     volumen = volumenFT;
-                    tarifa = 30.0; // Tarifas originales
-                    subtotal = volumen * tarifa;
+                    tarifa = 30.0;
+                    subtotal = volumen * tarifa * cantidadPaquetesNum; // Ajustar por cantidad de paquetes
                     calculoValido = true;
                 } else if (origen === 'china') {
                     volumen = volumenM3;
-                    tarifa = 840.0; // Tarifas originales
-                    subtotal = volumen * tarifa;
+                    tarifa = 840.0;
+                    subtotal = volumen * tarifa * cantidadPaquetesNum; // Ajustar por cantidad de paquetes
                     calculoValido = true;
                 }
             } else if (tipoEnvio === 'aereo') {
@@ -313,6 +317,7 @@ const CubicajeCalculator = () => {
     return (
         <div className="calculator">
             <h2>Calculadora de Cubicaje</h2>
+            
             <div className="input-group">
                 <label>Tipo de Calculadora</label>
                 <Select
@@ -337,6 +342,17 @@ const CubicajeCalculator = () => {
                             onChange={(option) => setUnidadMedida(option.value)}
                             className="react-select-container"
                             classNamePrefix="react-select"
+                        />
+                    </div>
+
+                    <div className="input-group">
+                        <label htmlFor="cantidadPaquetes">Cantidad de Paquetes</label>
+                        <input 
+                            type="number" 
+                            id="cantidadPaquetes" 
+                            value={cantidadPaquetes} 
+                            onChange={(e) => setCantidadPaquetes(e.target.value)} 
+                            min="1" // Asegurarse de que sea al menos 1
                         />
                     </div>
                     <div className="input-group">
@@ -457,7 +473,7 @@ const CubicajeCalculator = () => {
                         className="whatsapp-button"
                     >
                         <FontAwesomeIcon icon={faWhatsapp} className="whatsapp-icon" />
-                        <span>Concretar</span>
+                        <span>Consultar</span>
                     </a>
                 </div>
             )}

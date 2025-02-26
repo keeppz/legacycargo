@@ -78,6 +78,7 @@ class IndexPage extends React.Component {
                         <meta name="description" content="Legacy Cargo ofrece soluciones logísticas eficientes y confiables para su negocio, incluyendo importaciones y fletes internacionales." />
                         <meta name="keywords" content="logística, importaciones, flete internacional, soluciones logísticas, Legacy Cargo" />
                         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600,600i" rel="stylesheet" />
+                        <link rel="icon" href="../static/images/favicon.png" />
                     </Head>
 
                     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

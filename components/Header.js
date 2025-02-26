@@ -23,7 +23,7 @@ const Header = (props) => (
                 <h1>Legacy Cargo</h1>
                 
                 <p>
-                    u socio confiable en soluciones logísticas y de importación,<br />
+                    Tu socio confiable en soluciones logísticas y de importación,<br />
                     ofreciendo servicios personalizados para satisfacer sus necesidades.
                 </p>
             </div>
