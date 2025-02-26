@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faFacebook, faInstagram, faGithub, faTiktok, faWhatsapp, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import CubicajeCalculator from './CubicajeCalculator';
+import {SocialIcon} from 'react-social-icons';
 
 const Main = (props) => (
     <div id="main" style={props.timeout ? { display: 'flex' } : { display: 'none' }}>
@@ -36,7 +37,7 @@ const Main = (props) => (
           <h2 className="major">Contacto</h2>
           <form method="post" action="#">
             <div className="field half first">
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">Nombre</label>
               <input type="text" name="name" id="name" />
             </div>
             <div className="field half">
@@ -44,30 +45,31 @@ const Main = (props) => (
               <input type="text" name="email" id="email" />
             </div>
             <div className="field">
-              <label htmlFor="message">Message</label>
+              <label htmlFor="message">Mensaje</label>
               <textarea name="message" id="message" rows="4"></textarea>
             </div>
             <ul className="actions">
-              <li><input type="submit" value="Send Message" className="special" /></li>
-              <li><input type="reset" value="Reset" /></li>
+              <li><input type="submit" value="Enviar Mensaje" className="special" /></li>
+              <li><input type="reset" value="Restablecer" /></li>
             </ul>
           </form>
           <ul className="icons">
-            <li><a href="#" onClick={() => { /* Manejar click */ }}>
-              <FontAwesomeIcon icon={faXTwitter} style={{ fontSize: '1em' }} />
-            </a></li>
-            <li><a href="#" onClick={() => { /* Manejar click */ }}>
-              <FontAwesomeIcon icon={faFacebook} style={{ fontSize: '2em' }} />
-            </a></li>
-            <li><a href="#" onClick={() => { /* Manejar click */ }}>
-              <FontAwesomeIcon icon={faInstagram} style={{ fontSize: '2em' }} />
-            </a></li>
-            <li><a href="#" onClick={() => { /* Manejar click */ }}>
-              <FontAwesomeIcon icon={faTiktok} style={{ fontSize: '2em' }} />
-            </a></li>
-            <li><a href="#" onClick={() => { /* Manejar click */ }}>
-              <FontAwesomeIcon icon={faWhatsapp} style={{ fontSize: '2em' }} />
-            </a></li>
+            <li>
+              <SocialIcon url='https://instagram.com/' target="_blank" href='https://www.instagram.com/legacycargove/?hl=es'></SocialIcon>
+            </li>
+            <li>
+            <SocialIcon url='https://x.com/' target="_blank" href='https://www.instagram.com/legacycargove/?hl=es'></SocialIcon>
+            </li>
+            <li>
+            <SocialIcon url='https://facebook.com/' target="_blank" href='https://www.facebook.com/legacycargove/'></SocialIcon>
+            </li>
+            <li>
+            <SocialIcon url='https://tiktok.com/' target="_blank" href='#'></SocialIcon>
+            </li>
+            <li>
+            <SocialIcon url='https://whatsapp.com/' target="_blank" href='https://wa.me/+584142909883'></SocialIcon>
+            </li>
+            
           </ul>
           <div className="close" onClick={() => { props.onCloseArticle() }}></div>
         </article>

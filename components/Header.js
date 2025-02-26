@@ -7,14 +7,14 @@ import Image from 'next/image';
 const Header = (props) => (
     <header id="header" style={props.timeout ? { display: 'none' } : {}}>
         <div className="logo">
-            {<span className="icon fa-diamond"></span>}
+            
             
             <Image
                 src="/static/images/logo.png"
-                width={40}
-                height={50}
+                width={100}
+                height={100}
                 alt="Logotipo de Legacy Cargo"
-                style={{ marginTop: '15px' }}
+                style={{justifyContent: 'center', alignItems: 'center'}}
                 className='image'
             />
         </div>
@@ -23,7 +23,7 @@ const Header = (props) => (
                 <h1>Legacy Cargo</h1>
                 
                 <p>
-                    Su socio confiable en soluciones logísticas y de importación,<br />
+                    u socio confiable en soluciones logísticas y de importación,<br />
                     ofreciendo servicios personalizados para satisfacer sus necesidades.
                 </p>
             </div>

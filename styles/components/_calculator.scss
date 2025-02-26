@@ -131,3 +131,131 @@ p {
         font-weight: 500;
     }
 }
+
+.react-select-container {
+    .react-select__control {
+        background-color: transparent;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        min-height: 42px; // Altura consistente
+        
+        &:hover {
+            border-color: #FF2A30;
+        }
+        
+        &--is-focused {
+            border-color: #FF2A30;
+            box-shadow: 0 0 0 1px #FF2A30;
+        }
+
+        &--is-disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-color: #666;
+
+            .react-select__single-value {
+                color: #888;
+            }
+
+            &:hover {
+                border-color: #666;
+            }
+        }
+
+        input {
+            color: #ffffff !important;
+            box-shadow: none !important;
+            
+            &:focus {
+                box-shadow: none !important;
+            }
+        }
+
+        .react-select__value-container {
+            padding: 2px 8px;
+            
+            input {
+                color: #ffffff !important;
+                min-width: 100% !important; // Asegurar que el input tenga ancho completo
+                margin: 0 !important;
+                padding: 0 !important;
+                opacity: 1 !important; // Asegurar que el texto sea visible
+            }
+        }
+    }
+
+    .react-select__menu {
+        background-color: #1b1f22;
+        border: 1px solid #ccc;
+        margin-top: 4px;
+        
+        .react-select__option {
+            padding: 10px 12px;
+            background-color: transparent;
+            color: #ffffff;
+            cursor: pointer;
+            
+            &:hover {
+                background-color: rgba(255, 42, 48, 0.1);
+            }
+            
+            &--is-selected {
+                background-color: #FF2A30;
+            }
+
+            &--is-disabled {
+                color: #666;
+                cursor: not-allowed;
+            }
+        }
+    }
+
+    .react-select__single-value {
+        color: #ffffff;
+    }
+
+    .react-select__input-container {
+        color: #ffffff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        
+        input {
+            width: 100% !important;
+            opacity: 1 !important;
+            position: relative !important;
+            transform: none !important; // Evitar transformaciones que puedan ocultar el texto
+            
+            &::placeholder {
+                color: #666666;
+                opacity: 1;
+            }
+        }
+    }
+
+    .react-select__placeholder {
+        color: #666;
+    }
+
+    .react-select__indicator {
+        color: #ccc;
+        
+        &:hover {
+            color: #FF2A30;
+        }
+    }
+
+    .react-select__indicator-separator {
+        background-color: #444;
+    }
+
+    input[type="text"]:focus {
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
+    .react-select__value-container--has-value {
+        height: auto !important;
+        min-height: 28px !important;
+    }
+}
