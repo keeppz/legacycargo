@@ -10,8 +10,12 @@ const Main = (props) => (
         <article id="intro" className={`${props.article === 'intro' ? 'active' : ''} ${props.articleTimeout ? 'timeout' : ''}`} style={{ display: 'none' }}>
             <h2 className="major">Historia</h2>
             <span className="image main"><img src="/static/images/pic01.jpg" alt="" /></span>
-            <p>Legacy Cargo es una empresa de envíos que nació en 2021 con la misión de transformar la forma en que las personas y las empresas envían y reciben paquetes. Fundada por dos jovenes de emprendedores apasionados por la logística y el comercio, Legacy Cargo se estableció en un momento en que el comercio electrónico estaba en auge y la demanda de soluciones de envío rápidas y confiables nunca había sido tan alta.</p>
-            <p>Desde sus inicios, Legacy Cargo se ha enfocado en ofrecer un servicio al cliente excepcional y soluciones logísticas innovadoras. Con una visión clara de ser un referente en la industria de envíos. A medida que avanza hacia el futuro, Legacy Cargo se mantiene firme en su compromiso de ser un líder en la industria de envíos, construyendo un legado de confianza, eficiencia y sostenibilidad.</p>
+            <p>
+                Legacy es una empresa de importación que se funda en Venezuela con una visión clara: apostar en nuestro país sin importar las dificultades económicas que enfrentamos. Nuestra historia se teje en el mundo del comercio internacional, donde encontramos nuestro amor por la importación y exportación. Cada entrega que realizamos es un pilar para el crecimiento, no solo de nuestro negocio, sino también de quienes confían en nosotros.
+            </p>
+            <p>
+                Creemos que en medio de las circunstancias desafiantes se encuentran las mejores oportunidades, y estamos aquí para hacer que el comercio global sea accesible y exitoso para todos.
+            </p>
             <div className="close" onClick={() => { props.onCloseArticle() }}></div>
         </article>
 
