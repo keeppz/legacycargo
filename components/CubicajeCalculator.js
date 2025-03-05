@@ -281,7 +281,7 @@ const CubicajeCalculator = () => {
         return encodeURIComponent(mensajeFinal);
     };
 
-    console.log(`Largo: ${largo}, Ancho: ${ancho}, Alto: ${alto}, Peso: ${peso}`);
+    // console.log(`Largo: ${largo}, Ancho: ${ancho}, Alto: ${alto}, Peso: ${peso}`);
 
     // Agregar nuevas opciones para los otros dropdowns
     const opcionesTipoCalculadora = [

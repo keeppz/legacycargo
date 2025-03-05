@@ -33,7 +33,7 @@ const Header = (props) => (
                 <li><a href="#" onClick={() => { props.onOpenArticle('intro') }}>Historia</a></li>
                 <li><a href="#" onClick={() => { props.onOpenArticle('work') }}>Servicios</a></li>
                 <li><a href="#" onClick={() => { props.onOpenArticle('about') }}>Cotizar</a></li>
-                <li><a href="#" onClick={() => { props.onOpenArticle('contact') }}>Contácto</a></li>
+                <li><a href="#" onClick={() => { props.onOpenArticle('contact') }}>Contacto</a></li>
             </ul>
         </nav>
     </header>

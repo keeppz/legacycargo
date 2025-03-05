@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faFacebook, faInstagram, faGithub, faTiktok, faWhatsapp, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import CubicajeCalculator from './CubicajeCalculator';
 import {SocialIcon} from 'react-social-icons';
 
@@ -10,18 +8,15 @@ const Main = (props) => (
         <article id="intro" className={`${props.article === 'intro' ? 'active' : ''} ${props.articleTimeout ? 'timeout' : ''}`} style={{ display: 'none' }}>
             <h2 className="major">Historia</h2>
             <span className="image main"><img src="/static/images/pic01.jpg" alt="" /></span>
-            <p>
-                Legacy es una empresa de importación que se funda en Venezuela con una visión clara: apostar en nuestro país sin importar las dificultades económicas que enfrentamos. Nuestra historia se teje en el mundo del comercio internacional, donde encontramos nuestro amor por la importación y exportación. Cada entrega que realizamos es un pilar para el crecimiento, no solo de nuestro negocio, sino también de quienes confían en nosotros.
-            </p>
-            <p>
-                Creemos que en medio de las circunstancias desafiantes se encuentran las mejores oportunidades, y estamos aquí para hacer que el comercio global sea accesible y exitoso para todos.
-            </p>
+            <p> Legacy es una empresa de importación que se funda en Venezuela con una visión clara: apostar en nuestro país sin importar las dificultades económicas que enfrentamos. Nuestra historia se teje en el mundo del comercio internacional, donde encontramos nuestro amor por la importación y exportación. Cada entrega que realizamos es un pilar para el crecimiento, no solo de nuestro negocio, sino también de quienes confían en nosotros.</p>
+            
+            <p>Creemos que en medio de las circunstancias desafiantes se encuentran las mejores oportunidades, y estamos aquí para hacer que el comercio global sea accesible y exitoso para todos.</p>
             <div className="close" onClick={() => { props.onCloseArticle() }}></div>
         </article>
 
         <article id="work" className={`${props.article === 'work' ? 'active' : ''} ${props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
           <h2 className="major">Servicios</h2>
-          <span className="image main"><img src="/static/images/img.jpg" alt="" /></span>
+          <span className="image main"><img src="/static/images/pic02.jpg" alt="" /></span>
           <p>➤ Servicio de flete internacional por contenedor 40/20 pies.</p>
           <p>➤ Agenciamiento aduanal y nacionalizacion de carga.</p>
           <p>➤ Importacion de China, EEUU, Panama a Venezuela.</p>

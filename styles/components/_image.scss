@@ -15,7 +15,7 @@
 		&:before {
 			@include vendor('pointer-events', 'none');
 			background-image: url('/static/images/overlay.png');
-			background-color: _palette(bg-overlay);
+			
 			border-radius: _size(border-radius);
 			content: '';
 			display: block;
@@ -64,12 +64,15 @@
 		}
 
 		&.main {
-			display: block;
+			display: flex;
 			margin: (_size(element-margin) * 1.25) 0;
 			width: 100%;
+			align-items: center;
+			justify-content: center;
 
 			img {
-				width: 100%;
+				width: 70%;
+				
 			}
 		}
 
