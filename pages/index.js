@@ -5,6 +5,7 @@ import stylesheet from 'styles/main.scss'
 import Header from "../components/Header"
 import Main from "../components/Main"
 import Footer from "../components/Footer"
+import { Analytics } from "@vercel/analytics/react"
 
 class IndexPage extends React.Component {
     constructor(props) {
@@ -81,6 +82,7 @@ class IndexPage extends React.Component {
                     <link rel="icon" href="../static/images/favicon.png" />
                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 </Head>
+                <Analytics />
 
                     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
 
