@@ -75,8 +75,8 @@ class IndexPage extends React.Component {
                 <div>
                 <Head>
                     <title>Legacy Cargo - Soluciones Logísticas Confiables</title>
-                    <meta name="description" content="Legacy Cargo ofrece soluciones logísticas eficientes y confiables para importaciones y fletes internacionales. Confía en nuestros servicios de logística integral para tu negocio." />
-                    <meta name="keywords" content="logística, importaciones, flete internacional, soluciones logísticas, Legacy Cargo, logística Venezuela, importaciones Venezuela, importar, calculadora de carga, venezuela" />
+                    <meta name="description" content="Legacy Cargo ofrece soluciones logísticas eficientes y confiables para importaciones y fletes internacionales hacia Venezuela. Confía en nuestros servicios de logística integral para tu negocio." />
+                    <meta name="keywords" content="logística, importaciones, flete internacional, soluciones logísticas, Legacy Cargo, logística Venezuela, importaciones Venezuela" />
                     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600,600i" rel="stylesheet" />
                     <link rel="icon" href="../static/images/favicon.png" />
                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
