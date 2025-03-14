@@ -110,19 +110,21 @@ const CubicajeCalculator = () => {
                     const volumenFormateado = isNaN(volumen) ? '0.00' : volumen.toFixed(2);
                     if (subtotal < CostoMinimo) {
                         setResultado(
-                            `Costo: $${CostoMinimo.toFixed(2)}\n` +
-                            `Volumen: ${volumenFormateado} ft³\n` +
                             `Tarifa: $${tarifa.toFixed(2)}/ft³\n` +
+                            `Cantidad de Paquetes: ${cantidadPaquetes}\n` +
+                            `Volumen: ${volumenFormateado} ft³\n` +
                             `Estado: ${estadoSeleccionado.label}\n` +
-                            `Rubro: ${rubroSeleccionado?.label || 'No especificado'}`
+                            `Rubro: ${rubroSeleccionado?.label || 'No especificado'}\n` +
+                            `Costo: $${CostoMinimo.toFixed(2)}` 
                         );
                     } else {
                         setResultado(
-                            `Costo: $${subtotal.toFixed(2)}\n` +
-                            `Volumen: ${volumenFormateado} ft³\n` +
                             `Tarifa: $${tarifa.toFixed(2)}/ft³\n` +
+                            `Cantidad de Paquetes: ${cantidadPaquetes}\n` +
+                            `Volumen: ${volumenFormateado} ft³\n` +
                             `Estado: ${estadoSeleccionado.label}\n` +
-                            `Rubro: ${rubroSeleccionado?.label || 'No especificado'}`
+                            `Rubro: ${rubroSeleccionado?.label || 'No especificado'}\n` +
+                            `Costo: $${subtotal.toFixed(2)}` 
                         );
                     }
                 }
@@ -159,10 +161,10 @@ const CubicajeCalculator = () => {
             } else if (tipoEnvio === 'aereo') {
                 // ... lógica existente para envíos aéreos ...
                 setResultado(
-                    `Costo: $${subtotal.toFixed(2)}\n` +
                     `Peso Volumétrico: ${pesoVolumetrico.toFixed(2)} kg\n` +
                     `Estado: ${estadoSeleccionado?.label || 'No seleccionado'}\n` +
-                    `Rubro: ${rubroSeleccionado?.label || 'No especificado'}`
+                    `Rubro: ${rubroSeleccionado?.label || 'No especificado'}\n` +
+                    `Costo: $${subtotal.toFixed(2)}` 
                 );
             }
 
@@ -171,19 +173,21 @@ const CubicajeCalculator = () => {
                 const unidadMedidaTexto = origen === 'china' ? 'm³' : 'ft³';
                 if (subtotal < CostoMinimo) {
                     setResultado(
-                        `Costo: $${CostoMinimo.toFixed(2)}\n` +
+                        `Tarifa: $${tarifa.toFixed(2)}/ft³\n` +
+                        `Cantidad de Paquetes: ${cantidadPaquetesNum}\n` +
                         `Volumen: ${volumenFormateado} ${unidadMedidaTexto}\n` +
-                        `Tarifa: $${tarifa.toFixed(2)}/${unidadMedidaTexto}\n` +
                         `Estado: ${estadoSeleccionado?.label || 'No seleccionado'}\n` +
-                        `Rubro: ${rubroSeleccionado?.label || 'No especificado'}`
+                        `Rubro: ${rubroSeleccionado?.label || 'No especificado'}\n`+
+                        `Costo: $${CostoMinimo.toFixed(2)}` 
                     );
                 } else {
                     setResultado(
-                        `Costo: $${subtotal.toFixed(2)}\n` +
+                        `Tarifa: $${tarifa.toFixed(2)}/ft³\n` +
+                        `Cantidad de Paquetes: ${cantidadPaquetesNum}\n` +
                         `Volumen: ${volumenFormateado} ${unidadMedidaTexto}\n` +
-                        `Tarifa: $${tarifa.toFixed(2)}/${unidadMedidaTexto}\n` +
                         `Estado: ${estadoSeleccionado?.label || 'No seleccionado'}\n` +
-                        `Rubro: ${rubroSeleccionado?.label || 'No especificado'}`
+                        `Rubro: ${rubroSeleccionado?.label || 'No especificado'}\n` +
+                        `Costo: $${subtotal.toFixed(2)}` 
                     );
                 }
             } else {
@@ -232,19 +236,21 @@ const CubicajeCalculator = () => {
                     const volumenFormateado = isNaN(volumenConvertido) ? '0.00' : volumenConvertido.toFixed(2);
                     if (subtotal < CostoMinimo) {
                         setResultado(
-                            `Costo: $${CostoMinimo.toFixed(2)}\n` +
-                            `Volumen: ${volumenFormateado} ft³\n` +
                             `Tarifa: $${tarifa.toFixed(2)}/ft³\n` +
+                            `Cantidad de Paquetes: ${cantidadPaquetes}\n` +
+                            `Volumen: ${volumenFormateado} ft³\n` +
                             `Estado: ${estadoSeleccionado.label}\n` +
-                            `Rubro: ${rubroSeleccionado?.label || 'No especificado'}`
+                            `Rubro: ${rubroSeleccionado?.label || 'No especificado'}`+
+                            `Costo: $${CostoMinimo.toFixed(2)}\n` 
                         );
                     } else {
                         setResultado(
-                            `Costo: $${subtotal.toFixed(2)}\n` +
-                            `Volumen: ${volumenFormateado} ft³\n` +
                             `Tarifa: $${tarifa.toFixed(2)}/ft³\n` +
+                            `Cantidad de Paquetes: ${cantidadPaquetes}\n` +
+                            `Volumen: ${volumenFormateado} ft³\n` +
                             `Estado: ${estadoSeleccionado.label}\n` +
-                            `Rubro: ${rubroSeleccionado?.label || 'No especificado'}`
+                            `Rubro: ${rubroSeleccionado?.label || 'No especificado'}`+
+                            `Costo: $${subtotal.toFixed(2)}\n` 
                         );
                     }
                 }

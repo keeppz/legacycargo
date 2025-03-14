@@ -54,6 +54,9 @@
 			border-radius: 50%;
 			border: 2px #fff solid;
 			overflow: hidden;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 
 			img {
 				width: 50%;
@@ -61,10 +64,10 @@
 				object-fit: contain;
 
 				@include breakpoint(medium){
-					margin-top: 15px;
+				
 				}
 				@include breakpoint(max-width){
-					margin-top: 15px;
+				
 				}
 			}
 		}
@@ -83,7 +86,7 @@
 					'opacity #{_duration(article)} ease-in-out'
 				));
 				@include vendor('transition-delay', '0.25s');
-				padding: 3rem 2rem;
+				padding: 2rem 2rem;
 				max-height: 40rem;
 				overflow: hidden;
 

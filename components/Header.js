@@ -13,17 +13,21 @@ const Header = (props) => (
                 src="/static/images/logo.png"
                 width={100}
                 height={100}
-                alt="Logotipo de Legacy Cargo"
+                alt="Isotipo de Legacy Cargo"
                 style={{justifyContent: 'center', alignItems: 'center'}}
                 className='image'
             />
         </div>
         <div className="content">
             <div className="inner">
-                <h1>Legacy Cargo</h1>
+                <Image
+                  src={"/static/images/logotipo.png"}
+                  width={170}
+                  height={50}
+                  alt='Logotipo de Legacy Cargo'
+                  />
                 
-                <p>
-                    Tu socio confiable en soluciones logísticas y de importación,<br />
+                   <p> Tu socio confiable en soluciones logísticas y de importación,<br />
                     ofreciendo servicios personalizados para satisfacer sus necesidades.
                 </p>
             </div>
