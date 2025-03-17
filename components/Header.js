@@ -40,6 +40,15 @@ const Header = (props) => (
                 <li><a href="#" onClick={() => { props.onOpenArticle('contact') }}>Contacto</a></li>
             </ul>
         </nav>
+        <div className='origin'>
+        <Image
+                src="/static/images/flags.png"
+                width={264}
+                height={79}
+                alt="Envios Desde"
+               
+            />
+        </div>
     </header>
 );
 
