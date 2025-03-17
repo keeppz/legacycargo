@@ -44,9 +44,7 @@ const Header = (props) => (
                 src="/static/images/flags.png"
                 width={200}
                 height={60}
-                alt="Envios Desde"
-
-               
+                alt="Envios Desde"               
             />
         </div>
     </header>
