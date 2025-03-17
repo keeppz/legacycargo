@@ -15,7 +15,6 @@ const Header = (props) => (
                 height={100}
                 alt="Isotipo de Legacy Cargo"
                 style={{justifyContent: 'center', alignItems: 'center'}}
-                className='image'
             />
         </div>
         <div className="content">
