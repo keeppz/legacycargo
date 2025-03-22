@@ -40,6 +40,8 @@
 			}
 		}
 
+		
+
 		&.icons {
 			cursor: default;
 			list-style: none;
@@ -179,6 +181,15 @@
 						}
 					}
 				}
+			}
+		}
+
+		&.servicios{
+			list-style: none;
+			
+			li{
+				padding-left: 2.5em;
+				
 			}
 		}
 	}
