@@ -284,7 +284,10 @@ const CubicajeCalculator = () => {
         detallesEnvio += `\n${resultado.replace('Costo:', 'Costo estimado:')}`;
         
         const mensajeFinal = `${mensajeBase}${detallesEnvio}`;
+        console.log(encodeURIComponent(mensajeFinal));
         return encodeURIComponent(mensajeFinal);
+
+        console.log(mensajeFinal);
     };
 
     // console.log(`Largo: ${largo}, Ancho: ${ancho}, Alto: ${alto}, Peso: ${peso}`);
@@ -473,7 +476,7 @@ const CubicajeCalculator = () => {
                         </p>
                     </div>
                     <a 
-                        href={`https://wa.me/+584142909883?text=${generarMensajeWhatsApp()}`}
+                        href={`https://wa.me/+584126396424?text=${generarMensajeWhatsApp()}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="whatsapp-button"
