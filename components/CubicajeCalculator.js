@@ -132,7 +132,6 @@ const CubicajeCalculator = () => {
                 setResultado('Error: No se encontró tarifa para la combinación seleccionada');
             }
         } else {
-            // Lógica original para otros orígenes
             let volumen;
             let tarifa = 0;
             let subtotal = 0;
@@ -143,53 +142,100 @@ const CubicajeCalculator = () => {
             const pesoVolumetricoCalc = calcularPesoVolumetrico(largo, ancho, alto);
             setPesoVolumetrico(pesoVolumetricoCalc);
 
-            // Calcular el costo basado en la cantidad de paquetes
-            const cantidadPaquetesNum = parseInt(cantidadPaquetes, 10) || 1; // Asegurarse de que sea un número
+            const cantidadPaquetesNum = parseInt(cantidadPaquetes, 10) || 1;
 
             if (tipoEnvio === 'maritimo') {
                 if (origen === 'estados_unidos') {
                     volumen = volumenFT;
                     tarifa = 30.0;
-                    subtotal = volumen * tarifa * cantidadPaquetesNum; // Ajustar por cantidad de paquetes
+                    subtotal = volumen * tarifa * cantidadPaquetesNum;
                     calculoValido = true;
                 } else if (origen === 'china') {
                     volumen = volumenM3;
                     tarifa = 840.0;
-                    subtotal = volumen * tarifa * cantidadPaquetesNum; // Ajustar por cantidad de paquetes
+                    subtotal = volumen * tarifa * cantidadPaquetesNum;
                     calculoValido = true;
                 }
-            } else if (tipoEnvio === 'aereo') {
-                // ... lógica existente para envíos aéreos ...
-                setResultado(
-                    `Peso Volumétrico: ${pesoVolumetrico.toFixed(2)} kg\n` +
-                    `Estado: ${estadoSeleccionado?.label || 'No seleccionado'}\n` +
-                    `Rubro: ${rubroSeleccionado?.label || 'No especificado'}\n` +
-                    `Costo: $${subtotal.toFixed(2)}` 
-                );
+            } else if (tipoEnvio === 'aereo' && origen !== 'china') {
+                const pesoAFacturar = Math.max(peso, pesoVolumetricoCalc);
+                
+                if (origen === 'estados_unidos') {
+                    tarifa = 15.0; // Tarifa por kg para USA aéreo
+                    subtotal = pesoAFacturar * tarifa * cantidadPaquetesNum;
+                    calculoValido = true;
+
+                    setResultado(
+                        <>
+                            <div>Tarifa: ${tarifa.toFixed(2)}/kg</div>
+                            <div>Cantidad de Paquetes: {cantidadPaquetesNum}</div>
+                            <div>Peso a Facturar: {pesoAFacturar.toFixed(2)} kg</div>
+                            <div>Estado: {estadoSeleccionado?.label || 'No seleccionado'}</div>
+                            <div>Rubro: {rubroSeleccionado?.label || 'No especificado'}</div>
+                            <div style={{ 
+                                color: 'red', 
+                                fontSize: '1.5em',
+                                fontWeight: 'bold',
+                                marginTop: '10px'
+                            }}>
+                                Costo: ${(subtotal < CostoMinimo ? CostoMinimo : subtotal).toFixed(2)}
+                            </div>
+                        </>
+                    );
+                    return;
+                } else if (origen === 'panama') {
+                    // Nueva lógica para envíos aéreos desde Panamá
+                    if (!estadoSeleccionado) {
+                        setResultado('Error: Debe seleccionar estado para envíos aéreos desde Panamá');
+                        return;
+                    }
+                    
+                    tarifa = 12.0; // Tarifa por kg para Panamá aéreo - Puedes ajustar este valor
+                    subtotal = pesoAFacturar * tarifa * cantidadPaquetesNum;
+                    calculoValido = true;
+
+                    setResultado(
+                        <>
+                            <div>Tarifa: ${tarifa.toFixed(2)}/kg</div>
+                            <div>Cantidad de Paquetes: {cantidadPaquetesNum}</div>
+                            <div>Peso a Facturar: {pesoAFacturar.toFixed(2)} kg</div>
+                            <div>Estado: {estadoSeleccionado?.label || 'No seleccionado'}</div>
+                            <div>Rubro: {rubroSeleccionado?.label || 'No especificado'}</div>
+                            <div style={{ 
+                                color: 'red', 
+                                fontSize: '1.5em',
+                                fontWeight: 'bold',
+                                marginTop: '10px'
+                            }}>
+                                Costo: ${(subtotal < CostoMinimo ? CostoMinimo : subtotal).toFixed(2)}
+                            </div>
+                        </>
+                    );
+                    return;
+                }
             }
 
             if (calculoValido) {
                 const volumenFormateado = isNaN(volumen) ? '0.00' : volumen.toFixed(2);
                 const unidadMedidaTexto = origen === 'china' ? 'm³' : 'ft³';
-                if (subtotal < CostoMinimo) {
-                    setResultado(
-                        `Tarifa: $${tarifa.toFixed(2)}/ft³\n` +
-                        `Cantidad de Paquetes: ${cantidadPaquetesNum}\n` +
-                        `Volumen: ${volumenFormateado} ${unidadMedidaTexto}\n` +
-                        `Estado: ${estadoSeleccionado?.label || 'No seleccionado'}\n` +
-                        `Rubro: ${rubroSeleccionado?.label || 'No especificado'}\n`+
-                        `Costo: $${CostoMinimo.toFixed(2)}` 
-                    );
-                } else {
-                    setResultado(
-                        `Tarifa: $${tarifa.toFixed(2)}/ft³\n` +
-                        `Cantidad de Paquetes: ${cantidadPaquetesNum}\n` +
-                        `Volumen: ${volumenFormateado} ${unidadMedidaTexto}\n` +
-                        `Estado: ${estadoSeleccionado?.label || 'No seleccionado'}\n` +
-                        `Rubro: ${rubroSeleccionado?.label || 'No especificado'}\n` +
-                        `Costo: $${subtotal.toFixed(2)}` 
-                    );
-                }
+                const costoFinal = subtotal < CostoMinimo ? CostoMinimo : subtotal;
+
+                setResultado(
+                    <>
+                        <div>Tarifa: ${tarifa.toFixed(2)}/{unidadMedidaTexto}</div>
+                        <div>Cantidad de Paquetes: {cantidadPaquetesNum}</div>
+                        <div>Volumen: {volumenFormateado} {unidadMedidaTexto}</div>
+                        <div>Estado: {estadoSeleccionado?.label || 'No seleccionado'}</div>
+                        <div>Rubro: {rubroSeleccionado?.label || 'No especificado'}</div>
+                        <div style={{ 
+                            color: 'red', 
+                            fontSize: '1.5em',
+                            fontWeight: 'bold',
+                            marginTop: '10px'
+                        }}>
+                            Costo: ${costoFinal.toFixed(2)}
+                        </div>
+                    </>
+                );
             } else {
                 setResultado('Error: No se pudo calcular el costo.');
             }
@@ -208,57 +254,75 @@ const CubicajeCalculator = () => {
     };
 
     const calcularPorVolumen = () => {
-        if (!estadoSeleccionado || !rubroSeleccionado) {
-            setResultado('Error: Debe seleccionar estado y rubro');
+        let volumenConvertido = Number(volumenDirecto);
+        let tarifa = 0;
+        let subtotal = 0;
+        let calculoValido = false;
+
+        if (tipoEnvio !== 'maritimo') {
+            setResultado('La calculadora por volumen solo está disponible para envíos marítimos');
             return;
         }
 
-        // Solo proceder si es Panamá y marítimo
-        if (origen === 'panama' && tipoEnvio === 'maritimo') {
-            let volumenConvertido = Number(volumenDirecto);
-            let tarifa = 0;
-            let subtotal = 0;
+        // Convertir a la unidad correcta según el origen
+        if (origen === 'panama') {
+            if (!estadoSeleccionado || !rubroSeleccionado) {
+                setResultado('Error: Debe seleccionar estado y rubro');
+                return;
+            }
 
-            // Convertir a pies cúbicos si es necesario
+            // Lógica existente para Panamá
             if (unidadVolumen === 'cbm') {
                 volumenConvertido = volumenConvertido * 35.3147; // Convertir de m³ a ft³
             }
 
-            // Obtener región y categoría
             const region = obtenerRegion(estadoSeleccionado.value);
             const categoria = obtenerCategoria(rubroSeleccionado.value);
 
             if (region && categoria) {
                 tarifa = tarifasPanama[region][categoria];
-                subtotal = volumenConvertido * tarifa;
-
-                if (subtotal > 0) {
-                    const volumenFormateado = isNaN(volumenConvertido) ? '0.00' : volumenConvertido.toFixed(2);
-                    if (subtotal < CostoMinimo) {
-                        setResultado(
-                            `Tarifa: $${tarifa.toFixed(2)}/ft³\n` +
-                            `Cantidad de Paquetes: ${cantidadPaquetes}\n` +
-                            `Volumen: ${volumenFormateado} ft³\n` +
-                            `Estado: ${estadoSeleccionado.label}\n` +
-                            `Rubro: ${rubroSeleccionado?.label || 'No especificado'}`+
-                            `Costo: $${CostoMinimo.toFixed(2)}\n` 
-                        );
-                    } else {
-                        setResultado(
-                            `Tarifa: $${tarifa.toFixed(2)}/ft³\n` +
-                            `Cantidad de Paquetes: ${cantidadPaquetes}\n` +
-                            `Volumen: ${volumenFormateado} ft³\n` +
-                            `Estado: ${estadoSeleccionado.label}\n` +
-                            `Rubro: ${rubroSeleccionado?.label || 'No especificado'}`+
-                            `Costo: $${subtotal.toFixed(2)}\n` 
-                        );
-                    }
-                }
-            } else {
-                setResultado('Error: No se encontró tarifa para la combinación seleccionada');
+                calculoValido = true;
             }
         } else {
-            setResultado('Esta calculadora solo está disponible para envíos marítimos desde Panamá');
+            // Lógica para China y Estados Unidos
+            if (origen === 'estados_unidos') {
+                if (unidadVolumen === 'cbm') {
+                    volumenConvertido = volumenConvertido * 35.3147; // Convertir de m³ a ft³
+                }
+                tarifa = 30.0; // Tarifa USA marítimo
+                calculoValido = true;
+            } else if (origen === 'china') {
+                if (unidadVolumen === 'cuft') {
+                    volumenConvertido = volumenConvertido / 35.3147; // Convertir de ft³ a m³
+                }
+                tarifa = 840.0; // Tarifa China marítimo
+                calculoValido = true;
+            }
+        }
+
+        if (calculoValido) {
+            subtotal = volumenConvertido * tarifa;
+            const unidadMedidaTexto = origen === 'china' ? 'm³' : 'ft³';
+            const costoFinal = subtotal < CostoMinimo ? CostoMinimo : subtotal;
+
+            setResultado(
+                <>
+                    <div>Tarifa: ${tarifa.toFixed(2)}/{unidadMedidaTexto}</div>
+                    <div>Volumen: {volumenConvertido.toFixed(2)} {unidadMedidaTexto}</div>
+                    <div>Estado: {estadoSeleccionado?.label || 'No seleccionado'}</div>
+                    <div>Rubro: {rubroSeleccionado?.label || 'No especificado'}</div>
+                    <div style={{ 
+                        color: 'red', 
+                        fontSize: '1.5em',
+                        fontWeight: 'bold',
+                        marginTop: '10px'
+                    }}>
+                        Costo: ${costoFinal.toFixed(2)}
+                    </div>
+                </>
+            );
+        } else {
+            setResultado('Error: No se pudo calcular el costo.');
         }
     };
 
@@ -281,13 +345,24 @@ const CubicajeCalculator = () => {
         if (rubroSeleccionado) {
             detallesEnvio += `\nRubro: ${rubroSeleccionado.label}`;
         }
-        detallesEnvio += `\n${resultado.replace('Costo:', 'Costo estimado:')}`;
+
+        // Extraer información del resultado
+        if (typeof resultado === 'object') {
+            // Usar expresiones regulares para extraer información del JSX
+            const resultadoText = resultado.props.children.map(child => {
+                if (child && child.props && child.props.children) {
+                    return child.props.children.toString();
+                }
+                return '';
+            }).join('\n');
+            
+            detallesEnvio += `\n${resultadoText}`;
+        } else if (typeof resultado === 'string') {
+            detallesEnvio += `\n${resultado.replace('Error:', 'Aviso:')}`;
+        }
         
         const mensajeFinal = `${mensajeBase}${detallesEnvio}`;
-        console.log(encodeURIComponent(mensajeFinal));
         return encodeURIComponent(mensajeFinal);
-
-        console.log(mensajeFinal);
     };
 
     // console.log(`Largo: ${largo}, Ancho: ${ancho}, Alto: ${alto}, Peso: ${peso}`);
@@ -464,16 +539,17 @@ const CubicajeCalculator = () => {
             {resultado && (
                 <div className="resultado-container">
                     <div className="resultado-content">
-                        <p>{resultado.split('\n').map((line, i) => (
-                            <React.Fragment key={i}>
-                                {line}
-                                <br />
-                            </React.Fragment>
-                        ))}</p>
-                        <p className="disclaimer">
-                            * Los precios son aproximados y están sujetos a la verificación de medidas en almacén. 
-                            El costo final puede variar según la exactitud de las dimensiones proporcionadas.
-                        </p>
+                        {typeof resultado === 'string' ? (
+                            <p>{resultado}</p>
+                        ) : (
+                            <>
+                                {resultado}
+                                <p className="disclaimer">
+                                    * Los precios son aproximados y están sujetos a la verificación de medidas en almacén. 
+                                    El costo final puede variar según la exactitud de las dimensiones proporcionadas.
+                                </p>
+                            </>
+                        )}
                     </div>
                     <a 
                         href={`https://wa.me/+584126396424?text=${generarMensajeWhatsApp()}`}
