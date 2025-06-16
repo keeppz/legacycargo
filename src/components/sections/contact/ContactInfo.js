@@ -41,9 +41,8 @@ export default function ContactInfo() {
 								<i class="fa-brands fa-whatsapp"></i>
 							</div>
 							<div className="content">
-								<h3>Telefono</h3>
-								<p>Whatsapp <br />
-								<Link href="/wa.me/584126396424">+58 412-639-6424</Link>
+								<h3>Whatsapp</h3>
+								<p><Link href="/wa.me/584126396424">+58 412-6396424</Link>
 								</p>
 							</div>
 						</div> 
