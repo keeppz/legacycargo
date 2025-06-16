@@ -1,0 +1,14 @@
+// Variables para rutas de assets
+$asset-path: '/assets';
+$img-path: '#{$asset-path}/img';
+$font-path: '#{$asset-path}/fonts';
+
+// Función para generar rutas de imágenes
+@function img($filename) {
+  @return url('#{$img-path}/#{$filename}');
+}
+
+// Función para generar rutas absolutas
+@function asset($path) {
+  @return url('#{$asset-path}/#{$path}');
+} 

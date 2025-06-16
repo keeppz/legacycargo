@@ -1,0 +1,550 @@
+.shipping-calculator-section {
+    background-color: $dark-grey;
+    padding: $section-padding;
+    position: relative;
+    z-index: 1;
+
+    @include breakpoint(max-lg) {
+        padding: $section-padding-sm;
+    }
+
+    .calculator-wrapper {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: rgba($header-color, 0.95);
+        border-radius: $border-radius-lg;
+        box-shadow: $box-shadow;
+        padding: 40px;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: $theme-color;
+        }
+    }
+
+    .section-title {
+        margin-bottom: 40px;
+        position: relative;
+
+        h6 {
+            color: $theme-color;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+
+            i {
+                font-size: 12px;
+                opacity: 0.7;
+            }
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: $white;
+            margin-bottom: 0;
+
+            @include breakpoint(max-md) {
+                font-size: 28px;
+            }
+        }
+    }
+
+    .calculator-tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+        border-bottom: 1px solid rgba($white, 0.1);
+        padding-bottom: 10px;
+        gap: 5px;
+
+        .tab-item {
+            padding: 12px 25px;
+            color: $white;
+            font-weight: 500;
+            font-size: 15px;
+            border-radius: $border-radius $border-radius 0 0;
+            cursor: pointer;
+            transition: $transition-base;
+            background: transparent;
+            border: 1px solid transparent;
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -11px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: $theme-color;
+                transform: scaleX(0);
+                transition: $transition-base;
+            }
+
+            &:hover {
+                color: $theme-color;
+            }
+
+            &.active {
+                color: $theme-color;
+                border-color: rgba($white, 0.1);
+                border-bottom-color: transparent;
+
+                &::after {
+                    transform: scaleX(1);
+                }
+            }
+        }
+    }
+
+    .calculator-form {
+        display: grid;
+        grid-template-columns: minmax(auto, 500px);
+        justify-content: center;
+        gap: 25px;
+        margin: 0 auto;
+
+        .form-row {
+            display: grid;
+            gap: 20px;
+
+            &.full-width {
+                grid-template-columns: 1fr;
+            }
+
+            &.two-columns {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @include breakpoint(max-md) {
+                grid-template-columns: 1fr !important;
+                gap: 15px;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 0;
+
+            &.quantity-unit-group {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                align-items: end;
+
+                @include breakpoint(max-md) {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+
+            &.quantity-group {
+                position: relative;
+
+                .quantity-controls {
+                    position: absolute;
+                    right: 1px;
+                    top: 1px;
+                    bottom: 1px;
+                    width: 30px;
+                    display: flex;
+                    flex-direction: column;
+                    border-left: 2px solid rgba($white, 0.1);
+                    overflow: hidden;
+                    border-radius: 0 $border-radius $border-radius 0;
+
+                    button {
+                        flex: 1;
+                        border: none;
+                        background: rgba($white, 0.05);
+                        color: $white;
+                        font-size: 16px;
+                        cursor: pointer;
+                        transition: $transition-base;
+                        padding: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        &:first-child {
+                            border-bottom: 1px solid rgba($white, 0.1);
+                        }
+
+                        &:hover {
+                            background: rgba($theme-color, 0.2);
+                            color: $theme-color;
+                        }
+                    }
+                }
+
+                .form-control {
+                    padding-right: 35px;
+                    text-align: center;
+                }
+            }
+
+            label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 500;
+                color: $white;
+                font-size: 14px;
+            }
+
+            .form-control {
+                width: 100%;
+                height: 50px;
+                border: 2px solid rgba($white, 0.1);
+                border-radius: $border-radius;
+                padding: 0 20px;
+                font-size: 15px;
+                transition: $transition-base;
+                background-color: rgba($white, 0.05);
+                color: $white;
+
+                &::placeholder {
+                    color: rgba($white, 0.5);
+                }
+
+                &:focus {
+                    border-color: $theme-color;
+                    box-shadow: 0 0 0 3px rgba($theme-color, 0.1);
+                }
+
+                &:disabled {
+                    background-color: rgba($white, 0.02);
+                    cursor: not-allowed;
+                    opacity: 0.7;
+                }
+
+                option {
+                    background-color: $dark-grey;
+                    color: $white;
+                    padding: 10px;
+
+                    &:hover {
+                        background-color: rgba($theme-color, 0.1);
+                    }
+                }
+            }
+
+            select.form-control {
+                appearance: none;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: right 15px center;
+                background-size: 16px;
+                padding-right: 45px;
+
+                &::-ms-expand {
+                    display: none;
+                }
+
+                &:focus {
+                    option {
+                        background-color: $dark-grey;
+                        color: $white;
+                    }
+                }
+
+                /* Estilos para Firefox */
+                @-moz-document url-prefix() {
+                    color: $white;
+                    option {
+                        background-color: $dark-grey;
+                        color: $white;
+                    }
+                }
+
+                /* Estilos para Chrome/Safari */
+                @media screen and (-webkit-min-device-pixel-ratio:0) {
+                    option {
+                        background-color: $dark-grey;
+                        color: $white;
+                    }
+                }
+
+                /* Estilos para IE/Edge */
+                @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                    option {
+                        background-color: $dark-grey;
+                        color: $white;
+                    }
+                }
+            }
+        }
+
+        .dimensions-group {
+            margin-top: 15px;
+            padding-top: 30px;
+            border-top: 1px solid rgba($white, 0.1);
+
+            .dimensions-title {
+                text-align: center;
+                margin-bottom: 20px;
+                
+                label {
+                    font-size: 16px;
+                    color: $white;
+                    margin-bottom: 5px;
+                }
+
+                span {
+                    display: block;
+                    font-size: 13px;
+                    color: rgba($white, 0.6);
+                }
+            }
+
+            .dimensions-inputs {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 15px;
+                max-width: 500px;
+                margin: 0 auto;
+
+                .form-control {
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .calculator-actions {
+        margin-top: 40px;
+        text-align: center;
+
+        .theme-btn {
+            background-color: $theme-color;
+            color: $white;
+            border: none;
+            height: 55px;
+            padding: 24px 50px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: $border-radius;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: $transition-base;
+            cursor: pointer;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+
+            &::before {
+                content: "";
+                background-color: $white;
+                width: 0;
+                height: 50%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+                z-index: -1;
+            }
+
+            &::after {
+                content: "";
+                background-color: $white;
+                width: 0;
+                height: 50%;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+                z-index: -1;
+            }
+
+            i {
+                margin-left: 10px;
+                font-size: 14px;
+            }
+
+            &:hover {
+                color: $dark-grey;
+
+                &::before,
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .calculator-result {
+        margin-top: 40px;
+        padding-top: 40px;
+        border-top: 2px dashed rgba($white, 0.1);
+
+        .result-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+
+            @include breakpoint(max-md) {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            > div {
+                background: rgba($white, 0.05);
+                padding: 25px 20px;
+                border-radius: $border-radius;
+                transition: $transition-base;
+                border: 1px solid rgba($white, 0.1);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                min-height: 120px;
+
+                &:hover {
+                    transform: translateY(-5px);
+                    box-shadow: $box-shadow-hover;
+                    border-color: $theme-color;
+                }
+
+                h4 {
+                    font-size: 14px;
+                    color: rgba($white, 0.7);
+                    margin-bottom: 10px;
+                    font-weight: 500;
+                }
+
+                h3 {
+                    font-size: 24px;
+                    color: $theme-color;
+                    margin: 0;
+                    font-weight: 700;
+
+                    &.price-value {
+                        font-size: 28px;
+                        
+                        &::before {
+                            content: '$';
+                            font-size: 16px;
+                            vertical-align: super;
+                            margin-right: 2px;
+                            opacity: 0.8;
+                        }
+                    }
+
+                    .unit {
+                        font-size: 16px;
+                        opacity: 0.8;
+                        margin-left: 4px;
+                    }
+                }
+
+                &.price-box {
+                    grid-column: 1;
+                }
+
+                &.time-box {
+                    grid-column: 2;
+                }
+
+                &.weight-box, &.volume-box {
+                    grid-column: 3;
+
+                    &.hidden {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .disclaimer {
+            color: rgba($white, 0.7);
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+
+            p {
+                margin-bottom: 5px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .whatsapp-button {
+            margin-top: 30px;
+            text-align: center;
+
+            .theme-btn {
+                background-color: #25D366;
+                border-color: #25D366;
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 15px 30px;
+
+                i {
+                    font-size: 20px;
+                    margin: 0;
+                }
+
+                &:hover {
+                    background-color: adjust-color(#25D366, $lightness: -10%);
+                    border-color: adjust-color(#25D366, $lightness: -10%);
+
+                    &::before,
+                    &::after {
+                        background-color: adjust-color(#25D366, $lightness: -15%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .shipping-calculator-section {
+        padding: 40px 0;
+
+        .calculator-wrapper {
+            padding: 30px 20px;
+            border-radius: 15px;
+        }
+
+        .section-title {
+            h2 {
+                font-size: 28px;
+            }
+        }
+
+        .calculator-form {
+            .dimensions-inputs {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+
+        .calculator-result {
+            .result-box {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+    }
+} 

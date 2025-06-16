@@ -1,0 +1,256 @@
+//>>>>> Section Title Start <<<<<//
+
+.section-title{
+	position: relative;
+	z-index: 99;
+	margin-bottom: 60px;
+	margin-top: -7px;
+	text-align: center;
+	max-width: 770px;
+	margin-left: auto;
+	margin-right: auto;
+
+	@include breakpoint (max-md){
+		margin-bottom: 40px;
+	}
+
+	span {
+		color: $theme-color;
+		font-weight: 600;
+		text-transform: uppercase;
+		position: relative;
+		display: inline-block;
+		margin-bottom: 15px;
+
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 30px;
+			height: 2px;
+			background-color: $theme-color;
+		}
+
+		&::before {
+			left: -45px;
+		}
+
+		&::after {
+			right: -45px;
+		}
+	}
+
+	h2 {
+		font-size: 48px;
+		margin-bottom: 20px;
+
+		@include breakpoint(max-lg) {
+			font-size: 42px;
+		}
+
+		@include breakpoint(max-md) {
+			font-size: 36px;
+		}
+
+		@include breakpoint(max-sm) {
+			font-size: 28px;
+		}
+	}
+
+	p {
+		font-size: 18px;
+		line-height: 1.7;
+		margin: 0;
+
+		@include breakpoint(max-sm) {
+			font-size: 16px;
+		}
+	}
+}
+
+.section-title-area	{
+	@include flex;
+	justify-content: space-between;
+	position: relative;
+	z-index: 9;
+
+	@include breakpoint (max-lg) {
+		flex-wrap: wrap;
+		// justify-content: center;
+		// text-align: center;
+		gap: 30px;
+	}
+
+	// @include breakpoint (max-md) {
+		
+	// }
+}
+
+
+//>>>>> Section Title End <<<<<//
+
+//>>>>> Basic Css Start <<<<<//
+
+.center {
+	text-align: center;
+	margin: 0 auto;
+}
+
+
+.section-bg {
+	background-color: $bg-color;
+}
+
+.section-bg-2 {
+	background-color: rgba(212, 220, 237, .3);
+}
+
+.items-bg {
+	background-color: #F5F5F5 !important;
+}
+
+.section-padding {
+	padding: 120px 0;
+
+	@include breakpoint(max-lg) {
+		padding: 100px 0;
+	}
+
+	@include breakpoint(max-md) {
+		padding: 80px 0;
+	}
+
+	@include breakpoint(max-sm) {
+		padding: 60px 0;
+	}
+}
+
+// Grid system adjustments
+.row {
+	margin-left: -15px;
+	margin-right: -15px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+[class*="col-"] {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+// Image containers
+.img-container {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.3s ease;
+
+		&:hover {
+			transform: scale(1.05);
+		}
+	}
+}
+
+// Content boxes
+.content-box {
+	padding: 30px;
+	background: $white;
+	border-radius: 10px;
+	transition: all 0.3s ease;
+	height: 100%;
+
+	&:hover {
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+		transform: translateY(-5px);
+	}
+
+	h3 {
+		font-size: 24px;
+		margin-bottom: 15px;
+
+		@include breakpoint(max-md) {
+			font-size: 20px;
+		}
+	}
+
+	p {
+		font-size: 16px;
+		line-height: 1.6;
+		margin-bottom: 20px;
+	}
+}
+
+// Responsive containers
+.container {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 15px;
+
+	@include breakpoint(min-xl) {
+		max-width: 1320px;
+	}
+
+	@include breakpoint(max-lg) {
+		max-width: 960px;
+	}
+
+	@include breakpoint(max-md) {
+		max-width: 720px;
+	}
+
+	@include breakpoint(max-sm) {
+		max-width: 540px;
+	}
+}
+
+// Flex utilities
+.d-flex {
+	display: flex;
+}
+
+.align-items-center {
+	align-items: center;
+}
+
+.justify-content-between {
+	justify-content: space-between;
+}
+
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
+// Spacing utilities
+.mb-30 {
+	margin-bottom: 30px;
+}
+
+.mt-30 {
+	margin-top: 30px;
+}
+
+.py-30 {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+// Text utilities
+.text-center {
+	text-align: center;
+}
+
+.text-right {
+	text-align: right;
+}
+
+//>>>>> Basic Css End <<<<<//
+

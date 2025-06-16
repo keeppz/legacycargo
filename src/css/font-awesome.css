@@ -1,0 +1,267 @@
+/*!
+ * Font Awesome Pro 5.14.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license (Commercial License)
+ */
+ 
+ 
+@font-face {
+    font-family: "flaticon";
+    src: url("../webfonts/flaticon.ttf?071eac5e04f29b435029c0dd515769dd") format("truetype"),
+url("../webfonts/flaticon.woff?071eac5e04f29b435029c0dd515769dd") format("woff"),
+url("../webfonts/flaticon.woff2?071eac5e04f29b435029c0dd515769dd") format("woff2"),
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before, span[class^="flaticon-"]:before, span[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-fast:before {
+    content: "\f101";
+}
+.flaticon-warehouse:before {
+    content: "\f102";
+}
+.flaticon-cargo-boat:before {
+    content: "\f103";
+}
+.flaticon-delivery-truck:before {
+    content: "\f104";
+}
+.flaticon-truck:before {
+    content: "\f105";
+}
+.flaticon-train:before {
+    content: "\f106";
+}
+.flaticon-container:before {
+    content: "\f107";
+}
+.flaticon-drone:before {
+    content: "\f108";
+}
+.flaticon-cargo-ship:before {
+    content: "\f109";
+}
+.flaticon-drone-1:before {
+    content: "\f10a";
+}
+.flaticon-free-delivery:before {
+    content: "\f10b";
+}
+.flaticon-approval:before {
+    content: "\f10c";
+}
+.flaticon-approved:before {
+    content: "\f10d";
+}
+.flaticon-delivery-box:before {
+    content: "\f10e";
+}
+.flaticon-boxes:before {
+    content: "\f10f";
+}
+.flaticon-container-1:before {
+    content: "\f110";
+}
+.flaticon-delivery:before {
+    content: "\f111";
+}
+.flaticon-cargo:before {
+    content: "\f112";
+}
+.flaticon-cargo-1:before {
+    content: "\f113";
+}
+.flaticon-food-service:before {
+    content: "\f114";
+}
+.flaticon-ship:before {
+    content: "\f115";
+}
+.flaticon-drone-delivery:before {
+    content: "\f116";
+}
+.flaticon-smart-drone:before {
+    content: "\f117";
+}
+.flaticon-cargo-ship-1:before {
+    content: "\f118";
+}
+.flaticon-delivery-1:before {
+    content: "\f119";
+}
+.flaticon-donation:before {
+    content: "\f11a";
+}
+.flaticon-warehouse-1:before {
+    content: "\f11b";
+}
+.flaticon-ship-1:before {
+    content: "\f11c";
+}
+.flaticon-container-2:before {
+    content: "\f11d";
+}
+.flaticon-container-3:before {
+    content: "\f11e";
+}
+.flaticon-delivery-truck-1:before {
+    content: "\f11f";
+}
+.flaticon-air-freight:before {
+    content: "\f120";
+}
+.flaticon-steam-locomotive:before {
+    content: "\f121";
+}
+.flaticon-logistics-delievry:before {
+    content: "\f122";
+}
+.flaticon-ship-2:before {
+    content: "\f123";
+}
+.flaticon-cargo-2:before {
+    content: "\f124";
+}
+.flaticon-warehouse-2:before {
+    content: "\f125";
+}
+.flaticon-airplane:before {
+    content: "\f126";
+}
+.flaticon-freight-wagon:before {
+    content: "\f127";
+}
+.flaticon-delivery-van:before {
+    content: "\f128";
+}
+.flaticon-truck-1:before {
+    content: "\f129";
+}
+.flaticon-ship-3:before {
+    content: "\f12a";
+}
+.flaticon-transportation:before {
+    content: "\f12b";
+}
+.flaticon-airplane-1:before {
+    content: "\f12c";
+}
+.flaticon-air-freight-1:before {
+    content: "\f12d";
+}
+.flaticon-airplane-2:before {
+    content: "\f12e";
+}
+.flaticon-transportation-1:before {
+    content: "\f12f";
+}
+.flaticon-cargo-3:before {
+    content: "\f130";
+}
+.flaticon-bicycle:before {
+    content: "\f131";
+}
+.flaticon-cruise:before {
+    content: "\f132";
+}
+.flaticon-plane:before {
+    content: "\f133";
+}
+.flaticon-subway:before {
+    content: "\f134";
+}
+.flaticon-worldwide:before {
+    content: "\f135";
+}
+.flaticon-food:before {
+    content: "\f136";
+}
+.flaticon-mail:before {
+    content: "\f137";
+}
+.flaticon-train-1:before {
+    content: "\f138";
+}
+.flaticon-ship-4:before {
+    content: "\f139";
+}
+.flaticon-deliver:before {
+    content: "\f13a";
+}
+.flaticon-ship-5:before {
+    content: "\f13b";
+}
+.flaticon-drone-2:before {
+    content: "\f13c";
+}
+.flaticon-truck-2:before {
+    content: "\f13d";
+}
+.flaticon-warehouse-3:before {
+    content: "\f13e";
+}
+.flaticon-cargo-ship-2:before {
+    content: "\f13f";
+}
+.flaticon-maps:before {
+    content: "\f140";
+}
+.flaticon-cargo-box:before {
+    content: "\f141";
+}
+.flaticon-shipping:before {
+    content: "\f142";
+}
+.flaticon-location:before {
+    content: "\f143";
+}
+.flaticon-logistics:before {
+    content: "\f144";
+}
+.flaticon-worldwide-shipping:before {
+    content: "\f145";
+}
+.flaticon-delivery-truck-2:before {
+    content: "\f146";
+}
+.flaticon-container-4:before {
+    content: "\f147";
+}
+.flaticon-takeoff-the-plane:before {
+    content: "\f148";
+}
+.flaticon-air-freight-2:before {
+    content: "\f149";
+}
+.flaticon-freight:before {
+    content: "\f14a";
+}
+.flaticon-cargo-4:before {
+    content: "\f14b";
+}
+.flaticon-airplane-3:before {
+    content: "\f14c";
+}
+.flaticon-cargo-ship-3:before {
+    content: "\f14d";
+}
+.flaticon-airplane-4:before {
+    content: "\f14e";
+}
+.flaticon-airplane-5:before {
+    content: "\f14f";
+}
+.flaticon-train-2:before {
+    content: "\f150";
+}
+.flaticon-truck-3:before {
+    content: "\f151";
+}
