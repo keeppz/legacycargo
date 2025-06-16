@@ -1,0 +1,219 @@
+/* Personalización de componentes shadcn/ui */
+
+/* Variables de personalización específicas para shadcn */
+:root {
+  --primary: #{$theme-color};
+  --primary-foreground: #{$white};
+  --secondary: #{$theme-color-2};
+  --secondary-foreground: #{$white};
+  
+  --accent: #{$light-grey};
+  --accent-foreground: #{$heading-color};
+  
+  --destructive: #ef4444;
+  --destructive-foreground: #{$white};
+  
+  --background: #{$white};
+  --foreground: #{$heading-color};
+  
+  --card: #{$white};
+  --card-foreground: #{$heading-color};
+  
+  --popover: #{$white};
+  --popover-foreground: #{$heading-color};
+  
+  --muted: #{$light-grey};
+  --muted-foreground: #{$text-color};
+  
+  --border: #{$border-color};
+  --input: #{$border-color};
+  
+  --ring: #{$theme-color};
+  
+  --radius: #{$border-radius-sm};
+}
+
+/* Dark theme overrides */
+.dark {
+  --background: #{$dark-grey};
+  --foreground: #{$white};
+  
+  --card: #{$bg-color};
+  --card-foreground: #{$white};
+  
+  --popover: #{$bg-color};
+  --popover-foreground: #{$white};
+  
+  --primary: #{$theme-color};
+  --primary-foreground: #{$white};
+  
+  --secondary: #{$theme-color-2};
+  --secondary-foreground: #{$white};
+  
+  --muted: #383838;
+  --muted-foreground: #a1a1aa;
+  
+  --accent: #404040;
+  --accent-foreground: #{$white};
+  
+  --destructive: #ef4444;
+  --destructive-foreground: #{$white};
+  
+  --border: #404040;
+  --input: #404040;
+}
+
+/* Personalización de botones */
+.button-root {
+  font-family: $body-font;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: $transition-base;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Personalización de inputs */
+.input-root {
+  font-family: $body-font;
+  border-color: $border-color;
+  box-shadow: none;
+  transition: $transition-base;
+  
+  &:focus {
+    border-color: $theme-color;
+    box-shadow: 0 0 0 1px rgba($theme-color, 0.2);
+  }
+}
+
+/* Personalización de checkbox */
+.checkbox-root {
+  border-color: $border-color;
+  transition: $transition-base;
+  
+  &:checked {
+    background-color: $theme-color;
+    border-color: $theme-color;
+  }
+}
+
+/* Personalización de select */
+.select-root {
+  font-family: $body-font;
+  border-color: $border-color;
+  transition: $transition-base;
+  
+  &:focus {
+    border-color: $theme-color;
+    box-shadow: 0 0 0 1px rgba($theme-color, 0.2);
+  }
+}
+
+/* Personalización de diálogos/modales */
+.dialog-content {
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+  box-shadow: $box-shadow;
+}
+
+/* Personalización de dropdown menus */
+.dropdown-content {
+  border-radius: $border-radius-sm;
+  border: 1px solid $border-color;
+  box-shadow: $box-shadow;
+}
+
+/* Personalización de tablas */
+.table {
+  font-family: $body-font;
+  
+  th {
+    font-weight: 600;
+    color: $heading-color;
+    background-color: $light-grey;
+  }
+  
+  tr {
+    border-bottom: 1px solid $border-color;
+    transition: $transition-base;
+    
+    &:hover {
+      background-color: rgba($light-grey, 0.5);
+    }
+  }
+}
+
+/* Override para inputs en componentes de login */
+.login-input.shadcn-input {
+  border-color: $border-color;
+  border-radius: $border-radius-sm;
+  height: auto;
+  padding: 0.85rem 1rem;
+  font-size: 15px;
+  width: 100%;
+  background-color: $white;
+  color: $heading-color;
+  
+  &:focus {
+    border-color: $theme-color;
+    box-shadow: 0 0 0 1px rgba($theme-color, 0.2);
+  }
+}
+
+/* Override para botones en componentes de login */
+.login-btn.shadcn-button {
+  background-color: $theme-color;
+  color: $white;
+  border: none;
+  border-radius: $border-radius-sm;
+  padding: 0.85rem 1.5rem;
+  font-size: 16px;
+  font-weight: 600;
+  transition: $transition-base;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  
+  &:hover {
+    background-color: $theme-color-2;
+  }
+  
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+/* Override para botones sociales */
+.social-btn {
+  &.google-btn {
+    background-color: $white;
+    color: $heading-color;
+    border: 1px solid $border-color;
+    
+    &:hover {
+      background-color: $light-grey;
+    }
+  }
+  
+  &.apple-btn {
+    background-color: $black;
+    color: $white;
+    border: 1px solid $black;
+    
+    svg {
+      color: $white;
+    }
+    
+    &:hover {
+      background-color: lighten($black, 20%);
+    }
+  }
+} 

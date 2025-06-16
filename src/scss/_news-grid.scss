@@ -1,0 +1,128 @@
+/*----------------------------------------*/
+/*  News Grid CSS
+/*----------------------------------------*/
+
+.news-grid-area {
+    position: relative;
+    overflow: hidden;
+}
+
+.news-item {
+    position: relative;
+    background: $white;
+    border-radius: $border-radius;
+    box-shadow: $shadow;
+    transition: $transition-base;
+
+    &:hover {
+        box-shadow: $box-shadow-hover;
+
+        .news-img img {
+            transform: scale(1.1);
+        }
+
+        .theme-btn {
+            background-color: $theme-color;
+            color: $white;
+        }
+    }
+
+    .news-img {
+        position: relative;
+        overflow: hidden;
+        border-radius: $border-radius $border-radius 0 0;
+
+        img {
+            width: 100%;
+            transition: $transition-base;
+        }
+
+        .news-date {
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+            background: $theme-color;
+            color: $white;
+            padding: 5px 15px;
+            border-radius: $border-radius-sm;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+
+    .news-content {
+        padding: 25px;
+
+        .news-meta {
+            margin-bottom: 15px;
+
+            span {
+                font-size: 14px;
+                color: $text-color;
+                margin-right: 20px;
+
+                i {
+                    color: $theme-color;
+                    margin-right: 5px;
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        .news-title {
+            font-size: 22px;
+            line-height: 1.4;
+            margin-bottom: 15px;
+
+            a {
+                color: $header-color;
+                transition: $transition-base;
+
+                &:hover {
+                    color: $theme-color;
+                }
+            }
+
+            @include breakpoint(max-sm) {
+                font-size: 18px;
+            }
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: $text-color;
+        }
+
+        .theme-btn {
+            background-color: transparent;
+            color: $theme-color;
+            border: 1px solid $theme-color;
+            padding: 12px 30px;
+            border-radius: $border-radius-sm;
+            font-weight: 500;
+            transition: $transition-base;
+
+            i {
+                margin-left: 5px;
+            }
+        }
+    }
+}
+
+// Responsive
+@include breakpoint(max-lg) {
+    .news-grid-area {
+        .news-item {
+            margin-bottom: 30px;
+        }
+    }
+}
+
+@include breakpoint(max-md) {
+    .news-grid-area {
+        padding: 60px 0;
+    }
+} 

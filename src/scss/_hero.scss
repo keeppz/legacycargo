@@ -1,0 +1,621 @@
+/*----------------------------------------*/
+/*  Hero CSS
+/*----------------------------------------*/
+
+.hero-area {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba($black, 0.6);
+        z-index: 1;
+    }
+
+    .container {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        padding-top: 100px;
+        color: $white;
+
+        .hero-subtitle {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: rgba($theme-color, 0.1);
+            padding: 5px 15px;
+            border-radius: 5px;
+            color: $theme-color;
+        }
+
+        .hero-title {
+            font-size: 72px;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            font-weight: 700;
+            color: $white;
+
+            @include breakpoint(max-xl) {
+                font-size: 60px;
+            }
+
+            @include breakpoint(max-lg) {
+                font-size: 48px;
+            }
+
+            @include breakpoint(max-sm) {
+                font-size: 36px;
+            }
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+
+            .theme-btn {
+                &.white {
+                    background: $white;
+                    color: $theme-color;
+
+                    &:hover {
+                        background: $theme-color;
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+
+    .hero-image {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 50%;
+        height: 100%;
+        z-index: 0;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @include breakpoint(max-lg) {
+            display: none;
+        }
+    }
+}
+
+// Slider Navigation
+.hero-slider {
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 50px;
+        height: 50px;
+        background: $white;
+        border-radius: 50%;
+        
+        &::after {
+            font-size: 20px;
+            color: $theme-color;
+        }
+
+        &:hover {
+            background: $theme-color;
+            
+            &::after {
+                color: $white;
+            }
+        }
+    }
+
+    .swiper-pagination-bullet {
+        width: 12px;
+        height: 12px;
+        background: $white;
+        opacity: 0.5;
+
+        &-active {
+            opacity: 1;
+            background: $theme-color;
+        }
+    }
+}
+
+.hero-1 {
+    background-color: $bg-color;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+
+    .container-fluid {
+        padding: 0 150px;
+        width: 100%;
+        max-width: 1920px;
+        margin: 0 auto;
+
+        @include breakpoint (max-xl4){
+            padding: 0 40px;
+        }
+
+        @include breakpoint (max-xxl){
+            padding: 0 25px;
+        }
+    }
+
+    .line-shape {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+    }
+
+    .hero-content {
+        background-color: $theme-color;
+        padding: 105px 70px;
+        clip-path: polygon(0% 15%, 0 11%, 11% 0, 85% 0%, 100% 0, 100% 15%, 100% 88%, 91% 100%, 94% 100%, 15% 100%, 0 100%, 0% 85%);
+        max-width: 870px;
+        position: relative;
+        z-index: 2;
+
+        @include breakpoint (max-xxl){
+           padding: 70px 40px;
+        }
+
+        @include breakpoint (max-lg){
+            padding: 70px 50px;
+            margin: 0 auto;
+        }
+
+        @include breakpoint (max-md){
+            padding: 70px 40px;
+        }
+
+        @include breakpoint (max-sm){
+            padding: 60px 30px;
+        }
+
+        .vector-shape {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .vector-shape-2 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: -1;
+        }
+
+        h1 {
+            color: $white;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+
+            br {
+                @include breakpoint (max-xl){
+                    display: none;
+                }
+            }
+
+            @include breakpoint (max-xxl){
+               font-size: 74px;
+            }
+
+            @include breakpoint (max-xl){
+                font-size: 64px;
+            }
+
+            @include breakpoint (max-lg){
+                font-size: 54px;
+            }
+
+            @include breakpoint (max-md){
+                font-size: 46px;
+                line-height: 126%;
+            }
+
+            @include breakpoint (max-sm){
+                font-size: 32px;
+            }
+        }
+
+        p {
+            font-size: 23px;
+            font-weight: 500;
+            color: $white;
+            margin-top: 20px;
+            margin-bottom: 30px;
+
+            @include breakpoint (max-lg){
+                font-size: 21px;
+            }
+
+            @include breakpoint (max-md){
+                font-size: 19px;
+            }
+
+            @include breakpoint (max-sm){
+                font-size: 17px;
+            }
+        }
+
+        .hero-button {
+            margin-top: 50px;
+            @include flex;
+            gap: 24px;
+            align-items: center;
+
+            @include breakpoint (max-sm){
+                flex-wrap: wrap;
+                margin-top: 30px;
+            }
+
+            .button-text {
+                .video-btn {
+                    width: 55px;
+                    height: 55px;
+                    line-height: 55px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: transparent;
+                    border: 1px solid $white;
+                    border-radius: 50%;
+                    color: $white;
+                    margin-right: 15px;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        background-color: $white;
+                        color: $theme-color;
+                    }
+                }
+
+                color: $white;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+
+    .hero-image-items {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        @include breakpoint (max-lg){
+            margin: 40px auto 0;
+            max-width: 100%;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            min-height: 600px;
+            position: relative;
+
+            @include breakpoint (max-lg){
+                height: 600px;
+            }
+
+            @include breakpoint (max-md){
+                height: 520px;
+            }
+
+            @include breakpoint (max-sm){
+                height: 420px;
+            }
+            
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+
+        .array-button {
+            @include flex;
+            justify-content: space-between;
+            padding: 0 50px;
+            margin-top: 40px;
+            position: relative;
+
+            @include breakpoint (max-xl4){
+                padding: 0 25px;
+            }
+
+            @include breakpoint (max-lg){
+                justify-content: center;
+                gap: 30px;
+            }
+
+            &::before {
+                position: absolute;
+                top: 14px;
+                left: 100px;
+                content: "";
+                width: calc(100% - 200px);
+                height: 1px;
+                opacity: 0.5;
+                background: $white;
+
+                @include breakpoint (max-xl4){
+                   display: none;
+                }
+            }
+
+            .array-prevs,
+            .array-nexts {
+                color: $white;
+                font-size: 16px;
+                font-weight: 500;
+                @include flex;
+                gap: 5px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    color: $theme-color;
+                }
+            }
+
+            .array-nexts {
+                color: $theme-color;
+            }
+        }
+    }
+}
+
+.hero-section {
+    position: relative;
+    overflow: hidden;
+
+    &.hero-2 {
+        .slider-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                animation: kenburns 20s ease-in-out infinite;
+            }
+
+            .overlay {
+            position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.6);
+                z-index: 2;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 3;
+            padding-top: 90px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 4;
+            color: #fff;
+            padding: 120px 0 50px;
+            min-height: calc(100vh - 90px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            h5 {
+                color: var(--theme-color);
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 20px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
+
+            h1 {
+                color: #fff;
+                font-size: 60px;
+                line-height: 1.2;
+                margin-bottom: 30px;
+                font-weight: 700;
+
+                @include breakpoint(max-lg) {
+                    font-size: 48px;
+                }
+
+                @include breakpoint(max-md) {
+                    font-size: 36px;
+                }
+
+                @include breakpoint(max-sm) {
+                    font-size: 28px;
+                }
+            }
+
+            p {
+                color: #fff;
+                font-size: 18px;
+                line-height: 1.8;
+                margin-bottom: 40px;
+                max-width: 600px;
+
+                @include breakpoint(max-sm) {
+                    font-size: 16px;
+                    margin-bottom: 30px;
+                }
+            }
+
+            .hero-button {
+                display: flex;
+                gap: 20px;
+                
+                @include breakpoint(max-sm) {
+                    flex-direction: column;
+                    gap: 15px;
+                }
+                
+                .theme-btn {
+                    padding: 12px 25px;
+                    font-size: 16px;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-weight: 500;
+                    transition: all 0.3s;
+                    
+                    &.hover-white {
+                        background-color: var(--theme-color);
+                        color: #fff;
+                        
+                        &:hover {
+                            background: #fff;
+                            color: var(--theme-color);
+                        }
+                    }
+
+                    &.bg-white {
+                        background: #fff;
+                        color: var($black);
+
+                        &:hover {
+                            background: var(--theme-color);
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+
+        .array-button {
+            position: absolute;
+            bottom: 50px;
+            right: 50px;
+            z-index: 5;
+            display: flex;
+            gap: 10px;
+
+            @include breakpoint(max-md) {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            button {
+                width: 50px;
+                height: 50px;
+                border: 2px solid rgba(255, 255, 255, 0.2);
+                border-radius: 50%;
+                color: #fff;
+                background: transparent;
+                transition: all 0.3s;
+
+                &:hover {
+                    background: var(--theme-color);
+                    border-color: var(--theme-color);
+                }
+            }
+        }
+    }
+}
+
+// Estilos para Swiper
+.hero-slider-2 {
+    height: 100vh;
+
+    .swiper-slide {
+        height: 100%;
+    }
+
+    .swiper-pagination {
+        bottom: 30px !important;
+
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+
+            &-active {
+                opacity: 1;
+                background: var(--theme-color);
+            }
+        }
+    }
+}
+
+// Efecto Ken Burns
+@keyframes kenburns {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+// Animaciones WOW
+.fadeInUp {
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+    }
+    
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
