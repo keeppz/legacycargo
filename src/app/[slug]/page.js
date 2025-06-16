@@ -13,7 +13,6 @@ const pages = {
   'news': dynamic(() => import('../../app/news/page')),
   'pricing': dynamic(() => import('../../app/pricing/page')),
   'news-grid': dynamic(() => import('../../app/news-grid/page')),
-  // 'index-two': dynamic(() => import('../index/page')),
 }
 
 export default function DynamicPage() {
