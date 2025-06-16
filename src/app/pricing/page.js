@@ -1,7 +1,7 @@
 'use client'
 
 import Layout from '../../components/layout/Layout'
-import Pricing from '../../components/sections/pricing'
+import Pricing from '../../components/sections/Pricing'
 
 export default function Page() {
   return (
