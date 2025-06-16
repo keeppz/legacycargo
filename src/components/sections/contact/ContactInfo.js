@@ -8,11 +8,11 @@ export default function ContactInfo() {
 				<div className="section-title text-center">
 					<h6 className="wow fadeInUp">
 						<i className="fa-classic fa-arrow-left-long" />
-						CONTACT US
+						CONTACTO
 						<i className="fa-classic fa-arrow-right-long" />
 					</h6>
 					<h2 className="wow fadeInUp" data-wow-delay=".4s">
-						Our Contact Information
+						Información de Contacto
 					</h2>
 				</div>
 				<div className="row">
@@ -24,11 +24,10 @@ export default function ContactInfo() {
 								<img src="assets/img/icon/19.svg" alt="img" />
 							</div>
 							<div className="content">
-								<h3>Email Address</h3>
+								<h3>Correo Electrónico</h3>
 								<p>
-									Mobile :<Link href="/tel:984756123695">9847 5612 3695</Link>{" "}
-									<br />
-									Email :
+									
+									Correo :
 									<Link href="/mailto:example@gmail.com">example@gmail.com</Link>
 								</p>
 							</div>
@@ -44,7 +43,7 @@ export default function ContactInfo() {
 							<div className="content">
 								<h3>Telefono</h3>
 								<p>Whatsapp <br />
-								<Link href="/tel:984756123695">+58 412-511-1111</Link>
+								<Link href="/wa.me/584126396424">+58 412-639-6424</Link>
 								</p>
 							</div>
 						</div> 
@@ -60,7 +59,7 @@ export default function ContactInfo() {
 							<div className="content">
 								<h3>Horario de Atención</h3>
 								<p>
-									Lunes a Viernes: 8:00-17:00 <br /> Sábado: 8:00-13:00
+									Lunes a Viernes: 8:30-17:00 <br /> 
 								</p>
 							</div>
 						</div>
