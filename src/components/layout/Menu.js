@@ -34,9 +34,9 @@ export default function Menu() {
 							<li>
 								<Link href="/service-paqueteria">Servicio de Paquetería</Link>
 							</li>
-							<li>
+							{/* <li>
 								<Link href="/service-almacenamiento">Servicio de Almacenamiento</Link>
-							</li>
+							</li> */}
 						</ul>
 					</li>
 					<li> 

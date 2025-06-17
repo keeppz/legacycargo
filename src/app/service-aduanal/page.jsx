@@ -26,7 +26,7 @@ export default function ServicioAduanal() {
 				breadcrumbTitle="Servicios Aduanales"
 			>
 				<ServiceTemplate {...serviceData} />
-				<ClientBrand1 />
+				{/* <ClientBrand1 /> */}
 			</Layout>
 		</>
 	)

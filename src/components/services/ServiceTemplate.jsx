@@ -95,12 +95,12 @@ export default function ServiceTemplate({
                                                         <i className="fa-solid fa-arrow-right-long" style={{ color: title === "Servicios Aduanales" ? "#fff" : "#ff282e" }} />
                                                     </Link>
                                                 </li>
-                                                <li className={`mb-2 p-2 rounded ${title === "Almacenamiento" ? "bg-danger text-white" : ""}`}>
+                                                {/* <li className={`mb-2 p-2 rounded ${title === "Almacenamiento" ? "bg-danger text-white" : ""}`}>
                                                     <Link href="/service-almacenamiento" className={`d-flex justify-content-between align-items-center text-decoration-none ${title === "Almacenamiento" ? "text-white" : ""}`}>
                                                         <span>Almacenamiento</span>
                                                         <i className="fa-solid fa-arrow-right-long" style={{ color: title === "Almacenamiento" ? "#fff" : "#ff282e" }} />
                                                     </Link>
-                                                </li>
+                                                </li> */}
                                                 <li className={`mb-2 p-2 rounded ${title === "Paquetería Internacional" ? "bg-danger text-white" : ""}`}>
                                                     <Link href="/service-paqueteria" className={`d-flex justify-content-between align-items-center text-decoration-none ${title === "Paquetería Internacional" ? "text-white" : ""}`}>
                                                         <span>Paquetería Internacional</span>

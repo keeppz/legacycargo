@@ -26,7 +26,7 @@ export default function ServicioPaqueteria() {
 				breadcrumbTitle="Paquetería Internacional"
 			>
 				<ServiceTemplate {...serviceData} />
-				<ClientBrand1 />
+				{/* <ClientBrand1 /> */}
 			</Layout>
 		</>
 	)

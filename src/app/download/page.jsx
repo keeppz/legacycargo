@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Layout from "../../components/layout/Layout"
-import DownloadAppSection from "../../components/DownloadAppSection"
+import DownloadAppSection from "../../components/sections/DownloadAppSection"
 
 const DownloadPage = () => {
   return (
