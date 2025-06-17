@@ -26,7 +26,7 @@ export default function ServicioAlmacenamiento() {
 				breadcrumbTitle="Almacenamiento"
 			>
 				<ServiceTemplate {...serviceData} />
-				<ClientBrand1 />
+				{/* <ClientBrand1 /> */}
 			</Layout>
 		</>
 	)

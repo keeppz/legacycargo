@@ -1,0 +1,336 @@
+.download-app-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.25rem;
+  background: linear-gradient(135deg, #374151 0%, #4b5563 50%, #374151 100%);
+
+  // Variables locales
+  $gap-mobile: 2rem;
+  $gap-desktop: 1.875rem; // 30px
+  $column-width: 50%;
+
+  &__container {
+    max-width: 80rem; // max-w-7xl
+    width: 100%;
+    position: relative;
+    z-index: 10;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-mobile;
+    align-items: center;
+    min-height: 70vh;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      gap: $gap-desktop;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+  }
+
+  // Columna de texto
+  &__text-column {
+    width: 100%;
+    text-align: left;
+    order: 2;
+
+    @media (min-width: 768px) {
+      width: calc(50% - 15px);
+      order: 1;
+      flex: 0 0 calc(50% - 15px);
+      max-width: calc(50% - 15px);
+    }
+  }
+
+  // Columna de imagen
+  &__image-column {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    order: 1;
+
+    @media (min-width: 768px) {
+      width: calc(50% - 15px);
+      order: 2;
+      flex: 0 0 calc(50% - 15px);
+      max-width: calc(50% - 15px);
+    }
+  }
+
+  // Títulos
+  &__title {
+    font-size: 1.875rem; // text-3xl
+    font-weight: 700;
+    color: $white;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+
+    @include breakpoint(min-md) {
+      font-size: 2.25rem; // text-4xl
+    }
+
+    @include breakpoint(min-lg) {
+      font-size: 3rem; // text-5xl
+    }
+
+    // Saltos de línea desde tablets
+    .line-break {
+      display: none;
+
+      @media (min-width: 768px) {
+        display: block;
+      }
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.125rem; // text-lg
+    font-weight: 600;
+    color: rgba($white, 0.9);
+    margin-bottom: 1rem;
+
+    @include breakpoint(min-md) {
+      font-size: 1.25rem; // text-xl
+    }
+
+    @include breakpoint(min-lg) {
+      font-size: 1.5rem; // text-2xl
+    }
+  }
+
+  &__description {
+    font-size: 1rem;
+    color: rgba($white, 0.8);
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+
+    @include breakpoint(min-md) {
+      font-size: 1.125rem; // text-lg
+    }
+  }
+
+  // Features
+  &__features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    list-style: none;
+    padding: 0;
+
+    @include breakpoint(min-md) {
+      gap: 0.75rem;
+    }
+
+    &-item {
+      background: rgba($white, 0.1);
+      border: 1px solid rgba($white, 0.3);
+      border-radius: 9999px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.75rem;
+      color: $white;
+
+      @include breakpoint(min-md) {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+      }
+    }
+  }
+
+  // Botones
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    @media (max-width: 576px) {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    // Estilos para los botones de descarga
+    a {
+      button {
+        background-color: $white !important;
+        color: $dark-grey !important;
+        border: 1px solid rgba($dark-grey, 0.2) !important;
+        border-radius: 50px !important; // Botones muy redondeados
+        padding: 12px 24px !important;
+        min-width: 200px !important;
+        height: 56px !important;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 12px !important;
+        font-weight: 500 !important;
+
+        &:hover {
+          background-color: rgba($white, 0.95) !important;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+          border-color: rgba($dark-grey, 0.3) !important;
+        }
+
+        // Iconos dentro de los botones
+        svg {
+          fill: $dark-grey !important;
+          color: $dark-grey !important;
+          width: 24px !important;
+          height: 24px !important;
+          flex-shrink: 0;
+        }
+
+        // Contenedor de texto
+        div {
+          color: $dark-grey !important;
+          text-align: left;
+          line-height: 1.2;
+
+          // Texto pequeño superior
+          .text-xs {
+            font-size: 10px !important;
+            color: rgba($dark-grey, 0.7) !important;
+            margin-bottom: 2px;
+          }
+
+          // Texto principal
+          .font-semibold {
+            font-size: 16px !important;
+            font-weight: 600 !important;
+            color: $dark-grey !important;
+          }
+        }
+      }
+    }
+  }
+
+  // Imagen
+  &__image-container {
+    position: relative;
+    width: 100%;
+    max-width: 24rem; // max-w-sm
+
+    @include breakpoint(min-lg) {
+      max-width: 100%;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    max-height: 37.5rem; // 600px
+    object-fit: contain;
+    
+    // Animación de flotación
+    animation: float 3s ease-in-out infinite;
+  }
+
+  // Efectos de fondo
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        linear-gradient(to right, rgba($white, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba($white, 0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 60%, transparent 100%);
+    }
+  }
+
+  // Animaciones
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  // Animaciones de entrada
+  &__text-column {
+    animation: slideInLeft 0.8s ease-out;
+  }
+
+  &__image-column {
+    animation: slideInRight 1s ease-out 0.3s both;
+  }
+
+  &__features-item {
+    animation: fadeIn 0.6s ease-out both;
+    
+    @for $i from 1 through 4 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{0.3 + ($i - 1) * 0.1}s;
+      }
+    }
+  }
+
+  &__buttons {
+    animation: slideInUp 0.8s ease-out 0.5s both;
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+} 

@@ -16,7 +16,7 @@ export default function Page() {
 				<Achivements />
 				{/* <Testimonial1 /> */}
 				{/* <Team1 /> */}
-				 <Brand1 /> 
+				 {/* <Brand1 />  */}
 			</Layout>
 		</>
 	)

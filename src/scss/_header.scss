@@ -760,6 +760,8 @@
 						padding-top: 11px;
 						width: 100%;
 						border-bottom: 1px solid #eeeeee;
+						margin: 0;
+						width: calc(100% - 50px);
 
 						&:hover {
 							color: $white !important;

@@ -26,7 +26,7 @@ export default function ServicioMaritimo() {
 				breadcrumbTitle="Transporte Marítimo"
 			>
 				<ServiceTemplate {...serviceData} />
-				<ClientBrand1 />
+				{/* <ClientBrand1 /> */}
 			</Layout>
 		</>
 	)
