@@ -112,10 +112,14 @@
 
     .calculator-form {
         display: grid;
-        grid-template-columns: minmax(auto, 500px);
+        grid-template-columns: 1fr;
         justify-content: center;
         gap: 25px;
         margin: 0 auto;
+        max-width: calc(500px + 40px); /* 500px + 20px padding cada lado */
+        padding: 0 20px;
+        width: 100%;
+        box-sizing: border-box;
 
         .form-row {
             display: grid;
@@ -143,9 +147,16 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 20px;
                 align-items: end;
+                width: 100%;
 
                 @include breakpoint(max-md) {
-                    grid-template-columns: 1fr 1fr;
+                    grid-template-columns: 1fr;
+                    gap: 15px;
+                }
+
+                @include breakpoint(max-sm) {
+                    grid-template-columns: 1fr;
+                    gap: 15px;
                 }
             }
 
@@ -212,6 +223,7 @@
                 transition: $transition-base;
                 background-color: rgba($white, 0.05);
                 color: $white;
+                box-sizing: border-box;
 
                 &::placeholder {
                     color: rgba($white, 0.5);
@@ -311,11 +323,11 @@
                 display: grid;
                 grid-template-columns: 1fr;
                 gap: 15px;
-                max-width: 500px;
-                margin: 0 auto;
+                width: 100%;
 
                 .form-control {
                     text-align: center;
+                    min-width: 0; /* Permite que los inputs se encojan */
                 }
             }
         }

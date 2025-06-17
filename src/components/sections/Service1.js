@@ -159,7 +159,7 @@ export default function Service1() {
 											<Link href="/service-aduanal">Servicios Aduanales</Link>
 										</h3>
 										<p>
-											Gestión completa de trámites de importación y nacionalización de mercancías con expertos en normativas aduaneras.
+											Gestión de trámites de importación y nacionalización de mercancías con expertos en normativas aduaneras.
 										</p>
 										<Link href="/service-aduanal" className="theme-btn" style={{ backgroundColor: '#ff282e', color: 'white', borderColor: '#ff282e' }}>
 											Ver Más <i className="fa-solid fa-arrow-right" />
@@ -181,7 +181,7 @@ export default function Service1() {
 											<Link href="/service-almacenamiento">Almacenamiento</Link>
 										</h3>
 										<p>
-											Instalaciones seguras para el almacenamiento temporal de tu mercancía en nuestros almacenes en USA, Panamá y Venezuela.
+											Instalaciones seguras para el almacenamiento temporal de tu mercancía en Venezuela.
 										</p>
 										<Link href="/service-almacenamiento" className="theme-btn" style={{ backgroundColor: '#ff282e', color: 'white', borderColor: '#ff282e' }}>
 											Ver Más <i className="fa-solid fa-arrow-right" />

@@ -322,7 +322,7 @@ ${cantidadPaquetes > 1 ? `- Cantidad de paquetes: ${cantidadPaquetes}` : ''}`;
                                 </div>
                             </div>
 
-                            <div className="form-row quantity-unit-group">
+                            <div className="form-row full-width">
                                 <div className="form-group">
                                     <label>Unidad de Medida</label>
                                     <select
@@ -338,7 +338,9 @@ ${cantidadPaquetes > 1 ? `- Cantidad de paquetes: ${cantidadPaquetes}` : ''}`;
                                         ))}
                                     </select>
                                 </div>
-                                <div className="form-group quantity-group">
+                            </div>
+                            <div className="form-row full-width">
+                                <div className="form-group">
                                     <label>Cantidad de Paquetes</label>
                                     <input
                                         type="number"
@@ -350,7 +352,6 @@ ${cantidadPaquetes > 1 ? `- Cantidad de paquetes: ${cantidadPaquetes}` : ''}`;
                                     />
                                 </div>
                             </div>
-
                             {tipoCalculadora === 'dimensiones' ? (
                                 <div className="dimensions-group">
                                     <div className="dimensions-title">

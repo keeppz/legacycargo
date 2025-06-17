@@ -21,8 +21,8 @@ export default function Page() {
             <About2 />
             <Service1 />
             <Project2 />
-            <Team2 />
-            <Testimonial2 />
+            {/* <Team2 />
+            <Testimonial2 /> */}
             {/* <Brand2 /> */}
             <CtaBanner />
           </div>
