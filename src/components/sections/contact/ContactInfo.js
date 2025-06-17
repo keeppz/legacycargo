@@ -42,7 +42,7 @@ export default function ContactInfo() {
 							</div>
 							<div className="content">
 								<h3>Whatsapp</h3>
-								<p><Link href="/wa.me/584126396424">+58 412-6396424</Link>
+								<p><Link href="https://wa.me/584126396424">+58 412-6396424</Link>
 								</p>
 							</div>
 						</div> 

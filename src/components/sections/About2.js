@@ -120,11 +120,11 @@ export default function About2() {
 											className="author-image wow fadeInUp"
 											data-wow-delay=".4s"
 										>
-											<img src="assets/img/about/author.png" alt="Legacy Cargo CEO" />
-											<div className="content">
+											{/* <img src="assets/img/about/author.png" alt="Legacy Cargo CEO" /> */}
+											{/* <div className="content">
 												<p>Legacy Cargo, CEO</p>
 												<h4>José Rodríguez</h4>
-											</div>
+											</div> */}
 										</div>
 									</div>
 								</div>
