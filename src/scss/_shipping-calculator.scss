@@ -607,21 +607,30 @@
             @include breakpoint(max-lg) {
                 grid-template-columns: repeat(2, 1fr);
                 max-width: 600px;
+                gap: 18px;
                 
                 .weight-box, .volume-box {
-                    grid-column: span 2;
+                    grid-column: span 1;
                 }
             }
 
             @include breakpoint(max-md) {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
                 gap: 15px;
                 margin-bottom: 25px;
+                max-width: 100%;
             }
 
             @include breakpoint(max-sm) {
                 gap: 12px;
                 margin-bottom: 20px;
+                padding: 0 10px;
+            }
+
+            @include breakpoint(max-xs) {
+                gap: 10px;
+                margin-bottom: 18px;
+                padding: 0 5px;
             }
 
             > div {
@@ -718,14 +727,33 @@
 
                 &.price-box {
                     grid-column: 1;
+                    
+                    @include breakpoint(max-md) {
+                        grid-column: auto;
+                        order: 1;
+                    }
                 }
 
                 &.time-box {
                     grid-column: 2;
+                    
+                    @include breakpoint(max-md) {
+                        grid-column: auto;
+                        order: 2;
+                    }
                 }
 
                 &.weight-box, &.volume-box {
                     grid-column: 3;
+
+                    @include breakpoint(max-lg) {
+                        grid-column: auto;
+                    }
+
+                    @include breakpoint(max-md) {
+                        grid-column: auto;
+                        order: 3;
+                    }
 
                     &.hidden {
                         display: none;
