@@ -5,7 +5,7 @@ export default function Menu() {
 		<>
 			<nav id="mobile-menu" className="d-none d-xl-block">
 				<ul>
-					<li className="active menu-thumb">
+					<li className="menu-thumb">
 						<Link href="/">
 							Inicio
 						</Link>

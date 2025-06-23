@@ -16,14 +16,26 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.20);
     padding: 60px 0;
 
-    @include breakpoint (max-xxl){
+    @include breakpoint (max-xl){
         flex-wrap: wrap;
         gap: 40px;
-        justify-content: initial;
+        justify-content: center;
+    }
+
+    @include breakpoint (max-lg){
+        padding: 50px 0;
+    }
+
+    @include breakpoint (max-md){
+        gap: 30px;
+        padding: 40px 0;
+        flex-direction: column;
+        text-align: center;
     }
 
     @include breakpoint (max-sm){
-        gap: 30px;
+        gap: 25px;
+        padding: 30px 0;
     }
 
     .logo-img {
@@ -31,8 +43,17 @@
         height: 100px;
         border-radius: 100px;
         line-height: 90px;
-        
         text-align: center;
+        
+        @include breakpoint (max-md){
+            margin: 0 auto;
+        }
+        
+        @include breakpoint (max-sm){
+            width: 150px;
+            height: 75px;
+            line-height: 75px;
+        }
     }
 
     .contact-info-items {
@@ -43,6 +64,17 @@
 
         @include breakpoint (max-xl){
             flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        @include breakpoint (max-md){
+            flex-direction: column;
+            gap: 25px;
+            width: 100%;
+        }
+
+        @include breakpoint (max-sm){
+            gap: 20px;
         }
 
         .icon {
@@ -51,12 +83,22 @@
             line-height: 40px;
             text-align: center;
             position: relative;
-            background-color:  $white;
+            background-color: $white;
             border-radius: 50%;
             color: $theme-color;
+            
+            @include breakpoint (max-sm){
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+            }
         }
 
         .content {
+            @include breakpoint (max-md){
+                text-align: center;
+            }
+            
             p {
                 color: $white;
                 margin-bottom: 5px;
@@ -64,12 +106,24 @@
                 font-size: 14px;
                 font-weight: 500;
                 opacity: 0.7;
+                
+                @include breakpoint (max-sm){
+                    font-size: 13px;
+                }
             }
 
             h3 {
                 font-size: 20px;
                 color: $white;
                 text-transform: initial;
+
+                @include breakpoint (max-md){
+                    font-size: 18px;
+                }
+
+                @include breakpoint (max-sm){
+                    font-size: 16px;
+                }
 
                 a {
                     color: $white;
@@ -80,28 +134,40 @@
 }
 
 .footer-widgets-wrapper {
-    padding: 25px 0 55px;
+    padding: 60px 0 40px;
     position: relative;
     z-index: 9;
 
-
-    // @include breakpoint(max-xl){
-    //     padding: 65px 0 100px;
-    // }
-
-    // @include breakpoint(max-lg){
-    //     padding: 45px 0 75px;
-    // }
+    @include breakpoint(max-lg){
+        padding: 50px 0 35px;
+    }
     
-    // @include breakpoint(max-md){
-    //     padding: 45px 0 80px;
-    // }
+    @include breakpoint(max-md){
+        padding: 40px 0 30px;
+    }
+
+    @include breakpoint(max-sm){
+        padding: 30px 0 25px;
+    }
 
     .single-footer-widget {
         margin-top: 30px;
 
+        @include breakpoint(max-md){
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        @include breakpoint(max-sm){
+            margin-top: 20px;
+        }
+
         .widget-head {
             margin-bottom: 30px;
+
+            @include breakpoint (max-md){
+               margin-bottom: 25px;
+            }
 
             @include breakpoint (max-sm){
                margin-bottom: 20px;
@@ -123,6 +189,11 @@
                     width: 25px;
                     height: 2px;
                     background-color: $theme-color;
+                    
+                    @include breakpoint (max-md){
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
                 }
 
                 &::after {
@@ -133,21 +204,38 @@
                     width: 55px;
                     height: 2px;
                     background-color: $white;
+                    
+                    @include breakpoint (max-md){
+                        left: 50%;
+                        transform: translateX(-25px);
+                    }
+                }
+
+                @include breakpoint (max-lg){
+                    font-size: 17px;
                 }
 
                 @include breakpoint (max-md){
-                    font-size: 23px;
+                    font-size: 18px;
                 }
 
                 @include breakpoint (max-sm){
-                    font-size: 20px;
+                    font-size: 16px;
                 }
             }
         }
 
         .footer-content {
+            @include breakpoint (max-md){
+                text-align: center;
+            }
+            
             p {
                 color: rgba(217, 217, 217, .8);
+                
+                @include breakpoint (max-sm){
+                    font-size: 15px;
+                }
             }
 
             .social-icon {
@@ -156,22 +244,34 @@
                 position: relative;
                 z-index: 9;
 
-                @include breakpoint (max-sm){
-                    margin-top: 20px;
+                @include breakpoint (max-md){
+                    justify-content: center;
                 }
 
-            a {
-                width: 36px;
-                height: 36px;
-                line-height: 36px;
-                text-align: center;
-                font-size: 16px;
-                display: block;
-                color: rgba(255, 255, 255, .8);
-                transition: all .4s ease-in-out;
-                text-align: center;
-                background-color: transparent;
-                border: 1px solid rgba(255, 255, 255, .4);
+                @include breakpoint (max-sm){
+                    margin-top: 25px;
+                    gap: 12px;
+                }
+
+                a {
+                    width: 36px;
+                    height: 36px;
+                    line-height: 36px;
+                    text-align: center;
+                    font-size: 16px;
+                    display: block;
+                    color: rgba(255, 255, 255, .8);
+                    transition: all .4s ease-in-out;
+                    text-align: center;
+                    background-color: transparent;
+                    border: 1px solid rgba(255, 255, 255, .4);
+
+                    @include breakpoint (max-sm){
+                        width: 32px;
+                        height: 32px;
+                        line-height: 32px;
+                        font-size: 14px;
+                    }
 
                     &:hover {
                         background-color: $theme-color;
@@ -180,19 +280,30 @@
                     }
                 }
             }
-        
         }
 
        .list-area {
+            @include breakpoint (max-md){
+                text-align: center;
+            }
+            
             li {
                 @include transition;
 
                 &:not(:last-child){
                     margin-bottom: 20px;
+                    
+                    @include breakpoint (max-sm){
+                        margin-bottom: 15px;
+                    }
                 }
 
                 a {
                     color: rgba(217, 217, 217, .8);
+
+                    @include breakpoint (max-sm){
+                        font-size: 15px;
+                    }
 
                     i {
                         margin-right: 5px;
@@ -200,7 +311,9 @@
                 }
 
                 &:hover {
-                    margin-left: 5px;
+                    @include breakpoint (min-md){
+                        margin-left: 5px;
+                    }
 
                     a {
                         color: $theme-color;
@@ -210,66 +323,84 @@
        }
 
        .footer-gallery {
-        .gallery-wrap {
-            .gallery-item {
-                @include flex;
-                gap: 10px;
-
-                &:not(:last-child){
-                    margin-bottom: 10px;
-                }
-
-                .thumb {
-                    position: relative;
-
-                    @include breakpoint(max-sm){
-                        width: 100px;
+            @include breakpoint (max-md){
+                text-align: center;
+            }
+            
+            .gallery-wrap {
+                .gallery-item {
+                    @include flex;
+                    gap: 10px;
+                    
+                    @include breakpoint (max-md){
+                        justify-content: center;
                     }
 
-                    img {
-                        @include imgw;
+                    &:not(:last-child){
+                        margin-bottom: 10px;
                     }
 
-                    .icon {
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        z-index: 1;
-                        text-align: center;
-                        transition: .3s;
-                        opacity: 0;
-                        width: 100%;
-                        height: 100%;
+                    .thumb {
+                        position: relative;
 
-                        &::after{
+                        @include breakpoint(max-md){
+                            width: 80px;
+                        }
+
+                        @include breakpoint(max-sm){
+                            width: 70px;
+                        }
+
+                        img {
+                            @include imgw;
+                        }
+
+                        .icon {
                             position: absolute;
-                            content: "";
-                            top: 0;
-                            left: 0;
-                            right: 0;
-                            bottom: 0;
-                            background-color: rgba(223, 17, 25, .7);
-                            transition: .4s;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            z-index: 1;
+                            text-align: center;
+                            transition: .3s;
                             opacity: 0;
                             width: 100%;
                             height: 100%;
+
+                            &::after{
+                                position: absolute;
+                                content: "";
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                background-color: rgba(223, 17, 25, .7);
+                                transition: .4s;
+                                opacity: 0;
+                                width: 100%;
+                                height: 100%;
+                            }
+
+                            i {
+                                color: $white;
+                                font-size: 22px;
+                                z-index: 99;
+                                position: relative;
+                                margin-top: 30px;
+                                
+                                @include breakpoint(max-sm){
+                                    font-size: 18px;
+                                    margin-top: 20px;
+                                }
+                            }
                         }
 
-                        i {
-                            color: $white;
-                            font-size: 22px;
-                            z-index: 99;
-                            position: relative;
-                            margin-top: 30px;
-                        }
-                    }
-
-                    &:hover {
-                        .icon {
-                            opacity: 1;
-                            &::after {
+                        &:hover {
+                            .icon {
                                 opacity: 1;
+                                &::after {
+                                    opacity: 1;
+                                }
                             }
                         }
                     }
@@ -277,19 +408,275 @@
             }
         }
     }
-    }
 }
 
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.20);
     padding: 40px 0;
+    
+
+    @include breakpoint (max-md){
+        padding: 30px 0;
+
+        
+    }
+
+    @include breakpoint (max-sm){
+        padding: 25px 0;
+    }
+
+    .row {
+        @include breakpoint (max-md){
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+    }
+
+    .copyright-txt {
+        @include breakpoint (max-md){
+            text-align: center;
+            margin-bottom: 15px;
+        }
+    }
+
+    .bottom-links {
+        @include breakpoint (max-md){
+            text-align: center;
+            justify-content: center;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        @include breakpoint (max-sm){
+            gap: 10px;
+        }
+
+        li {
+            list-style: none;
+            
+            @include breakpoint (max-md){
+                margin: 0;
+            }
+
+            a {
+                color: rgba(217, 217, 217, .8);
+                font-size: 14px;
+                transition: color 0.3s ease;
+                
+                @include breakpoint (max-sm){
+                    font-size: 13px;
+                }
+
+                &:hover {
+                    color: $theme-color;
+                }
+            }
+        }
+    }
 
     p {
         text-align: center;
         color: rgba(217, 217, 217, .8);
 
+        @include breakpoint (max-sm){
+            font-size: 14px;
+        }
+
         a {
             color: $theme-color;
+        }
+    }
+}
+
+// Estilos adicionales para Footer2
+.footer-main {
+    @include breakpoint (max-md){
+        text-align: center;
+    }
+
+    .footer-widget {
+        @include breakpoint (max-md){
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        @include breakpoint (max-sm){
+            margin-bottom: 25px;
+        }
+
+        .f-logo {
+            @include breakpoint (max-md){
+                text-align: center;
+                margin-bottom: 20px;
+                
+            }
+        }
+
+        h4 {
+            color: $white;
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: bold;
+
+            @include breakpoint (max-md){
+                text-align: center;
+                font-size: 17px;
+            }
+
+            @include breakpoint (max-sm){
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+        }
+
+        p {
+            color: rgba(217, 217, 217, .8);
+            margin-bottom: 20px;
+
+            @include breakpoint (max-md){
+                text-align: center;
+            }
+
+            @include breakpoint (max-sm){
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+        }
+
+        ul {
+            @include breakpoint (max-md){
+                text-align: center;
+                padding: 0;
+            }
+
+            li {
+                list-style: none;
+                margin-bottom: 10px;
+
+                @include breakpoint (max-md){
+                    text-align: center;
+                }
+
+                a {
+                    color: rgba(217, 217, 217, .8);
+                    font-size: 14px;
+                    transition: color 0.3s ease;
+
+                    @include breakpoint (max-sm){
+                        font-size: 13px;
+                    }
+
+                    &:hover {
+                        color: $theme-color;
+                    }
+                }
+            }
+        }
+
+        .footer-social {
+            @include breakpoint (max-md){
+                justify-content: center;
+                text-align: center;
+            }
+
+            a {
+                width: 36px;
+                height: 36px;
+                line-height: 36px;
+                text-align: center;
+                font-size: 16px;
+                display: inline-block;
+                color: rgba(255, 255, 255, .8);
+                transition: all .4s ease-in-out;
+                background-color: transparent;
+                border: 1px solid rgba(255, 255, 255, .4);
+                margin-right: 10px;
+
+                @include breakpoint (max-sm){
+                    width: 32px;
+                    height: 32px;
+                    line-height: 32px;
+                    font-size: 14px;
+                    margin-right: 8px;
+                }
+
+                &:hover {
+                    background-color: $theme-color;
+                    color: $white;
+                    border: 1px solid transparent;
+                }
+            }
+        }
+
+        .f-newsletter {
+            @include breakpoint (max-md){
+                text-align: center;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            @include breakpoint (max-sm){
+                max-width: 300px;
+            }
+
+            .form-control {
+                margin-bottom: 15px;
+                padding: 12px 15px;
+                border: 1px solid rgba(255, 255, 255, .3);
+                background: transparent;
+                color: $white;
+
+                &::placeholder {
+                    color: rgba(255, 255, 255, .6);
+                }
+            }
+
+            .theme-btn {
+                @include breakpoint (max-sm){
+                    width: 100%;
+                    padding: 12px 20px;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .payment-icons {
+            @include breakpoint (max-md){
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            span {
+                color: rgba(217, 217, 217, .8);
+                display: block;
+                margin-bottom: 10px;
+                font-size: 14px;
+
+                @include breakpoint (max-sm){
+                    font-size: 13px;
+                }
+            }
+
+            a {
+                display: inline-block;
+                margin: 0 5px;
+
+                @include breakpoint (max-sm){
+                    margin: 0 3px;
+                }
+
+                img {
+                    transition: transform 0.3s ease;
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+            }
         }
     }
 }

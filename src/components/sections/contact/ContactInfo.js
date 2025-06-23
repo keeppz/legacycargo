@@ -38,7 +38,7 @@ export default function ContactInfo() {
 						data-wow-delay=".2s">
 						 <div className="contact-box-items">
 							<div className="icon">
-								<i class="fa-brands fa-whatsapp"></i>
+								<i className="fa-brands fa-whatsapp"></i>
 							</div>
 							<div className="content">
 								<h3>Whatsapp</h3>

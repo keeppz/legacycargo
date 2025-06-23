@@ -31,7 +31,7 @@ export default function Offcanvas({ isOffCanvas, handleOffCanvas }) {
 							<div className="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
 								<div className="offcanvas__logo">
 									<Link href="/" className="d-block text-center">
-										<Image src="/assets/img/logo/black-logo.png" alt="Legacy Cargo Logo" width={170} height={50} />
+										<Image src="/assets/img/logo/white-logo.png" alt="Legacy Cargo Logo" width={150} height={45} />
 									</Link>
 								</div>
 								<div className="offcanvas__close">
@@ -59,6 +59,7 @@ export default function Offcanvas({ isOffCanvas, handleOffCanvas }) {
 											<li className="mb-2"><Link href="/service-maritimo" onClick={handleOffCanvas} className="sub-nav-link">Servicio Marítimo</Link></li>
 											<li className="mb-2"><Link href="/service-terrestre" onClick={handleOffCanvas} className="sub-nav-link">Servicio Terrestre</Link></li>
 											<li className="mb-2"><Link href="/service-aduanal" onClick={handleOffCanvas} className="sub-nav-link">Servicio Aduanal</Link></li>
+											<li className="mb-2"><Link href="/service-paqueteria" onClick={handleOffCanvas} className="sub-nav-link">Servicio de Paquetería</Link></li>
 										</ul>
 									</li>
 									<li className="menu-item mb-3">
@@ -96,10 +97,10 @@ export default function Offcanvas({ isOffCanvas, handleOffCanvas }) {
 										</div>
 									</li>
 								</ul>
-								<div className="header-button mt-4">
+								<div className="header-button mt-10 d-flex justify-content-center align-items-center ">
 									<Link href="/contact" className="theme-btn text-center legacy-btn">
 										<span>
-											Cotiza tu Envío
+											Descarga nuestra app
 											<i className="fa-solid fa-arrow-right-long ms-2" />
 										</span>
 									</Link>

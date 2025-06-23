@@ -119,6 +119,12 @@
     .achivements-content {
         .counter-items {
             position: relative;
+            
+            @include breakpoint (max-md) {
+                text-align: center;
+                margin-bottom: 25px;
+            }
+            
             .content {
                 // background-color: $white;
                 padding: 30px 30px 30px 80px;
@@ -129,16 +135,55 @@
                 align-items: flex-start;
                 margin-top: 30px;
 
+
+                @include breakpoint (max-md) {
+                    padding: 30px;
+                    align-items: center;
+                    text-align: center;
+                    margin-top: 20px;
+                }
+
+                @include breakpoint (max-sm) {
+                    padding: 25px 20px;
+                    margin-top: 15px;
+                }
+
                 .counter-text {
-                  p	{
-                     align-self: flex-start
-                  }	;
+                    @include breakpoint (max-md) {
+                        text-align: center;
+                        width: 100%;
+                    }
+                    
+                    p {
+                        align-self: flex-start;
+                        
+                        @include breakpoint (max-md) {
+                            align-self: center;
+                            text-align: center;
+                        }
+                    }
+                    
+                    h2 {
+                        @include breakpoint (max-md) {
+                            text-align: center;
+                            margin-left: 0;
+                        }
+                    }
                 }	
     
                 h2 {
                     font-size: 48px;
                     color: $theme-color;
                     margin-left: 15px;
+                    
+                    @include breakpoint (max-md) {
+                        margin-left: 0;
+                        text-align: center;
+                    }
+                    
+                    @include breakpoint (max-sm) {
+                        font-size: 40px;
+                    }
                 }
 
                 .icon {
@@ -153,6 +198,34 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    border-radius: 50%;
+                    
+                    @include breakpoint (max-md) {
+                        position: relative;
+                        left: 0;
+                        top: 0;
+                        margin: 0 auto 15px;
+                        width: 70px;
+                        height: 70px;
+                    }
+                    
+                    @include breakpoint (max-sm) {
+                        width: 60px;
+                        height: 60px;
+                        margin-bottom: 12px;
+                    }
+                    
+                    img {
+                        @include breakpoint (max-md) {
+                            width: 30px;
+                            height: 30px;
+                        }
+                        
+                        @include breakpoint (max-sm) {
+                            width: 25px;
+                            height: 25px;
+                        }
+                    }
                 }
             }
         }
@@ -162,14 +235,50 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 30px;
             
+            @include breakpoint (max-md) {
+                justify-content: center;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            
             @include breakpoint (max-sm) {
                 grid-template-columns: 1fr;
+                gap: 20px;
+                max-width: 400px;
             }
             
             > div {
                 width: 50% !important;
                 max-width: 50% !important;
                 flex: 0 0 100% !important;
+                
+                @include breakpoint (max-md) {
+                    display: flex;
+                    justify-content: center;
+                }
+                
+                @include breakpoint (max-sm) {
+                    width: 100% !important;
+                    max-width: 100% !important;
+                }
+            }
+        }
+        
+        // Estilos específicos para counter-row
+        .counter-row {
+            @include breakpoint (max-md) {
+                justify-content: center;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                margin: 0 auto;
+                max-width: 600px;
+            }
+            
+            @include breakpoint (max-sm) {
+                flex-direction: column;
+                gap: 15px;
+                max-width: 350px;
             }
         }
     }
@@ -368,6 +477,52 @@
   
   @include breakpoint (max-md) {
     width: 100%;
+    text-align: center;
+  }
+  
+  .achivements-content {
+    @include breakpoint (max-md) {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .section-title {
+      @include breakpoint (max-md) {
+        text-align: center;
+        margin-bottom: 25px;
+      }
+      
+      h6 {
+        @include breakpoint (max-md) {
+          text-align: center;
+          justify-content: center;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+      
+      h2 {
+        @include breakpoint (max-md) {
+          text-align: center;
+        }
+      }
+    }
+    
+    p {
+      @include breakpoint (max-md) {
+        text-align: center;
+        max-width: 100%;
+        margin: 0 auto 30px;
+      }
+      
+      @include breakpoint (max-sm) {
+        font-size: 15px;
+        line-height: 1.6;
+      }
+    }
   }
 }
 
@@ -379,6 +534,13 @@
     width: 100%;
     padding-left: 0;
     margin-top: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  
+  @include breakpoint (max-sm) {
+    margin-top: 25px;
   }
   
   .achievement-montage-image {
@@ -387,12 +549,30 @@
     border-radius: 5px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     
+    @include breakpoint (max-md) {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    @include breakpoint (max-sm) {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    
     .achievement-main-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
       min-height: 500px;
+      
+      @include breakpoint (max-md) {
+        min-height: 400px;
+      }
+      
+      @include breakpoint (max-sm) {
+        min-height: 300px;
+      }
     }
   }
 }

@@ -18,7 +18,7 @@ export default function About2() {
 				<div className="container">
 					<div className="about-wrapper-2">
 						<div className="row g-4 grid">
-							<div className="col-lg-6">
+							<div className="col-md-6">
 								<div className="about-image">
 									<Image
 										src="/assets/img/about/03.jpg"
@@ -65,7 +65,7 @@ export default function About2() {
 									</div>
 								</div>
 							</div>
-							<div className="col-lg-6">
+							<div className="col-md-6">
 								<div className="about-content">
 									<div className="section-title">
 										<h6 className="wow fadeInUp" style={{ color: '#ff282e' }}>
@@ -81,7 +81,7 @@ export default function About2() {
 										Legacy Cargo nace con una visión clara: conectar Venezuela con el mundo a través de servicios logísticos confiables y eficientes. Nuestra experiencia en comercio internacional nos permite ofrecer soluciones completas para tus necesidades de importación.
 									</p>
 									<div className="row g-4 mt-3">
-										<div className="col-lg-6 wow fadeInUp" data-wow-delay=".2s">
+										<div className="col-sm-6 wow fadeInUp" data-wow-delay=".2s">
 											<div className="icon-items">
 												<div className="icon" style={{ backgroundColor: '#ff282e' }}>
 													<i className="fa-solid fa-plane"></i>
@@ -89,7 +89,7 @@ export default function About2() {
 												<h5>Transporte Internacional</h5>
 											</div>
 										</div>
-										<div className="col-lg-6 wow fadeInUp" data-wow-delay=".4s">
+										<div className="col-sm-6 wow fadeInUp" data-wow-delay=".4s">
 											<div className="icon-items">
 												<div className="icon" style={{ backgroundColor: '#ff282e' }}>
 													<i className="fa-solid fa-envelopes-bulk"></i>
