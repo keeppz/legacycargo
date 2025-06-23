@@ -77,7 +77,7 @@ export default function Header2({ scroll, isMobileMenu, handleMobileMenu, isOffC
 										<a className="search-trigger search-icon" onClick={handleSearch}>
 											<i className="fa-solid fa-magnifying-glass"></i>
 										</a>
-										<div className="header__hamburger d-xl-block my-auto">
+										<div className="header__hamburger d-block d-lg-none my-auto">
 											<div className="sidebar__toggle" onClick={handleOffCanvas}>
 												<i className="fas fa-bars" />
 											</div>

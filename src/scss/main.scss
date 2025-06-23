@@ -76,3 +76,80 @@ Version: 1.0.0
 
 //>> Template Section Style End <<//
 
+// Global overflow fix para eliminar scroll horizontal
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+// Fix para container-fluid que no debe exceder el viewport
+.container-fluid {
+    max-width: 100vw;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+// Asegurar que ningún elemento exceda el viewport
+.row {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+[class*="col-"] {
+    max-width: 100%;
+    min-width: 0;
+}
+
+// Base styles
+@import 'sassconfig';
+@import 'animation';
+
+// Typography
+@import 'typography';
+
+// Sections & Layout
+@import 'section';
+@import 'header';
+@import 'hero';
+@import 'about';
+@import 'brand';
+@import 'feature';
+@import 'helping';
+@import 'buttons';
+@import 'service';
+@import 'service-template';
+@import 'project';
+@import 'team';
+@import 'testimonial';
+@import 'news';
+@import 'news-grid';
+@import 'pricing';
+@import 'contact';
+@import 'cta';
+@import 'faq';
+@import 'footer';
+@import 'preloader';
+@import 'meanmenu';
+@import 'download-app';
+@import 'shipping-calculator';
+
+// Components
+@import 'components/login';
+@import 'components/error';
+@import 'components/shadcn';
+
+// Admin styles
+@import 'admin/admin';
+@import 'admin/login';
+@import 'admin/users-table.module';
+@import 'admin/shippings-table.module';
+

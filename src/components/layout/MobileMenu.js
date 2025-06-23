@@ -31,7 +31,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }) {
 							<div className="col-12">
 								<Link href="/">
 									<Image
-										src="assets/img/logo/white-logo.png"
+										src="/assets/img/logo/white-logo.png"
 										alt="Legacy Cargo Logo"
 										width={170}
 										height={50}

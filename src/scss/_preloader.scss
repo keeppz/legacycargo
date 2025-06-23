@@ -2,16 +2,23 @@
     align-items: center;
     cursor: default;
     display: flex;
-    height: 100%;
+    height: 100vh;
     justify-content: center;
     position: fixed;
     left: 0;
     top: 0;
-    width: 100%;
+    width: 100vw;
     z-index: 9999999;
+    background-color: rgba(255, 255, 255, 0.95);
+    flex-direction: column;
 
     .animation-preloader {
         z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
 
         .spinner {
             animation: spinner 1s infinite linear;
@@ -91,6 +98,9 @@
         text-transform: uppercase;
         letter-spacing: 8px;
         color: $theme-color;
+        margin-top: 1rem;
+        margin-bottom: 0;
+        text-align: center;
     }
 
     .loader {

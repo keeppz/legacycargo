@@ -10,8 +10,17 @@
 	margin-left: auto;
 	margin-right: auto;
 
+	@include breakpoint (max-lg){
+		margin-bottom: 50px;
+		max-width: 90%;
+	}
+
 	@include breakpoint (max-md){
 		margin-bottom: 40px;
+	}
+
+	@include breakpoint (max-sm){
+		margin-bottom: 30px;
 	}
 
 	span {
@@ -22,6 +31,10 @@
 		display: inline-block;
 		margin-bottom: 15px;
 
+		@include breakpoint (max-sm){
+			margin-bottom: 10px;
+		}
+
 		&::before,
 		&::after {
 			content: "";
@@ -31,14 +44,26 @@
 			width: 30px;
 			height: 2px;
 			background-color: $theme-color;
+
+			@include breakpoint (max-sm){
+				width: 20px;
+			}
 		}
 
 		&::before {
 			left: -45px;
+			
+			@include breakpoint (max-sm){
+				left: -30px;
+			}
 		}
 
 		&::after {
 			right: -45px;
+			
+			@include breakpoint (max-sm){
+				right: -30px;
+			}
 		}
 	}
 
@@ -46,16 +71,22 @@
 		font-size: 48px;
 		margin-bottom: 20px;
 
+		@include breakpoint(max-xl) {
+			font-size: 44px;
+		}
+
 		@include breakpoint(max-lg) {
-			font-size: 42px;
+			font-size: 40px;
 		}
 
 		@include breakpoint(max-md) {
-			font-size: 36px;
+			font-size: 32px;
+			margin-bottom: 15px;
 		}
 
 		@include breakpoint(max-sm) {
 			font-size: 28px;
+			margin-bottom: 12px;
 		}
 	}
 
@@ -64,8 +95,13 @@
 		line-height: 1.7;
 		margin: 0;
 
-		@include breakpoint(max-sm) {
+		@include breakpoint(max-md) {
 			font-size: 16px;
+		}
+
+		@include breakpoint(max-sm) {
+			font-size: 15px;
+			line-height: 1.6;
 		}
 	}
 }
@@ -78,14 +114,14 @@
 
 	@include breakpoint (max-lg) {
 		flex-wrap: wrap;
-		// justify-content: center;
-		// text-align: center;
 		gap: 30px;
 	}
 
-	// @include breakpoint (max-md) {
-		
-	// }
+	@include breakpoint (max-md) {
+		flex-direction: column;
+		text-align: center;
+		gap: 20px;
+	}
 }
 
 
@@ -112,18 +148,51 @@
 }
 
 .section-padding {
-	padding: 120px 0;
+	padding: $section-padding 0;
 
 	@include breakpoint(max-lg) {
-		padding: 100px 0;
+		padding: $section-padding-sm 0;
 	}
 
 	@include breakpoint(max-md) {
-		padding: 80px 0;
+		padding: $section-padding-xs 0;
 	}
 
 	@include breakpoint(max-sm) {
-		padding: 60px 0;
+		padding: 50px 0;
+	}
+}
+
+// Variantes adicionales de section padding
+.section-padding-top {
+	padding-top: $section-padding;
+
+	@include breakpoint(max-lg) {
+		padding-top: $section-padding-sm;
+	}
+
+	@include breakpoint(max-md) {
+		padding-top: $section-padding-xs;
+	}
+
+	@include breakpoint(max-sm) {
+		padding-top: 50px;
+	}
+}
+
+.section-padding-bottom {
+	padding-bottom: $section-padding;
+
+	@include breakpoint(max-lg) {
+		padding-bottom: $section-padding-sm;
+	}
+
+	@include breakpoint(max-md) {
+		padding-bottom: $section-padding-xs;
+	}
+
+	@include breakpoint(max-sm) {
+		padding-bottom: 50px;
 	}
 }
 
@@ -133,11 +202,21 @@
 	margin-right: -15px;
 	display: flex;
 	flex-wrap: wrap;
+
+	@include breakpoint(max-sm) {
+		margin-left: -10px;
+		margin-right: -10px;
+	}
 }
 
 [class*="col-"] {
 	padding-left: 15px;
 	padding-right: 15px;
+
+	@include breakpoint(max-sm) {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
 }
 
 // Image containers
@@ -167,6 +246,14 @@
 	transition: all 0.3s ease;
 	height: 100%;
 
+	@include breakpoint(max-md) {
+		padding: 25px;
+	}
+
+	@include breakpoint(max-sm) {
+		padding: 20px;
+	}
+
 	&:hover {
 		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 		transform: translateY(-5px);
@@ -176,8 +263,17 @@
 		font-size: 24px;
 		margin-bottom: 15px;
 
+		@include breakpoint(max-lg) {
+			font-size: 22px;
+		}
+
 		@include breakpoint(max-md) {
 			font-size: 20px;
+			margin-bottom: 12px;
+		}
+
+		@include breakpoint(max-sm) {
+			font-size: 18px;
 		}
 	}
 
@@ -185,17 +281,22 @@
 		font-size: 16px;
 		line-height: 1.6;
 		margin-bottom: 20px;
+
+		@include breakpoint(max-sm) {
+			font-size: 15px;
+			margin-bottom: 15px;
+		}
 	}
 }
 
-// Responsive containers
+// Responsive containers - mejorado
 .container {
 	width: 100%;
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 0 15px;
 
-	@include breakpoint(min-xl) {
+	@include breakpoint(xl) {
 		max-width: 1320px;
 	}
 
@@ -205,14 +306,20 @@
 
 	@include breakpoint(max-md) {
 		max-width: 720px;
+		padding: 0 20px;
 	}
 
 	@include breakpoint(max-sm) {
 		max-width: 540px;
+		padding: 0 15px;
+	}
+
+	@include breakpoint(max-xs) {
+		padding: 0 10px;
 	}
 }
 
-// Flex utilities
+// Flex utilities mejoradas
 .d-flex {
 	display: flex;
 }
@@ -221,26 +328,116 @@
 	align-items: center;
 }
 
+.align-items-start {
+	align-items: flex-start;
+}
+
+.align-items-end {
+	align-items: flex-end;
+}
+
 .justify-content-between {
 	justify-content: space-between;
+}
+
+.justify-content-center {
+	justify-content: center;
+}
+
+.justify-content-start {
+	justify-content: flex-start;
+}
+
+.justify-content-end {
+	justify-content: flex-end;
 }
 
 .flex-wrap {
 	flex-wrap: wrap;
 }
 
-// Spacing utilities
+.flex-column {
+	flex-direction: column;
+}
+
+// Responsive flex utilities
+@include breakpoint(max-md) {
+	.d-md-block {
+		display: block !important;
+	}
+	
+	.flex-md-column {
+		flex-direction: column !important;
+	}
+	
+	.justify-content-md-center {
+		justify-content: center !important;
+	}
+}
+
+@include breakpoint(max-sm) {
+	.d-sm-block {
+		display: block !important;
+	}
+	
+	.flex-sm-column {
+		flex-direction: column !important;
+	}
+	
+	.justify-content-sm-center {
+		justify-content: center !important;
+	}
+}
+
+// Spacing utilities mejoradas
 .mb-30 {
 	margin-bottom: 30px;
+	
+	@include breakpoint(max-sm) {
+		margin-bottom: 20px;
+	}
 }
 
 .mt-30 {
 	margin-top: 30px;
+	
+	@include breakpoint(max-sm) {
+		margin-top: 20px;
+	}
 }
 
 .py-30 {
 	padding-top: 30px;
 	padding-bottom: 30px;
+	
+	@include breakpoint(max-sm) {
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+}
+
+.mb-50 {
+	margin-bottom: 50px;
+	
+	@include breakpoint(max-md) {
+		margin-bottom: 40px;
+	}
+	
+	@include breakpoint(max-sm) {
+		margin-bottom: 30px;
+	}
+}
+
+.mt-50 {
+	margin-top: 50px;
+	
+	@include breakpoint(max-md) {
+		margin-top: 40px;
+	}
+	
+	@include breakpoint(max-sm) {
+		margin-top: 30px;
+	}
 }
 
 // Text utilities
@@ -250,6 +447,57 @@
 
 .text-right {
 	text-align: right;
+}
+
+.text-left {
+	text-align: left;
+}
+
+// Service title responsive
+.service-title-responsive {
+	br {
+		// En pantallas grandes (≥992px): ocultar los br para que todo esté en una línea
+		@include breakpoint(lg) {
+			display: none;
+		}
+		
+		// En pantallas pequeñas (<992px): mostrar los br para saltos de línea
+		@include breakpoint(max-lg) {
+			display: block;
+		}
+	}
+}
+
+// Responsive text alignment
+@include breakpoint(max-md) {
+	.text-md-center {
+		text-align: center !important;
+	}
+}
+
+@include breakpoint(max-sm) {
+	.text-sm-center {
+		text-align: center !important;
+	}
+}
+
+// Responsive visibility
+@include breakpoint(max-lg) {
+	.d-lg-none {
+		display: none !important;
+	}
+}
+
+@include breakpoint(max-md) {
+	.d-md-none {
+		display: none !important;
+	}
+}
+
+@include breakpoint(max-sm) {
+	.d-sm-none {
+		display: none !important;
+	}
 }
 
 //>>>>> Basic Css End <<<<<//

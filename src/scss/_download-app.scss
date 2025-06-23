@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   padding: 4rem 1.25rem;
-  background: linear-gradient(135deg, #374151 0%, #4b5563 50%, #374151 100%);
+  background: linear-gradient(135deg, lighten($dark-grey, 8%) 0%, $dark-grey 50%, darken($dark-grey, 5%) 100%);
 
   // Variables locales
   $gap-mobile: 2rem;

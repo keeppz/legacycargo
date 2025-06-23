@@ -1,11 +1,19 @@
 .shipping-calculator-section {
     background-color: $dark-grey;
-    padding: $section-padding;
+    padding: $section-padding 0;
     position: relative;
     z-index: 1;
 
     @include breakpoint(max-lg) {
-        padding: $section-padding-sm;
+        padding: $section-padding-sm 0;
+    }
+
+    @include breakpoint(max-md) {
+        padding: $section-padding-xs 0;
+    }
+
+    @include breakpoint(max-sm) {
+        padding: 50px 0;
     }
 
     .calculator-wrapper {
@@ -17,6 +25,26 @@
         padding: 40px;
         position: relative;
         overflow: hidden;
+
+        @include breakpoint(max-lg) {
+            max-width: 90%;
+            padding: 35px;
+        }
+
+        @include breakpoint(max-md) {
+            padding: 30px 25px;
+            border-radius: $border-radius;
+        }
+
+        @include breakpoint(max-sm) {
+            padding: 25px 20px;
+            margin: 0 15px;
+        }
+
+        @include breakpoint(max-xs) {
+            padding: 20px 15px;
+            margin: 0 10px;
+        }
 
         &::before {
             content: '';
@@ -33,6 +61,14 @@
         margin-bottom: 40px;
         position: relative;
 
+        @include breakpoint(max-md) {
+            margin-bottom: 30px;
+        }
+
+        @include breakpoint(max-sm) {
+            margin-bottom: 25px;
+        }
+
         h6 {
             color: $theme-color;
             font-size: 14px;
@@ -44,9 +80,20 @@
             justify-content: center;
             gap: 15px;
 
+            @include breakpoint(max-sm) {
+                font-size: 12px;
+                letter-spacing: 1px;
+                gap: 10px;
+                margin-bottom: 10px;
+            }
+
             i {
                 font-size: 12px;
                 opacity: 0.7;
+
+                @include breakpoint(max-sm) {
+                    font-size: 10px;
+                }
             }
         }
 
@@ -56,8 +103,20 @@
             color: $white;
             margin-bottom: 0;
 
+            @include breakpoint(max-lg) {
+                font-size: 32px;
+            }
+
             @include breakpoint(max-md) {
                 font-size: 28px;
+            }
+
+            @include breakpoint(max-sm) {
+                font-size: 24px;
+            }
+
+            @include breakpoint(max-xs) {
+                font-size: 22px;
             }
         }
     }
@@ -69,6 +128,17 @@
         border-bottom: 1px solid rgba($white, 0.1);
         padding-bottom: 10px;
         gap: 5px;
+        flex-wrap: wrap;
+
+        @include breakpoint(max-md) {
+            margin-bottom: 25px;
+            gap: 3px;
+        }
+
+        @include breakpoint(max-sm) {
+            margin-bottom: 20px;
+            gap: 2px;
+        }
 
         .tab-item {
             padding: 12px 25px;
@@ -81,6 +151,21 @@
             background: transparent;
             border: 1px solid transparent;
             position: relative;
+
+            @include breakpoint(max-lg) {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            @include breakpoint(max-md) {
+                padding: 8px 15px;
+                font-size: 13px;
+            }
+
+            @include breakpoint(max-sm) {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
 
             &::after {
                 content: '';
@@ -116,14 +201,30 @@
         justify-content: center;
         gap: 25px;
         margin: 0 auto;
-        max-width: calc(500px + 40px); /* 500px + 20px padding cada lado */
-        padding: 0 20px;
+        max-width: 500px;
         width: 100%;
         box-sizing: border-box;
+
+        @include breakpoint(max-md) {
+            gap: 20px;
+        }
+
+        @include breakpoint(max-sm) {
+            gap: 18px;
+            max-width: 100%;
+        }
 
         .form-row {
             display: grid;
             gap: 20px;
+
+            @include breakpoint(max-md) {
+                gap: 15px;
+            }
+
+            @include breakpoint(max-sm) {
+                gap: 12px;
+            }
 
             &.full-width {
                 grid-template-columns: 1fr;
@@ -131,11 +232,10 @@
 
             &.two-columns {
                 grid-template-columns: repeat(2, 1fr);
-            }
 
-            @include breakpoint(max-md) {
-                grid-template-columns: 1fr !important;
-                gap: 15px;
+                @include breakpoint(max-md) {
+                    grid-template-columns: 1fr !important;
+                }
             }
         }
 
@@ -155,8 +255,7 @@
                 }
 
                 @include breakpoint(max-sm) {
-                    grid-template-columns: 1fr;
-                    gap: 15px;
+                    gap: 12px;
                 }
             }
 
@@ -175,6 +274,10 @@
                     overflow: hidden;
                     border-radius: 0 $border-radius $border-radius 0;
 
+                    @include breakpoint(max-sm) {
+                        width: 25px;
+                    }
+
                     button {
                         flex: 1;
                         border: none;
@@ -187,6 +290,10 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
+
+                        @include breakpoint(max-sm) {
+                            font-size: 14px;
+                        }
 
                         &:first-child {
                             border-bottom: 1px solid rgba($white, 0.1);
@@ -202,6 +309,10 @@
                 .form-control {
                     padding-right: 35px;
                     text-align: center;
+
+                    @include breakpoint(max-sm) {
+                        padding-right: 30px;
+                    }
                 }
             }
 
@@ -211,6 +322,11 @@
                 font-weight: 500;
                 color: $white;
                 font-size: 14px;
+
+                @include breakpoint(max-sm) {
+                    font-size: 13px;
+                    margin-bottom: 6px;
+                }
             }
 
             .form-control {
@@ -224,6 +340,18 @@
                 background-color: rgba($white, 0.05);
                 color: $white;
                 box-sizing: border-box;
+
+                @include breakpoint(max-md) {
+                    height: 45px;
+                    padding: 0 15px;
+                    font-size: 14px;
+                }
+
+                @include breakpoint(max-sm) {
+                    height: 42px;
+                    padding: 0 12px;
+                    font-size: 13px;
+                }
 
                 &::placeholder {
                     color: rgba($white, 0.5);
@@ -259,6 +387,12 @@
                 background-size: 16px;
                 padding-right: 45px;
 
+                @include breakpoint(max-sm) {
+                    background-position: right 10px center;
+                    background-size: 14px;
+                    padding-right: 35px;
+                }
+
                 &::-ms-expand {
                     display: none;
                 }
@@ -270,7 +404,7 @@
                     }
                 }
 
-                /* Estilos para Firefox */
+                /* Browser specific styles */
                 @-moz-document url-prefix() {
                     color: $white;
                     option {
@@ -279,7 +413,6 @@
                     }
                 }
 
-                /* Estilos para Chrome/Safari */
                 @media screen and (-webkit-min-device-pixel-ratio:0) {
                     option {
                         background-color: $dark-grey;
@@ -287,7 +420,6 @@
                     }
                 }
 
-                /* Estilos para IE/Edge */
                 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
                     option {
                         background-color: $dark-grey;
@@ -302,20 +434,42 @@
             padding-top: 30px;
             border-top: 1px solid rgba($white, 0.1);
 
+            @include breakpoint(max-md) {
+                margin-top: 12px;
+                padding-top: 25px;
+            }
+
+            @include breakpoint(max-sm) {
+                margin-top: 10px;
+                padding-top: 20px;
+            }
+
             .dimensions-title {
                 text-align: center;
                 margin-bottom: 20px;
+
+                @include breakpoint(max-sm) {
+                    margin-bottom: 15px;
+                }
                 
                 label {
                     font-size: 16px;
                     color: $white;
                     margin-bottom: 5px;
+
+                    @include breakpoint(max-sm) {
+                        font-size: 14px;
+                    }
                 }
 
                 span {
                     display: block;
                     font-size: 13px;
                     color: rgba($white, 0.6);
+
+                    @include breakpoint(max-sm) {
+                        font-size: 12px;
+                    }
                 }
             }
 
@@ -325,9 +479,13 @@
                 gap: 15px;
                 width: 100%;
 
+                @include breakpoint(max-sm) {
+                    gap: 12px;
+                }
+
                 .form-control {
                     text-align: center;
-                    min-width: 0; /* Permite que los inputs se encojan */
+                    min-width: 0;
                 }
             }
         }
@@ -336,6 +494,14 @@
     .calculator-actions {
         margin-top: 40px;
         text-align: center;
+
+        @include breakpoint(max-md) {
+            margin-top: 35px;
+        }
+
+        @include breakpoint(max-sm) {
+            margin-top: 30px;
+        }
 
         .theme-btn {
             background-color: $theme-color;
@@ -354,6 +520,19 @@
             text-transform: uppercase;
             position: relative;
             z-index: 1;
+
+            @include breakpoint(max-md) {
+                height: 50px;
+                padding: 20px 40px;
+                font-size: 15px;
+            }
+
+            @include breakpoint(max-sm) {
+                height: 45px;
+                padding: 16px 30px;
+                font-size: 14px;
+                width: 100%;
+            }
 
             &::before {
                 content: "";
@@ -382,6 +561,11 @@
             i {
                 margin-left: 10px;
                 font-size: 14px;
+
+                @include breakpoint(max-sm) {
+                    margin-left: 8px;
+                    font-size: 12px;
+                }
             }
 
             &:hover {
@@ -400,6 +584,16 @@
         padding-top: 40px;
         border-top: 2px dashed rgba($white, 0.1);
 
+        @include breakpoint(max-md) {
+            margin-top: 35px;
+            padding-top: 35px;
+        }
+
+        @include breakpoint(max-sm) {
+            margin-top: 30px;
+            padding-top: 30px;
+        }
+
         .result-box {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -410,9 +604,24 @@
             margin-left: auto;
             margin-right: auto;
 
+            @include breakpoint(max-lg) {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 600px;
+                
+                .weight-box, .volume-box {
+                    grid-column: span 2;
+                }
+            }
+
             @include breakpoint(max-md) {
                 grid-template-columns: 1fr;
                 gap: 15px;
+                margin-bottom: 25px;
+            }
+
+            @include breakpoint(max-sm) {
+                gap: 12px;
+                margin-bottom: 20px;
             }
 
             > div {
@@ -426,10 +635,24 @@
                 justify-content: center;
                 min-height: 120px;
 
+                @include breakpoint(max-md) {
+                    padding: 20px 15px;
+                    min-height: 100px;
+                }
+
+                @include breakpoint(max-sm) {
+                    padding: 18px 12px;
+                    min-height: 90px;
+                }
+
                 &:hover {
                     transform: translateY(-5px);
                     box-shadow: $box-shadow-hover;
                     border-color: $theme-color;
+
+                    @include breakpoint(max-sm) {
+                        transform: translateY(-3px);
+                    }
                 }
 
                 h4 {
@@ -437,6 +660,11 @@
                     color: rgba($white, 0.7);
                     margin-bottom: 10px;
                     font-weight: 500;
+
+                    @include breakpoint(max-sm) {
+                        font-size: 12px;
+                        margin-bottom: 8px;
+                    }
                 }
 
                 h3 {
@@ -445,8 +673,24 @@
                     margin: 0;
                     font-weight: 700;
 
+                    @include breakpoint(max-md) {
+                        font-size: 22px;
+                    }
+
+                    @include breakpoint(max-sm) {
+                        font-size: 20px;
+                    }
+
                     &.price-value {
                         font-size: 28px;
+
+                        @include breakpoint(max-md) {
+                            font-size: 26px;
+                        }
+
+                        @include breakpoint(max-sm) {
+                            font-size: 24px;
+                        }
                         
                         &::before {
                             content: '$';
@@ -454,6 +698,10 @@
                             vertical-align: super;
                             margin-right: 2px;
                             opacity: 0.8;
+
+                            @include breakpoint(max-sm) {
+                                font-size: 14px;
+                            }
                         }
                     }
 
@@ -461,6 +709,10 @@
                         font-size: 16px;
                         opacity: 0.8;
                         margin-left: 4px;
+
+                        @include breakpoint(max-sm) {
+                            font-size: 14px;
+                        }
                     }
                 }
 
@@ -490,6 +742,11 @@
             max-width: 600px;
             margin: 0 auto;
 
+            @include breakpoint(max-sm) {
+                font-size: 13px;
+                max-width: 100%;
+            }
+
             p {
                 margin-bottom: 5px;
 
@@ -503,6 +760,10 @@
             margin-top: 30px;
             text-align: center;
 
+            @include breakpoint(max-sm) {
+                margin-top: 25px;
+            }
+
             .theme-btn {
                 background-color: #25D366;
                 border-color: #25D366;
@@ -511,9 +772,19 @@
                 gap: 10px;
                 padding: 15px 30px;
 
+                @include breakpoint(max-sm) {
+                    width: 100%;
+                    padding: 12px 20px;
+                    gap: 8px;
+                }
+
                 i {
                     font-size: 20px;
                     margin: 0;
+
+                    @include breakpoint(max-sm) {
+                        font-size: 18px;
+                    }
                 }
 
                 &:hover {
@@ -529,34 +800,3 @@
         }
     }
 }
-
-@media (max-width: 768px) {
-    .shipping-calculator-section {
-        padding: 40px 0;
-
-        .calculator-wrapper {
-            padding: 30px 20px;
-            border-radius: 15px;
-        }
-
-        .section-title {
-            h2 {
-                font-size: 28px;
-            }
-        }
-
-        .calculator-form {
-            .dimensions-inputs {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-        }
-
-        .calculator-result {
-            .result-box {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-        }
-    }
-} 

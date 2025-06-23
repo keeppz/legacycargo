@@ -318,22 +318,33 @@
 }
 
 .about-wrapper-2 {
-     .grid{
-                display: grid !important; 
-                grid-template-columns: 1fr 1fr !important;
-            
+    .grid{
+        display: grid !important; 
+        grid-template-columns: 1fr !important;
+        gap: 30px;
+        
+        @include breakpoint(md) {
+            grid-template-columns: 1fr 1fr !important;
         }
+    }
+    
     .about-image {
         position: relative;
         max-width: 450px;
         z-index: 9;
         margin-bottom: 30px;
+        margin: 0 auto;
 
-        
-       
+        @include breakpoint(md) {
+            margin: 0;
+        }
 
         @include breakpoint (max-xl){
             max-width: 750px;
+        }
+
+        @include breakpoint (max-md){
+            max-width: 100%;
         }
 
         img {
@@ -382,6 +393,17 @@
                 }
             }
 
+            @include breakpoint (max-md){
+                position: relative;
+                right: auto;
+                bottom: auto;
+                margin-top: 20px;
+                max-width: 200px;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+            }
+
             @include breakpoint (max-sm){
                 max-width: 180px;
             }
@@ -404,6 +426,15 @@
                 left: 50%;
                 transform: translate(-50%,-50%);
                 bottom: initial;
+            }
+
+            @include breakpoint (max-md){
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+                bottom: auto;
+                margin-top: 20px;
             }
 
             .video-btn {
@@ -441,6 +472,10 @@
                 @include breakpoint (max-xl){
                     color: $white;
                 }
+
+                @include breakpoint (max-md){
+                    color: $header-color;
+                }
             }
         }
 
@@ -462,6 +497,11 @@
         @include breakpoint (max-lg) {
             padding-left: 0;
             margin-top: 20px;
+        }
+
+        @include breakpoint (max-md) {
+            margin-top: 30px;
+            text-align: center;
         }
         
         .section-title {
@@ -490,6 +530,10 @@
             margin-bottom: 25px;
             font-size: 16px;
             line-height: 1.7;
+
+            @include breakpoint (max-md) {
+                text-align: left;
+            }
         }
 
         .icon-items {
@@ -500,6 +544,10 @@
             padding: 12px;
             border-radius: 5px;
             transition: all 0.3s ease;
+
+            @include breakpoint (max-md) {
+                justify-content: center;
+            }
             
             &:hover {
                 background-color: #f0f0f0;
@@ -528,6 +576,13 @@
             padding-left: 0;
             list-style: none;
 
+            @include breakpoint (max-md) {
+                text-align: left;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
             li {
                 font-size: 15px;
                 font-weight: 500;
@@ -554,6 +609,12 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 30px;
+
+            @include breakpoint (max-md) {
+                justify-content: center;
+                flex-direction: column;
+                gap: 20px;
+            }
             
             a {
                 display: inline-block;
@@ -565,6 +626,10 @@
                 transition: all 0.3s ease;
                 text-decoration: none;
                 font-size: 15px;
+
+                @include breakpoint (max-md) {
+                    padding: 12px 30px;
+                }
                 
                 &:hover {
                     background-color: adjust-color($theme-color, $lightness: -10%);

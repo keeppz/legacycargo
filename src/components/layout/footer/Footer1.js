@@ -76,7 +76,7 @@ export default function Footer1() {
 						</div>
 					</div>
 					<div className="footer-widgets-wrapper">
-						<div className="row">
+						<div className="row justify-content-center">
 							<div
 								className="col-xl-4 col-lg-4 col-md-6 wow fadeInUp"
 								data-wow-delay=".2s"

@@ -59,12 +59,12 @@ export default function Service1() {
 							<i className="fa-classic fa-arrow-right-long" />
 						</h6>
 						<h2 
-							className="wow fadeInUp text-white" 
+							className="wow fadeInUp text-white service-title-responsive" 
 							data-wow-delay=".2s"
 						>
-							Soluciones Logísticas 
-							<br />
-							Integrales
+							Soluciones 
+							<br className="d-lg-none" /> Logísticas 
+							<br className="d-lg-none" /> Integrales 
 						</h2>
 					</div>
 					<div className="array-button">
@@ -162,12 +162,12 @@ export default function Service1() {
 											Gestión de trámites de importación y nacionalización de mercancías con expertos en normativas aduaneras.
 										</p>
 										<Link href="/service-aduanal" className="theme-btn" style={{ backgroundColor: '#ff282e', color: 'white', borderColor: '#ff282e' }}>
-											Ver Más <i className="fa-solid fa-arrow-right" />
+										 Más <i className="fa-solid fa-arrow-right" />
 										</Link>
 									</div>
 								</div>
 							</SwiperSlide>
-							<SwiperSlide className="swiper-slide">
+							{/* <SwiperSlide className="swiper-slide">
 								<div className="service-box-items">
 									<div className="service-thumb">
 										<img src="assets/img/service/03.jpg" alt="Almacenamiento" />
@@ -184,11 +184,11 @@ export default function Service1() {
 											Instalaciones seguras para el almacenamiento temporal de tu mercancía en Venezuela.
 										</p>
 										<Link href="/service-almacenamiento" className="theme-btn" style={{ backgroundColor: '#ff282e', color: 'white', borderColor: '#ff282e' }}>
-											Ver Más <i className="fa-solid fa-arrow-right" />
+							Ver Más <i className="fa-solid fa-arrow-right" />
 										</Link>
 									</div>
 								</div>
-							</SwiperSlide>
+							</SwiperSlide> */}
 							<SwiperSlide className="swiper-slide">
 								<div className="service-box-items">
 									<div className="service-thumb">

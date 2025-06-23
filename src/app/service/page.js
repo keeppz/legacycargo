@@ -4,9 +4,9 @@ import Service1 from "../../components/sections/Service1"
 export default function Services() {
 	return (
 		<>
-			<Layout headerStyle={2} footerStyle={1} breadcrumbTitle="Services">
+			<Layout headerStyle={2} footerStyle={1} breadcrumbTitle="Servicios">
 				<Service1 />
-				<Brand1 />
+				{/* <Brand1 /> */}
 			</Layout>
 		</>
 	)
