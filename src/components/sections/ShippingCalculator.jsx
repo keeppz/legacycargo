@@ -7,7 +7,8 @@ import {
     rubrosPorCategoria, 
     regionesPorEstado, 
     tarifas, 
-    tarifasPanama 
+    tarifasPanama,
+    tarifasChina 
 } from './calculatorData';
 
 const PRECIO_MINIMO_CHINA = 50;
@@ -65,7 +66,7 @@ export default function ShippingCalculator() {
 
     const obtenerRegion = (estado) => {
         return Object.entries(regionesPorEstado).find(([region, estados]) => 
-            estados.includes(estado)
+            estados.map(e => e.toLowerCase()).includes(estado.toLowerCase())
         )?.[0];
     };
 
@@ -83,6 +84,20 @@ export default function ShippingCalculator() {
         }
     };
 
+    const convertirCm3AFt3 = (volumenCm3) => {
+        return volumenCm3 / 28320; // Conversión específica para China
+    };
+
+    const formatearVolumen = (volumenCm3, cantidadPaquetes) => {
+        const volumenTotal = volumenCm3 * cantidadPaquetes;
+        if (volumenTotal >= 100000) {
+            const volumenM3 = volumenTotal / 1000000;
+            return `${volumenM3.toFixed(2)} M³`;
+        } else {
+            return `${volumenTotal.toFixed(0)} cm³`;
+        }
+    };
+
     const calcularPesoVolumetrico = (l, a, h) => {
         if (unidadMedida === 'cm') {
             // Convertir cm³ a ft³ y luego a lb (1 ft³ = 6.7 lb)
@@ -97,15 +112,14 @@ export default function ShippingCalculator() {
         e.preventDefault();
         let volumenM3 = 0;
         let volumenFt3 = 0;
+        let volumenCm3 = 0; // Nuevo para China
         let pesoVolumetrico = 0;
 
         if (tipoCalculadora === 'dimensiones') {
             if (unidadMedida === 'cm') {
-                volumenM3 = calcularVolumen(
-                    parseFloat(dimensions.length),
-                    parseFloat(dimensions.width),
-                    parseFloat(dimensions.height)
-                );
+                // Calcular volumen en cm³ primero para China
+                volumenCm3 = parseFloat(dimensions.length) * parseFloat(dimensions.width) * parseFloat(dimensions.height);
+                volumenM3 = volumenCm3 / 1000000; // de cm³ a m³
                 volumenFt3 = volumenM3 * 35.3147; // Convertir m³ a ft³
             } else {
                 volumenFt3 = calcularVolumen(
@@ -114,6 +128,7 @@ export default function ShippingCalculator() {
                     parseFloat(dimensions.height)
                 );
                 volumenM3 = volumenFt3 / 35.3147; // Convertir ft³ a m³
+                volumenCm3 = volumenM3 * 1000000; // Convertir a cm³
             }
             
             pesoVolumetrico = calcularPesoVolumetrico(
@@ -126,9 +141,11 @@ export default function ShippingCalculator() {
             if (unidadVolumen === 'cuft') {
                 volumenFt3 = parseFloat(volumenDirecto);
                 volumenM3 = volumenFt3 / 35.3147; // Convertir ft³ a m³
+                volumenCm3 = volumenM3 * 1000000; // Convertir a cm³
             } else {
                 volumenM3 = parseFloat(volumenDirecto);
                 volumenFt3 = volumenM3 * 35.3147; // Convertir m³ a ft³
+                volumenCm3 = volumenM3 * 1000000; // Convertir a cm³
             }
             pesoVolumetrico = volumenM3 * 1000 / 5; // Convertir m³ a peso volumétrico
         }
@@ -161,10 +178,14 @@ export default function ShippingCalculator() {
                 }
             }
         } else if (origin === 'china') {
-            const tarifaMaritima = tarifas.maritimo[origin];
-            if (tarifaMaritima) {
-                precio = volumenM3 * tarifaMaritima * cantidadPaquetes; // China usa m³
-                tiempo = '30-35 días';
+            // Nueva lógica para China
+            const region = obtenerRegion(destination);
+            if (region) {
+                // Convertir cm³ a ft³ usando la nueva conversión
+                const volumenFt3China = convertirCm3AFt3(volumenCm3);
+                const tarifaChina = tarifasChina[region];
+                precio = volumenFt3China * tarifaChina * cantidadPaquetes;
+                tiempo = '45-50 días';
             }
         }
 
@@ -174,13 +195,24 @@ export default function ShippingCalculator() {
         }
 
         if (precio > 0) {
+            const volumenTotalFt3 = volumenFt3 * cantidadPaquetes;
+            const volumenTotalM3 = volumenM3 * cantidadPaquetes;
+            
+            let volumenMostrar = '';
+            if (origin === 'china') {
+                // Para China, mostrar en cm³ o M³ según el volumen
+                volumenMostrar = formatearVolumen(volumenCm3, cantidadPaquetes);
+            } else if (origin === 'estados_unidos' || (origin === 'panama' && tipoEnvio === 'maritimo')) {
+                volumenMostrar = `${volumenTotalFt3.toFixed(3)} ft³`;
+            } else {
+                volumenMostrar = `${volumenTotalM3.toFixed(3)} m³`;
+            }
+            
             const resultData = {
                 price: `$${precio.toFixed(2)}`,
                 time: tiempo,
                 pesoVolumetrico: `${pesoVolumetrico.toFixed(2)} lb`,
-                volumen: origin === 'estados_unidos' || (origin === 'panama' && tipoEnvio === 'maritimo') 
-                    ? `${volumenFt3.toFixed(3)} ft³` 
-                    : `${volumenM3.toFixed(3)} m³`,
+                volumen: volumenMostrar,
                 cantidadPaquetes: cantidadPaquetes
             };
 
@@ -484,7 +516,11 @@ ${cantidadPaquetes > 1 ? `- Cantidad de paquetes: ${cantidadPaquetes}` : ''}`;
                                 <p>* Los precios son aproximados y están sujetos a verificación.</p>
                                 <p>* El costo final puede variar según las dimensiones exactas y el peso real.</p>
                                 {origin === 'china' && (
-                                    <p>* El precio mínimo para envíos desde China es de ${PRECIO_MINIMO_CHINA}.</p>
+                                    <>
+                                        <p>* El precio mínimo para envíos desde China es de ${PRECIO_MINIMO_CHINA}.</p>
+                                        {/* <p>* Para China se aplica tarifa especial: $22/ft³ para Zona 1 y $25/ft³ para otras zonas.</p> */}
+                                        {/* <p>* El volumen se muestra en cm³ (o M³ si supera los 100,000 cm³).</p> */}
+                                    </>
                                 )}
                             </div>
 

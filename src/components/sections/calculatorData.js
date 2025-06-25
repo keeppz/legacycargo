@@ -76,8 +76,18 @@ export const tarifas = {
     },
     'maritimo': {
         'estados_unidos': 30.0,
-        'china': 840.0
+        'china': 840.0 // Esta se mantiene como referencia pero no se usa
     }
+};
+
+// Tarifas específicas para China por región (en USD/ft³)
+export const tarifasChina = {
+    'Zona 1': 22.0,
+    'Zona 2': 25.0,
+    'Zona 3': 25.0,
+    'Zona 4': 25.0,
+    'Zona 5': 25.0,
+    'Zona 6': 25.0
 };
 
 // Tarifas específicas para Panamá marítimo por región y categoría (en USD/ft³)

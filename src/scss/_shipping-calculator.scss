@@ -233,8 +233,8 @@
             &.two-columns {
                 grid-template-columns: repeat(2, 1fr);
 
-                @include breakpoint(max-md) {
-                    grid-template-columns: 1fr !important;
+            @include breakpoint(max-md) {
+                grid-template-columns: 1fr !important;
                 }
             }
         }
@@ -827,4 +827,4 @@
             }
         }
     }
-}
+} 
