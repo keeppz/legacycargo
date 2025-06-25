@@ -931,14 +931,14 @@
 							z-index: 11;
 							font-size: 17px;
 							font-weight: 600;
-							color: $header-color;
+							color: $white;
 							padding: 0 25px;
 							padding-bottom: 11px;
 							padding-top: 11px;
 							width: 100%;
 							border-bottom: 1px solid #eeeeee;
 							margin: 0;
-							width: calc(100% - 50px);
+							
 							box-sizing: border-box;
 
 							&:hover {
