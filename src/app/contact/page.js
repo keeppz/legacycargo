@@ -11,7 +11,7 @@ export default function Contact() {
 				<ContactInfo />
 				{/* <ContactSection /> */}
 				<ContactInfo2 />
-				<Brand1 />
+				{/* <Brand1 /> */}
 			</Layout>
 		</>
 	)

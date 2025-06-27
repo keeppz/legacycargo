@@ -20,7 +20,7 @@ export default function ContactInfo2() {
   ];
 
   return (
-    <div className="office-google-map-wrapper">
+    <div className="office-google-map-wrapper mb-50">
       <div className="container">
         <div className="row justify-content-between">
           {locations.map((location, index) => (
