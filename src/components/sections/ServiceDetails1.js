@@ -142,12 +142,12 @@ export default function ServiceDetails1() {
 														<i className="fa-classic fa-arrow-right-long" style={{ color: "#ff282e" }} />
 													</span>
 												</li>
-												<li>
+												{/* <li>
 													<Link href="/service-paqueteria">Paquetería Internacional</Link>{" "}
 													<span>
 														<i className="fa-classic fa-arrow-right-long" style={{ color: "#ff282e" }} />
 													</span>
-												</li>
+												</li> */}
 											</ul>
 										</div>
 									</div>

@@ -189,7 +189,7 @@ export default function Service1() {
 									</div>
 								</div>
 							</SwiperSlide> */}
-							<SwiperSlide className="swiper-slide">
+							{/* <SwiperSlide className="swiper-slide">
 								<div className="service-box-items">
 									<div className="service-thumb">
 										<img src="assets/img/service/06.jpg" alt="Paquetería Internacional" />
@@ -210,7 +210,7 @@ export default function Service1() {
 										</Link>
 									</div>
 								</div>
-							</SwiperSlide>
+							</SwiperSlide> */}
 						</Swiper>
 					</div>
 				</div>
