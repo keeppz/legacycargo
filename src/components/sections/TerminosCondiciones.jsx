@@ -13,7 +13,7 @@ export default function TerminosCondiciones() {
                             <div className="terms-content">
                                 <div className="section-title text-center">
                                     <span className="sub-content wow fadeInUp">
-                                        <img src="/assets/img/bale.png" alt="img" />
+                                        {/* <img src="/assets/img/bale.png" alt="img" /> */}
                                         Acuerdos Legales
                                     </span>
                                     <h2 className="wow fadeInUp" data-wow-delay=".3s">

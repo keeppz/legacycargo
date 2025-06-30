@@ -90,14 +90,14 @@ export default function Footer1() {
 											Conectamos mundos, entregamos confianza. <br /> Soluciones logísticas integrales para tus envíos <br /> internacionales y nacionales con la mayor seguridad.
 										</p>
 										<div className="social-icon d-flex align-items-center">
-											<Link href="/#">
+											<Link href="https://www.facebook.com/legacycargove/">
 												<i className="fab fa-facebook-f" />
 											</Link>
-											<Link href="/#">
+											<Link href="https://www.instagram.com/legacycargove/">
 												<i className="fab fa-twitter" />
 											</Link>
-											<Link href="/#">
-												<i className="fab fa-youtube" />
+											<Link href="https://www.tiktok.com/@legacycargo_ve">
+												<i className="fab fa-tiktok" />
 											</Link>
 											<Link href="/#">
 												<i className="fab fa-linkedin-in" />
@@ -166,33 +166,33 @@ export default function Footer1() {
 										<li>
 											<Link href="/service-details">
 												<i className="fa-solid fa-chevrons-right" />
-												Carga Aérea Internacional
+												Servcio Aereo
 											</Link>
 										</li>
 										<li>
 											<Link href="/service-details">
 												<i className="fa-solid fa-chevrons-right" />
-												Carga Marítima Internacional
+												Servcio Maritimo
 											</Link>
 										</li>
 										<li>
 											<Link href="/service-details">
 												<i className="fa-solid fa-chevrons-right" />
-												Transporte Terrestre Nacional
+												Servcio Terrestre
 											</Link>
 										</li>
 										<li>
 											<Link href="/service-details">
 												<i className="fa-solid fa-chevrons-right" />
-												Servicios Aduanales
+												Servcio Aduanal
 											</Link>
 										</li>
-										<li>
+										{/* <li>
 											<Link href="/service-details">
 												<i className="fa-solid fa-chevrons-right" />
 												Logística Integral
 											</Link>
-										</li>
+										</li> */}
 									</ul>
 								</div>
 							</div>
