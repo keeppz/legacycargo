@@ -83,7 +83,7 @@ export default function Service1() {
 								<div className="service-box-items">
 									<div className="service-thumb">
 										<img src="assets/img/service/01.jpg" alt="Transporte Aéreo" />
-										<div className="icon" style={{ backgroundColor: '#ff282e', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+										<div className="icon" style={{ backgroundColor: '#ff282e', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '50%' }}>
 											<i className="fa-solid fa-plane" style={{ color: 'white' }} />
 										</div>
 									</div>
@@ -105,7 +105,7 @@ export default function Service1() {
 								<div className="service-box-items">
 									<div className="service-thumb">
 										<img src="assets/img/service/02.jpg" alt="Transporte Marítimo" />
-										<div className="icon" style={{ backgroundColor: '#ff282e', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+										<div className="icon" style={{ backgroundColor: '#ff282e', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '50%' }}>
 											<i className="fa-solid fa-ship" style={{ color: 'white' }} />
 										</div>
 									</div>
@@ -127,7 +127,7 @@ export default function Service1() {
 								<div className="service-box-items">
 									<div className="service-thumb">
 										<img src="assets/img/service/03.jpg" alt="Transporte Terrestre" />
-										<div className="icon" style={{ backgroundColor: '#ff282e', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+										<div className="icon" style={{ backgroundColor: '#ff282e', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '50%' }}>
 											<i className="fa-solid fa-truck-fast" style={{ color: 'white' }} />
 										</div>
 									</div>
@@ -149,7 +149,7 @@ export default function Service1() {
 								<div className="service-box-items">
 									<div className="service-thumb">
 										<img src="assets/img/service/04.jpg" alt="Servicios Aduanales" />
-										<div className="icon" style={{ backgroundColor: '#ff282e', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+										<div className="icon" style={{ backgroundColor: '#ff282e', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '50%'	 }}>
 											<i className="fa-solid fa-stamp" style={{ color: 'white' }} />
 										</div>
 									</div>
@@ -189,7 +189,7 @@ export default function Service1() {
 									</div>
 								</div>
 							</SwiperSlide> */}
-							<SwiperSlide className="swiper-slide">
+							{/* <SwiperSlide className="swiper-slide">
 								<div className="service-box-items">
 									<div className="service-thumb">
 										<img src="assets/img/service/06.jpg" alt="Paquetería Internacional" />
@@ -210,7 +210,7 @@ export default function Service1() {
 										</Link>
 									</div>
 								</div>
-							</SwiperSlide>
+							</SwiperSlide> */}
 						</Swiper>
 					</div>
 				</div>

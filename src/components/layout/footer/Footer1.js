@@ -115,24 +115,24 @@ export default function Footer1() {
 										<h5>Enlaces Rápidos</h5>
 									</div>
 									<ul className="list-area">
-										<li>
+										{/* <li>
 											<Link href="/about">
 												<i className="fa-solid fa-chevrons-right" />
 												Conócenos
 											</Link>
-										</li>
+										</li> */}
 										<li>
 											<Link href="/contact">
 												<i className="fa-solid fa-chevrons-right" />
 												Contáctanos
 											</Link>
 										</li>
-										<li>
+										{/* <li>
 											<Link href="/news">
 												<i className="fa-solid fa-chevrons-right" />
 												Noticias
 											</Link>
-										</li>
+										</li> */}
 										<li>
 											<Link href="/faq">
 												<i className="fa-solid fa-chevrons-right" />
@@ -140,9 +140,15 @@ export default function Footer1() {
 											</Link>
 										</li>
 										<li>
-											<Link href="/contact">
+											<Link href="/privacy">
 												<i className="fa-solid fa-chevrons-right" />
-												Cotiza tu Envío
+												Política de Privacidad
+											</Link>
+										</li>
+										<li>
+											<Link href="/terms">
+												<i className="fa-solid fa-chevrons-right" />
+												Términos y Condiciones
 											</Link>
 										</li>
 									</ul>

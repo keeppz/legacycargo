@@ -59,7 +59,7 @@ export default function Offcanvas({ isOffCanvas, handleOffCanvas }) {
 											<li className="mb-2"><Link href="/service-maritimo" onClick={handleOffCanvas} className="sub-nav-link">Servicio Marítimo</Link></li>
 											<li className="mb-2"><Link href="/service-terrestre" onClick={handleOffCanvas} className="sub-nav-link">Servicio Terrestre</Link></li>
 											<li className="mb-2"><Link href="/service-aduanal" onClick={handleOffCanvas} className="sub-nav-link">Servicio Aduanal</Link></li>
-											<li className="mb-2"><Link href="/service-paqueteria" onClick={handleOffCanvas} className="sub-nav-link">Servicio de Paquetería</Link></li>
+											{/* <li className="mb-2"><Link href="/service-paqueteria" onClick={handleOffCanvas} className="sub-nav-link">Servicio de Paquetería</Link></li> */}
 										</ul>
 									</li>
 									<li className="menu-item mb-3">

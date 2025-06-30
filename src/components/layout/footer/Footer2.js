@@ -148,10 +148,10 @@ export default function Footer2() {
 						<div className="col-xl-6 col-lg-6 col-md-6">
 							<ul className="bottom-links">
 								<li>
-									<Link href="/#">Política de Privacidad</Link>
+									<Link href="/privacy">Política de Privacidad</Link>
 								</li>
 								<li>
-									<Link href="/#">Términos de Servicio</Link>
+									<Link href="/terms">Términos y Condiciones</Link>
 								</li>
 							</ul>
 						</div>
