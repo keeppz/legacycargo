@@ -13,7 +13,7 @@ export default function PoliticasPrivacidad() {
                             <div className="privacy-content">
                                 <div className="section-title text-center">
                                     <span className="sub-content wow fadeInUp">
-                                        <img src="/assets/img/bale.png" alt="img" />
+                                        {/* <img src="/assets/img/bale.png" alt="img" /> */}
                                         Protegemos tu Información
                                     </span>
                                     <h2 className="wow fadeInUp" data-wow-delay=".3s">

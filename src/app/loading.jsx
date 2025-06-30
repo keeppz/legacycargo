@@ -4,22 +4,22 @@ export default function Loading() {
       <div className="animation-preloader">
         <div className="spinner"></div>
         <div className="txt-loading">
-          <span data-text-preloader="G" className="letters-loading">
+          <span data-text-preloader="L" className="letters-loading">
             L
           </span>
-          <span data-text-preloader="D" className="letters-loading">
+          <span data-text-preloader="E" className="letters-loading">
             E
           </span>
-          <span data-text-preloader="A" className="letters-loading">
+          <span data-text-preloader="G" className="letters-loading">
             G
           </span>
-          <span data-text-preloader="C" className="letters-loading">
+          <span data-text-preloader="A" className="letters-loading">
             A
           </span>
-          <span data-text-preloader="Y" className="letters-loading">
+          <span data-text-preloader="C" className="letters-loading">
             C
           </span>
-          <span data-text-preloader="K" className="letters-loading">
+          <span data-text-preloader="Y" className="letters-loading">
             Y
           </span>
         </div>
