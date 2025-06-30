@@ -15,10 +15,9 @@ export default function ContactInfo() {
 						Información de Contacto
 					</h2>
 				</div>
-				<div className="row">
-					<div
-						className="col-xxl-4 col-xl-6 col-lg-6 col-md-6 wow fadeInUp"
-						data-wow-delay=".4s">
+				<div className="contact-info-grid">
+				<Link href="mailto:customerservice@legacycargove.com">
+					<div className="contact-info-item wow fadeInUp" data-wow-delay=".2s">
 						<div className="contact-box-items">
 							<div className="icon">
 								<img src="assets/img/icon/19.svg" alt="img" />
@@ -26,31 +25,27 @@ export default function ContactInfo() {
 							<div className="content">
 								<h3>Correo Electrónico</h3>
 								<p>
-									
-									Correo :
-									<Link href="/mailto:example@gmail.com">example@gmail.com</Link>
+								customerservice@legacycargove.com
 								</p>
 							</div>
 						</div>
 					</div>
-					<div
-						className="col-xxl-4 col-xl-6 col-lg-6 col-md-6 wow fadeInUp"
-						data-wow-delay=".2s">
-						 <div className="contact-box-items">
+					</Link>
+					<Link href="https://wa.me/584126396424">
+					<div className="contact-info-item wow fadeInUp" data-wow-delay=".4s">
+						<div className="contact-box-items">
 							<div className="icon">
 								<i className="fa-brands fa-whatsapp"></i>
 							</div>
 							<div className="content">
 								<h3>Whatsapp</h3>
-								<p><Link href="https://wa.me/584126396424">+58 412-6396424</Link>
+								<p>+58 412-6396424
 								</p>
 							</div>
 						</div> 
 					</div>
-					<div
-						className="col-xxl-4 col-xl-6 col-lg-6 col-md-6 wow fadeInUp"
-						data-wow-delay=".6s"
-					>
+					</Link>
+					<div className="contact-info-item wow fadeInUp" data-wow-delay=".6s">
 						<div className="contact-box-items">
 							<div className="icon">
 								<img src="assets/img/icon/20.svg" alt="img" />

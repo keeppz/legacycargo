@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarifas Legacy Cargo - Lista de Precios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            border-radius: 10px;
+        }
+        .section {
+            margin: 30px 0;
+            page-break-inside: avoid;
+        }
+        .section h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            padding: 15px 10px;
+            text-align: left;
+            font-weight: bold;
+        }
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #e3f2fd;
+        }
+        .price {
+            font-weight: bold;
+            color: #27ae60;
+            text-align: right;
+        }
+        .currency {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+        .zone-header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        .category-header {
+            background: linear-gradient(135deg, #f39c12, #d68910) !important;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        @media print {
+            body { margin: 0; }
+            .section { page-break-before: always; }
+            .section:first-child { page-break-before: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>LEGACY CARGO</h1>
+        <h2>Lista de Tarifas y Precios</h2>
+        <p>Documento generado automáticamente - Todas las tarifas en USD</p>
+    </div>
+
+    <!-- Clasificación de Rubros por Categoría -->
+    <div class="section">
+        <h2>📦 Clasificación de Rubros por Categoría</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Categoría</th>
+                    <th>Rubros Incluidos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Categoría A</strong></td>
+                    <td>Ropa, Calzado, Accesorios, Juguetes</td>
+                </tr>
+                <tr>
+                    <td><strong>Categoría B</strong></td>
+                    <td>Cosméticos, Medicina, Alimentos</td>
+                </tr>
+                <tr>
+                    <td><strong>Categoría C</strong></td>
+                    <td>Electrónicos, Electrodomésticos, Tecnología</td>
+                </tr>
+                <tr>
+                    <td><strong>Categoría D</strong></td>
+                    <td>Autopartes, Repuestos, Maquinaria, Ferretería, Muebles</td>
+                </tr>
+                <tr>
+                    <td><strong>Categoría E</strong></td>
+                    <td>Otros</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Zonas Geográficas -->
+    <div class="section">
+        <h2>🌎 Distribución de Estados por Zona</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Zona</th>
+                    <th>Estados Incluidos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Zona 1</strong></td>
+                    <td>Distrito Capital, Miranda, Vargas</td>
+                </tr>
+                <tr>
+                    <td><strong>Zona 2</strong></td>
+                    <td>Aragua, Carabobo, Lara, Yaracuy</td>
+                </tr>
+                <tr>
+                    <td><strong>Zona 3</strong></td>
+                    <td>Falcón, Guárico, Cojedes, Portuguesa</td>
+                </tr>
+                <tr>
+                    <td><strong>Zona 4</strong></td>
+                    <td>Anzoátegui, Monagas, Nueva Esparta, Sucre</td>
+                </tr>
+                <tr>
+                    <td><strong>Zona 5</strong></td>
+                    <td>Táchira, Mérida, Trujillo, Barinas</td>
+                </tr>
+                <tr>
+                    <td><strong>Zona 6</strong></td>
+                    <td>Bolívar, Amazonas, Delta Amacuro, Apure</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Tarifas Aéreas -->
+    <div class="section">
+        <h2>✈️ Tarifas de Envío Aéreo</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Origen</th>
+                    <th>Tarifa por ft³</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Estados Unidos</td>
+                    <td class="price">$15.00 <span class="currency">USD</span></td>
+                </tr>
+                <tr>
+                    <td>Panamá</td>
+                    <td class="price">$12.00 <span class="currency">USD</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Tarifas Marítimas Generales -->
+    <div class="section">
+        <h2>🚢 Tarifas de Envío Marítimo - Estados Unidos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Origen</th>
+                    <th>Tarifa por ft³</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Estados Unidos</td>
+                    <td class="price">$30.00 <span class="currency">USD</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Tarifas Marítimas China -->
+    <div class="section">
+        <h2>🚢 Tarifas de Envío Marítimo - China por Zona</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Zona de Destino</th>
+                    <th>Estados</th>
+                    <th>Tarifa por ft³</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Zona 1</strong></td>
+                    <td>Distrito Capital, Miranda, Vargas</td>
+                    <td class="price">$22.00 <span class="currency">USD</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Zona 2</strong></td>
+                    <td>Aragua, Carabobo, Lara, Yaracuy</td>
+                    <td class="price">$25.00 <span class="currency">USD</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Zona 3</strong></td>
+                    <td>Falcón, Guárico, Cojedes, Portuguesa</td>
+                    <td class="price">$25.00 <span class="currency">USD</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Zona 4</strong></td>
+                    <td>Anzoátegui, Monagas, Nueva Esparta, Sucre</td>
+                    <td class="price">$25.00 <span class="currency">USD</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Zona 5</strong></td>
+                    <td>Táchira, Mérida, Trujillo, Barinas</td>
+                    <td class="price">$25.00 <span class="currency">USD</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Zona 6</strong></td>
+                    <td>Bolívar, Amazonas, Delta Amacuro, Apure</td>
+                    <td class="price">$25.00 <span class="currency">USD</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Tarifas Marítimas Panamá -->
+    <div class="section">
+        <h2>🚢 Tarifas de Envío Marítimo - Panamá por Zona y Categoría</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Zona / Categoría</th>
+                    <th>Cat. A<br><small>(Ropa, Calzado, Accesorios, Juguetes)</small></th>
+                    <th>Cat. B<br><small>(Cosméticos, Medicina, Alimentos)</small></th>
+                    <th>Cat. C<br><small>(Electrónicos, Electrodomésticos, Tecnología)</small></th>
+                    <th>Cat. D<br><small>(Autopartes, Repuestos, Maquinaria, Ferretería, Muebles)</small></th>
+                    <th>Cat. E<br><small>(Otros)</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="zone-header">Zona 1</td>
+                    <td class="price">$25.00</td>
+                    <td class="price">$28.00</td>
+                    <td class="price">$30.00</td>
+                    <td class="price">$32.00</td>
+                    <td class="price">$35.00</td>
+                </tr>
+                <tr>
+                    <td class="zone-header">Zona 2</td>
+                    <td class="price">$27.00</td>
+                    <td class="price">$30.00</td>
+                    <td class="price">$32.00</td>
+                    <td class="price">$34.00</td>
+                    <td class="price">$37.00</td>
+                </tr>
+                <tr>
+                    <td class="zone-header">Zona 3</td>
+                    <td class="price">$29.00</td>
+                    <td class="price">$32.00</td>
+                    <td class="price">$34.00</td>
+                    <td class="price">$36.00</td>
+                    <td class="price">$39.00</td>
+                </tr>
+                <tr>
+                    <td class="zone-header">Zona 4</td>
+                    <td class="price">$31.00</td>
+                    <td class="price">$34.00</td>
+                    <td class="price">$36.00</td>
+                    <td class="price">$38.00</td>
+                    <td class="price">$41.00</td>
+                </tr>
+                <tr>
+                    <td class="zone-header">Zona 5</td>
+                    <td class="price">$33.00</td>
+                    <td class="price">$36.00</td>
+                    <td class="price">$38.00</td>
+                    <td class="price">$40.00</td>
+                    <td class="price">$43.00</td>
+                </tr>
+                <tr>
+                    <td class="zone-header">Zona 6</td>
+                    <td class="price">$35.00</td>
+                    <td class="price">$38.00</td>
+                    <td class="price">$40.00</td>
+                    <td class="price">$42.00</td>
+                    <td class="price">$45.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Resumen de Rubros -->
+    <div class="section">
+        <h2>📋 Lista Completa de Rubros Disponibles</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rubro</th>
+                    <th>Categoría</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Accesorios</td><td>Categoría A</td></tr>
+                <tr><td>Alimentos</td><td>Categoría B</td></tr>
+                <tr><td>Autopartes</td><td>Categoría D</td></tr>
+                <tr><td>Calzado</td><td>Categoría A</td></tr>
+                <tr><td>Cosméticos</td><td>Categoría B</td></tr>
+                <tr><td>Electrodomésticos</td><td>Categoría C</td></tr>
+                <tr><td>Electrónicos</td><td>Categoría C</td></tr>
+                <tr><td>Ferretería</td><td>Categoría D</td></tr>
+                <tr><td>Juguetes</td><td>Categoría A</td></tr>
+                <tr><td>Maquinaria</td><td>Categoría D</td></tr>
+                <tr><td>Medicina</td><td>Categoría B</td></tr>
+                <tr><td>Muebles</td><td>Categoría D</td></tr>
+                <tr><td>Repuestos</td><td>Categoría D</td></tr>
+                <tr><td>Ropa</td><td>Categoría A</td></tr>
+                <tr><td>Tecnología</td><td>Categoría C</td></tr>
+                <tr><td>Otros</td><td>Categoría E</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="note">
+        <strong>Notas importantes:</strong>
+        <ul>
+            <li>Todas las tarifas están expresadas en dólares estadounidenses (USD)</li>
+            <li>Los precios se calculan por pie cúbico (ft³)</li>
+            <li>La categorización de rubros determina la tarifa aplicable para envíos marítimos desde Panamá</li>
+            <li>Para envíos desde China, la tarifa depende únicamente de la zona de destino</li>
+            <li>Para envíos aéreos, la tarifa es fija independientemente del destino dentro de Venezuela</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+        <p><strong>Legacy Cargo</strong> - Documento generado el <?php echo date('d/m/Y H:i'); ?></p>
+    </div>
+</body>
+</html> 
