@@ -1,0 +1,169 @@
+// Legal Pages Styles (Terms & Privacy)
+.privacy-section,
+.terms-section {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+
+    .privacy-content,
+    .terms-content {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        margin-top: 30px;
+    }
+
+    .section-title {
+        margin-bottom: 40px;
+
+        .sub-content {
+            color: #ff282e;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            img {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        h2 {
+            color: #1a1a1a;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+    }
+
+    .privacy-wrapper,
+    .terms-wrapper {
+        .privacy-item,
+        .terms-item {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e9ecef;
+
+            &:last-child {
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+            }
+
+            h3 {
+                color: #2c3e50;
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: 15px;
+                padding-left: 15px;
+                border-left: 4px solid #ff282e;
+            }
+
+            p {
+                color: #555;
+                line-height: 1.7;
+                margin-bottom: 15px;
+                font-size: 1rem;
+
+                &.text-muted {
+                    font-size: 0.9rem;
+                    font-style: italic;
+                    margin-top: 20px;
+                }
+            }
+
+            ul {
+                margin: 15px 0;
+                padding-left: 0;
+
+                li {
+                    color: #555;
+                    line-height: 1.6;
+                    margin-bottom: 8px;
+                    padding-left: 25px;
+                    position: relative;
+                    list-style: none;
+
+                    &:before {
+                        content: "✓";
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        color: #ff282e;
+                        font-weight: bold;
+                        width: 20px;
+                    }
+
+                    a {
+                        color: #ff282e;
+                        text-decoration: none;
+                        font-weight: 500;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+    .privacy-section,
+    .terms-section {
+        padding: 40px 0;
+
+        .privacy-content,
+        .terms-content {
+            padding: 25px 20px;
+            margin-top: 20px;
+        }
+
+        .section-title {
+            h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .privacy-wrapper,
+        .terms-wrapper {
+            .privacy-item,
+            .terms-item {
+                h3 {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .privacy-section,
+    .terms-section {
+        .section-title {
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        .privacy-wrapper,
+        .terms-wrapper {
+            .privacy-item,
+            .terms-item {
+                h3 {
+                    font-size: 1.2rem;
+                    padding-left: 12px;
+                    border-left-width: 3px;
+                }
+
+                ul li {
+                    padding-left: 20px;
+                }
+            }
+        }
+    }
+} 
