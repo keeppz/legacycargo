@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 .service-details-section {
   position: relative;
   padding: 120px 0;
@@ -105,7 +107,7 @@
                 color: #444;
 
                 i {
-                  color: #ff282e;
+                  color: $theme-color;
                   margin-right: 0.5rem;
                   font-size: 1rem;
                 }
@@ -132,7 +134,7 @@
               align-items: flex-start;
 
               i {
-                color: #ff282e;
+                color: $theme-color;
                 font-size: 1.5rem;
                 margin-right: 1rem;
                 margin-top: 0.25rem;
@@ -206,7 +208,7 @@
                   }
 
                   &.bg-danger {
-                    background-color: #ff282e !important;
+                    background-color: $theme-color !important;
                   }
 
                   a {
@@ -220,7 +222,7 @@
                     transition: all 0.3s ease;
 
                     &:hover {
-                      background-color: rgba(#ff282e, 0.2);
+                      background-color: rgba($theme-color, 0.2);
                       color: $white;
                     }
 
@@ -250,7 +252,7 @@
               }
 
               .theme-btn {
-                background-color: #ff282e;
+                background-color: $theme-color;
                 color: white;
                 padding: 0.75rem 1.5rem;
                 border-radius: 6px;
@@ -259,7 +261,7 @@
                 transition: all 0.3s ease;
 
                 &:hover {
-                  background-color: darken(#ff282e, 10%);
+                  background-color: color.adjust($theme-color, $lightness: -10%);
                   transform: translateY(-1px);
                 }
               }
