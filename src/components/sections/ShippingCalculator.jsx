@@ -6,9 +6,10 @@ import {
     rubros, 
     rubrosPorCategoria, 
     regionesPorEstado, 
-    tarifas, 
+    tarifasUSA, 
     tarifasPanama,
-    tarifasChina 
+    tarifasChina,
+    tarifasAereas
 } from './calculatorData';
 
 const PRECIO_MINIMO_CHINA = 50;
@@ -153,39 +154,63 @@ export default function ShippingCalculator() {
         let precio = 0;
         let tiempo = '';
 
-        if (origin === 'panama' && tipoEnvio === 'maritimo') {
-            const region = obtenerRegion(destination);
-            const categoria = obtenerCategoria(rubro);
-            
-            if (region && categoria) {
-                const tarifa = tarifasPanama[region][categoria];
-                precio = volumenFt3 * tarifa * cantidadPaquetes; // Usar directamente ft³
-                tiempo = '15-20 días';
-            }
-        } else if (origin === 'estados_unidos') {
+        // Nueva lógica simplificada
+        if (origin === 'panama') {
             if (tipoEnvio === 'aereo') {
+                // Aéreo desde Panamá - solo por peso, no por rubro
                 const pesoAFacturar = Math.max(parseFloat(weight), pesoVolumetrico);
-                const tarifaAerea = tarifas.aereo[origin];
+                const tarifaAerea = tarifasAereas[origin];
                 if (tarifaAerea) {
                     precio = pesoAFacturar * tarifaAerea * cantidadPaquetes;
                     tiempo = '3-5 días';
                 }
             } else {
-                const tarifaMaritima = tarifas.maritimo[origin];
+                // Marítimo desde Panamá - por zona y categoría
+                const region = obtenerRegion(destination);
+                const categoria = obtenerCategoria(rubro);
+                
+                if (region && categoria) {
+                    const tarifa = tarifasPanama[region][categoria];
+                    precio = volumenFt3 * tarifa * cantidadPaquetes;
+                    tiempo = '15-20 días';
+                }
+            }
+        } else if (origin === 'estados_unidos') {
+            if (tipoEnvio === 'aereo') {
+                // Aéreo desde Estados Unidos - solo por peso
+                const pesoAFacturar = Math.max(parseFloat(weight), pesoVolumetrico);
+                const tarifaAerea = tarifasAereas[origin];
+                if (tarifaAerea) {
+                    precio = pesoAFacturar * tarifaAerea * cantidadPaquetes;
+                    tiempo = '3-5 días';
+                }
+            } else {
+                // Marítimo desde Estados Unidos
+                const tarifaMaritima = tarifasUSA[origin];
                 if (tarifaMaritima) {
-                    precio = volumenFt3 * tarifaMaritima * cantidadPaquetes; // Usar directamente ft³
+                    precio = volumenFt3 * tarifaMaritima * cantidadPaquetes;
                     tiempo = '15-20 días';
                 }
             }
         } else if (origin === 'china') {
-            // Nueva lógica para China
-            const region = obtenerRegion(destination);
-            if (region) {
-                // Convertir cm³ a ft³ usando la nueva conversión
-                const volumenFt3China = convertirCm3AFt3(volumenCm3);
-                const tarifaChina = tarifasChina[region];
-                precio = volumenFt3China * tarifaChina * cantidadPaquetes;
-                tiempo = '45-50 días';
+            if (tipoEnvio === 'aereo') {
+                // Aéreo desde China - preparado para futuro
+                const pesoAFacturar = Math.max(parseFloat(weight), pesoVolumetrico);
+                const tarifaAerea = tarifasAereas[origin];
+                if (tarifaAerea) {
+                    precio = pesoAFacturar * tarifaAerea * cantidadPaquetes;
+                    tiempo = '5-7 días';
+                }
+            } else {
+                // Marítimo desde China - solo marítimo por ahora
+                const region = obtenerRegion(destination);
+                if (region) {
+                    // Convertir cm³ a ft³ usando la nueva conversión
+                    const volumenFt3China = convertirCm3AFt3(volumenCm3);
+                    const tarifaChina = tarifasChina[region];
+                    precio = volumenFt3China * tarifaChina * cantidadPaquetes;
+                    tiempo = '45-50 días';
+                }
             }
         }
 
