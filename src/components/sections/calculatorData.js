@@ -72,8 +72,8 @@ export const tarifasChina = {
 // Tarifas específicas para Panamá marítimo por región y categoría (en USD/ft³)
 export const tarifasPanama = {
     'Zona 1': {
-        'A': 25.0,
-        'B': 28.0
+        'A': 14.0,
+        'B': 18.0
     },
     'Zona 2': {
         'A': 27.0,

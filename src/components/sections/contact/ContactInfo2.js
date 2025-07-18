@@ -5,7 +5,7 @@ export default function ContactInfo2() {
   const locations = [
     {
       title: "Warehouse China",
-      address: "6 Taojin Rd, Zhongshan, Guangdong Province, China, 528463",
+      address: "2 Tao Jin Lu, Zhong Shan Shi, Guang Dong Sheng, China, 528463",
       embedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d922.8236391361644!2d113.47213347088446!3d22.358113206087237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f50.1!3m3!1m2!1s0x3403d5fc5fd51e9f%3A0x1ee6494b6b083e12!2sBabyluxe%20Daily%20Products%20Co.%2CLtd.!5e0!3m2!1ses!2s!4v1715308142750!5m2!1ses!2s",
       mapsUrl: "https://www.google.com/maps/place/Babyluxe+Daily+Products+Co.,Ltd./@22.358113,113.472133,17z/data=!3m1!4b1!4m6!3m5!1s0x3403d5fc5fd51e9f:0x1ee6494b6b083e12!8m2!3d22.358113!4d113.472133!16s%2Fg%2F11j0_7x8ys",
       icon: "fa-solid fa-building"

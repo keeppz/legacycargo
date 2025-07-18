@@ -65,15 +65,25 @@ export default function ShippingCalculator() {
     const [result, setResult] = useState(null);
     const [whatsappMessage, setWhatsappMessage] = useState('');
 
+    const isSeaShipment = tipoEnvio === 'maritimo';
+
     const obtenerRegion = (estado) => {
-        return Object.entries(regionesPorEstado).find(([region, estados]) => 
-            estados.map(e => e.toLowerCase()).includes(estado.toLowerCase())
+        // Convertir el estado a la primera letra mayúscula para hacer match con los datos
+        const estadoFormateado = estado.charAt(0).toUpperCase() + estado.slice(1).toLowerCase();
+        console.log('Estado original:', estado);
+        console.log('Estado formateado:', estadoFormateado);
+        const region = Object.entries(regionesPorEstado).find(([region, estados]) => 
+            estados.includes(estadoFormateado)
         )?.[0];
+        console.log('Región encontrada:', region);
+        return region;
     };
 
     const obtenerCategoria = (rubro) => {
+        // Convertir el rubro a la primera letra mayúscula para hacer match con los datos
+        const rubroFormateado = rubro.charAt(0).toUpperCase() + rubro.slice(1).toLowerCase();
         return Object.entries(rubrosPorCategoria).find(([categoria, rubros]) => 
-            rubros.includes(rubro)
+            rubros.includes(rubroFormateado)
         )?.[0];
     };
 
@@ -86,17 +96,17 @@ export default function ShippingCalculator() {
     };
 
     const convertirCm3AFt3 = (volumenCm3) => {
-        return volumenCm3 / 28320; // Conversión específica para China
+        return volumenCm3 / 28320; // Conversión correcta de cm³ a ft³
+    };
+
+    const convertirCm3ACbm = (volumenCm3) => {
+        return volumenCm3 / 1000000; // Conversión de cm³ a m³ (CBM)
     };
 
     const formatearVolumen = (volumenCm3, cantidadPaquetes) => {
         const volumenTotal = volumenCm3 * cantidadPaquetes;
-        if (volumenTotal >= 100000) {
-            const volumenM3 = volumenTotal / 1000000;
-            return `${volumenM3.toFixed(2)} M³`;
-        } else {
-            return `${volumenTotal.toFixed(0)} cm³`;
-        }
+        const volumenM3 = volumenTotal / 1000000;
+        return `${volumenM3.toFixed(3)} M³`;
     };
 
     const calcularPesoVolumetrico = (l, a, h) => {
@@ -111,17 +121,50 @@ export default function ShippingCalculator() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+        // Validar que todos los campos requeridos estén completos
+        if (!origin || !destination || !tipoEnvio || !rubro) {
+            alert('Por favor complete todos los campos requeridos');
+            return;
+        }
+        
+        // Validar dimensiones si se está usando calculadora por dimensiones
+        if (tipoCalculadora === 'dimensiones') {
+            if (!dimensions.length || !dimensions.width || !dimensions.height) {
+                alert('Por favor complete todas las dimensiones');
+                return;
+            }
+            // Validar peso para envíos aéreos
+            if (tipoEnvio === 'aereo' && !weight) {
+                alert('Por favor ingrese el peso para envíos aéreos');
+                return;
+            }
+            // Para envíos marítimos, no necesitamos validar el peso
+        } else {
+            // Validar volumen directo
+            if (!volumenDirecto) {
+                alert('Por favor ingrese el volumen');
+                return;
+            }
+        }
+        
         let volumenM3 = 0;
         let volumenFt3 = 0;
         let volumenCm3 = 0; // Nuevo para China
         let pesoVolumetrico = 0;
 
         if (tipoCalculadora === 'dimensiones') {
+            console.log('Dimensiones:', dimensions);
+            console.log('Unidad medida:', unidadMedida);
+            
             if (unidadMedida === 'cm') {
                 // Calcular volumen en cm³ primero para China
                 volumenCm3 = parseFloat(dimensions.length) * parseFloat(dimensions.width) * parseFloat(dimensions.height);
                 volumenM3 = volumenCm3 / 1000000; // de cm³ a m³
                 volumenFt3 = volumenM3 * 35.3147; // Convertir m³ a ft³
+                console.log('Volumen cm³:', volumenCm3);
+                console.log('Volumen m³:', volumenM3);
+                console.log('Volumen ft³:', volumenFt3);
             } else {
                 volumenFt3 = calcularVolumen(
                     parseFloat(dimensions.length),
@@ -130,6 +173,9 @@ export default function ShippingCalculator() {
                 );
                 volumenM3 = volumenFt3 / 35.3147; // Convertir ft³ a m³
                 volumenCm3 = volumenM3 * 1000000; // Convertir a cm³
+                console.log('Volumen ft³:', volumenFt3);
+                console.log('Volumen m³:', volumenM3);
+                console.log('Volumen cm³:', volumenCm3);
             }
             
             pesoVolumetrico = calcularPesoVolumetrico(
@@ -137,16 +183,17 @@ export default function ShippingCalculator() {
                 parseFloat(dimensions.width),
                 parseFloat(dimensions.height)
             );
+            console.log('Peso volumétrico:', pesoVolumetrico);
         } else {
             // Conversión de volumen directo
             if (unidadVolumen === 'cuft') {
                 volumenFt3 = parseFloat(volumenDirecto);
                 volumenM3 = volumenFt3 / 35.3147; // Convertir ft³ a m³
-                volumenCm3 = volumenM3 * 1000000; // Convertir a cm³
+                volumenCm3 = volumenM3 / 1000000; // Convertir a cm³
             } else {
                 volumenM3 = parseFloat(volumenDirecto);
                 volumenFt3 = volumenM3 * 35.3147; // Convertir m³ a ft³
-                volumenCm3 = volumenM3 * 1000000; // Convertir a cm³
+                volumenCm3 = volumenM3 / 1000000; // Convertir a cm³
             }
             pesoVolumetrico = volumenM3 * 1000 / 5; // Convertir m³ a peso volumétrico
         }
@@ -155,64 +202,113 @@ export default function ShippingCalculator() {
         let tiempo = '';
 
         // Nueva lógica simplificada
+        console.log('=== DEBUG CALCULADORA ===');
+        console.log('Origen:', origin);
+        console.log('Destino:', destination);
+        console.log('Tipo envío:', tipoEnvio);
+        console.log('Rubro:', rubro);
+        console.log('Volumen Ft3:', volumenFt3);
+        console.log('Volumen M3:', volumenM3);
+        console.log('Peso:', weight);
+        console.log('Peso volumétrico:', pesoVolumetrico);
+        
         if (origin === 'panama') {
+            console.log('Procesando Panamá...');
             if (tipoEnvio === 'aereo') {
                 // Aéreo desde Panamá - solo por peso, no por rubro
                 const pesoAFacturar = Math.max(parseFloat(weight), pesoVolumetrico);
                 const tarifaAerea = tarifasAereas[origin];
+                console.log('Tarifa aérea Panamá:', tarifaAerea);
                 if (tarifaAerea) {
                     precio = pesoAFacturar * tarifaAerea * cantidadPaquetes;
                     tiempo = '3-5 días';
+                    console.log('Precio aéreo Panamá:', precio);
                 }
             } else {
                 // Marítimo desde Panamá - por zona y categoría
                 const region = obtenerRegion(destination);
                 const categoria = obtenerCategoria(rubro);
+                console.log('Región Panamá:', region);
+                console.log('Categoría Panamá:', categoria);
                 
                 if (region && categoria) {
                     const tarifa = tarifasPanama[region][categoria];
+                    console.log('Tarifa marítima Panamá:', tarifa);
                     precio = volumenFt3 * tarifa * cantidadPaquetes;
                     tiempo = '15-20 días';
+                    console.log('Precio marítimo Panamá:', precio);
+                } else {
+                    console.log('No se encontró región o categoría para Panamá');
+                    console.log('Región encontrada:', region);
+                    console.log('Categoría encontrada:', categoria);
+                    console.log('Destino:', destination);
+                    console.log('Rubro:', rubro);
                 }
             }
         } else if (origin === 'estados_unidos') {
+            console.log('Procesando Estados Unidos...');
             if (tipoEnvio === 'aereo') {
                 // Aéreo desde Estados Unidos - solo por peso
                 const pesoAFacturar = Math.max(parseFloat(weight), pesoVolumetrico);
                 const tarifaAerea = tarifasAereas[origin];
+                console.log('Tarifa aérea USA:', tarifaAerea);
                 if (tarifaAerea) {
                     precio = pesoAFacturar * tarifaAerea * cantidadPaquetes;
                     tiempo = '3-5 días';
+                    console.log('Precio aéreo USA:', precio);
                 }
             } else {
-                // Marítimo desde Estados Unidos
-                const tarifaMaritima = tarifasUSA[origin];
-                if (tarifaMaritima) {
-                    precio = volumenFt3 * tarifaMaritima * cantidadPaquetes;
-                    tiempo = '15-20 días';
+                // Marítimo desde Estados Unidos - por zona
+                const region = obtenerRegion(destination);
+                console.log('Región USA:', region);
+                if (region) {
+                    const tarifaMaritima = tarifasUSA[region];
+                    console.log('Tarifa marítima USA:', tarifaMaritima);
+                    if (tarifaMaritima) {
+                        precio = volumenFt3 * tarifaMaritima * cantidadPaquetes;
+                        tiempo = '15-20 días';
+                        console.log('Precio marítimo USA:', precio);
+                    }
+                } else {
+                    console.log('No se encontró región para USA');
                 }
             }
         } else if (origin === 'china') {
+            console.log('Procesando China...');
             if (tipoEnvio === 'aereo') {
                 // Aéreo desde China - preparado para futuro
                 const pesoAFacturar = Math.max(parseFloat(weight), pesoVolumetrico);
                 const tarifaAerea = tarifasAereas[origin];
+                console.log('Tarifa aérea China:', tarifaAerea);
                 if (tarifaAerea) {
                     precio = pesoAFacturar * tarifaAerea * cantidadPaquetes;
                     tiempo = '5-7 días';
+                    console.log('Precio aéreo China:', precio);
                 }
             } else {
                 // Marítimo desde China - solo marítimo por ahora
                 const region = obtenerRegion(destination);
+                console.log('Región China:', region);
                 if (region) {
                     // Convertir cm³ a ft³ usando la nueva conversión
                     const volumenFt3China = convertirCm3AFt3(volumenCm3);
+                    const volumenCbm = convertirCm3ACbm(volumenCm3);
                     const tarifaChina = tarifasChina[region];
+                    console.log('Tarifa marítima China:', tarifaChina);
+                    console.log('Volumen en CBM:', volumenCbm);
+                    console.log('Volumen en ft³:', volumenFt3China);
                     precio = volumenFt3China * tarifaChina * cantidadPaquetes;
-                    tiempo = '45-50 días';
+                    tiempo = '50-55 días';
+                    console.log('Precio marítimo China:', precio);
+                } else {
+                    console.log('No se encontró región para China');
                 }
             }
         }
+        
+        console.log('Precio final:', precio);
+        console.log('Tiempo final:', tiempo);
+        console.log('=== FIN DEBUG ===');
 
         // Aplicar precio mínimo para envíos desde China
         if (origin === 'china' && precio < PRECIO_MINIMO_CHINA) {
@@ -256,8 +352,6 @@ ${cantidadPaquetes > 1 ? `- Cantidad de paquetes: ${cantidadPaquetes}` : ''}`;
             setWhatsappMessage(encodeURIComponent(mensaje));
         }
     };
-
-    const isSeaShipment = tipoEnvio === 'maritimo';
 
     return (
         <section className="shipping-calculator-section section-padding">
