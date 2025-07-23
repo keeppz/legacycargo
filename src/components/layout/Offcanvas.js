@@ -98,7 +98,7 @@ export default function Offcanvas({ isOffCanvas, handleOffCanvas }) {
 									</li>
 								</ul>
 								<div className="header-button mt-10 d-flex justify-content-center align-items-center ">
-									<Link href="/contact" className="theme-btn text-center legacy-btn">
+									<Link href="/download" className="theme-btn text-center legacy-btn">
 										<span>
 											Descarga nuestra app
 											<i className="fa-solid fa-arrow-right-long ms-2" />
