@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+//404 page
 
 const NotFound = () => {
 	return (
