@@ -53,6 +53,9 @@ next-env.d.ts
 ehthumbs.db
 Thumbs.db
 
+# Firebase Admin SDK
+lib/danger/legacy-cargo-firebase-adminsdk-fbsvc-391e0e1a7c.json
+
 # Logs
 logs
 *.log
