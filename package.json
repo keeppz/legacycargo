@@ -32,6 +32,10 @@
     "firebase-admin": "^13.3.0",
     "lucide-react": "^0.510.0",
     "next": "^15.2.4",
+<<<<<<< HEAD
+=======
+    "pdf-lib": "^1.17.1",
+>>>>>>> e6d12dc7a6474cd5e2cfcc0382089dfdcf2d2496
     "postcss": "^8.5.3",
     "react": "^18.3.1",
     "react-apexcharts": "^1.7.0",
