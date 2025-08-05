@@ -4,10 +4,13 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { 
     rubros, 
-    rubrosPorCategoria, 
-    regionesPorEstado, 
+    rubrosPorCategoria,
+    rubrosPorCategoriaPanama, 
+    regionesPorEstado,
+    regionesPorEstadoPanama, 
     tarifasUSA, 
     tarifasPanama,
+    tarifasPanamaCoLoader,
     tarifasChina,
     tarifasAereas
 } from './calculatorData';
@@ -67,24 +70,38 @@ export default function ShippingCalculator() {
 
     const isSeaShipment = tipoEnvio === 'maritimo';
 
-    const obtenerRegion = (estado) => {
-        // Convertir el estado a la primera letra mayúscula para hacer match con los datos
-        const estadoFormateado = estado.charAt(0).toUpperCase() + estado.slice(1).toLowerCase();
+    const obtenerRegion = (estado, origen) => {
+        // Convertir el estado para hacer match correcto con los datos
+        // Capitalizar cada palabra del estado
+        const estadoFormateado = estado.split(' ')
+            .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase())
+            .join(' ');
         console.log('Estado original:', estado);
         console.log('Estado formateado:', estadoFormateado);
-        const region = Object.entries(regionesPorEstado).find(([region, estados]) => 
+        
+        // Usar las regiones correctas según el origen
+        const regionesData = origen === 'panama' ? regionesPorEstadoPanama : regionesPorEstado;
+        const region = Object.entries(regionesData).find(([region, estados]) => 
             estados.includes(estadoFormateado)
         )?.[0];
         console.log('Región encontrada:', region);
         return region;
     };
 
-    const obtenerCategoria = (rubro) => {
+    const obtenerCategoria = (rubro, origen) => {
         // Convertir el rubro a la primera letra mayúscula para hacer match con los datos
         const rubroFormateado = rubro.charAt(0).toUpperCase() + rubro.slice(1).toLowerCase();
-        return Object.entries(rubrosPorCategoria).find(([categoria, rubros]) => 
-            rubros.includes(rubroFormateado)
-        )?.[0];
+        
+        // Usar las categorías correctas según el origen
+        if (origen === 'panama') {
+            return Object.entries(rubrosPorCategoriaPanama).find(([categoria, rubros]) => 
+                rubros.includes(rubroFormateado)
+            )?.[0];
+        } else {
+            return Object.entries(rubrosPorCategoria).find(([categoria, rubros]) => 
+                rubros.includes(rubroFormateado)
+            )?.[0];
+        }
     };
 
     const calcularVolumen = (l, a, h) => {
@@ -96,7 +113,7 @@ export default function ShippingCalculator() {
     };
 
     const convertirCm3AFt3 = (volumenCm3) => {
-        return volumenCm3 / 28320; // Conversión correcta de cm³ a ft³
+        return volumenCm3 / 28316.85; // Conversión correcta de cm³ a ft³
     };
 
     const convertirCm3ACbm = (volumenCm3) => {
@@ -146,6 +163,11 @@ export default function ShippingCalculator() {
                 alert('Por favor ingrese el volumen');
                 return;
             }
+            // Validar peso para envíos aéreos también con volumen directo
+            if (tipoEnvio === 'aereo' && !weight) {
+                alert('Por favor ingrese el peso para envíos aéreos');
+                return;
+            }
         }
         
         let volumenM3 = 0;
@@ -186,16 +208,34 @@ export default function ShippingCalculator() {
             console.log('Peso volumétrico:', pesoVolumetrico);
         } else {
             // Conversión de volumen directo
+            console.log('=== CONVERSIÓN VOLUMEN DIRECTO ===');
+            console.log('Volumen ingresado:', volumenDirecto);
+            console.log('Unidad de volumen:', unidadVolumen);
+            
             if (unidadVolumen === 'cuft') {
                 volumenFt3 = parseFloat(volumenDirecto);
                 volumenM3 = volumenFt3 / 35.3147; // Convertir ft³ a m³
-                volumenCm3 = volumenM3 / 1000000; // Convertir a cm³
+                volumenCm3 = volumenM3 * 1000000; // Convertir a cm³
             } else {
                 volumenM3 = parseFloat(volumenDirecto);
                 volumenFt3 = volumenM3 * 35.3147; // Convertir m³ a ft³
-                volumenCm3 = volumenM3 / 1000000; // Convertir a cm³
+                volumenCm3 = volumenM3 * 1000000; // Convertir a cm³
             }
-            pesoVolumetrico = volumenM3 * 1000 / 5; // Convertir m³ a peso volumétrico
+            
+            console.log('Volumen M³ calculado:', volumenM3);
+            console.log('Volumen Ft³ calculado:', volumenFt3);
+            console.log('Volumen Cm³ calculado:', volumenCm3);
+            
+            // Calcular peso volumétrico: 1 m³ = 166.67 kg para transporte marítimo
+            // Para aéreo: 1 m³ = 167 kg (6000 cm³/kg)
+            if (tipoEnvio === 'aereo') {
+                pesoVolumetrico = volumenM3 * 167; // kg
+                pesoVolumetrico = pesoVolumetrico * 2.20462; // Convertir kg a lb
+            } else {
+                pesoVolumetrico = volumenM3 * 166.67; // kg para marítimo
+                pesoVolumetrico = pesoVolumetrico * 2.20462; // Convertir kg a lb
+            }
+            console.log('Peso volumétrico calculado:', pesoVolumetrico);
         }
 
         let precio = 0;
@@ -225,14 +265,14 @@ export default function ShippingCalculator() {
                     console.log('Precio aéreo Panamá:', precio);
                 }
             } else {
-                // Marítimo desde Panamá - por zona y categoría
-                const region = obtenerRegion(destination);
-                const categoria = obtenerCategoria(rubro);
+                // Marítimo desde Panamá - usar nuevas tarifas Co-Loader
+                const region = obtenerRegion(destination, 'panama');
+                const categoria = obtenerCategoria(rubro, 'panama');
                 console.log('Región Panamá:', region);
                 console.log('Categoría Panamá:', categoria);
                 
                 if (region && categoria) {
-                    const tarifa = tarifasPanama[region][categoria];
+                    const tarifa = tarifasPanamaCoLoader[region][categoria];
                     console.log('Tarifa marítima Panamá:', tarifa);
                     precio = volumenFt3 * tarifa * cantidadPaquetes;
                     tiempo = '15-20 días';
@@ -259,7 +299,7 @@ export default function ShippingCalculator() {
                 }
             } else {
                 // Marítimo desde Estados Unidos - por zona
-                const region = obtenerRegion(destination);
+                const region = obtenerRegion(destination, 'estados_unidos');
                 console.log('Región USA:', region);
                 if (region) {
                     const tarifaMaritima = tarifasUSA[region];
@@ -287,18 +327,36 @@ export default function ShippingCalculator() {
                 }
             } else {
                 // Marítimo desde China - solo marítimo por ahora
-                const region = obtenerRegion(destination);
+                const region = obtenerRegion(destination, 'china');
                 console.log('Región China:', region);
                 if (region) {
-                    // Convertir cm³ a ft³ usando la nueva conversión
-                    const volumenFt3China = convertirCm3AFt3(volumenCm3);
-                    const volumenCbm = convertirCm3ACbm(volumenCm3);
                     const tarifaChina = tarifasChina[region];
                     console.log('Tarifa marítima China:', tarifaChina);
-                    console.log('Volumen en CBM:', volumenCbm);
-                    console.log('Volumen en ft³:', volumenFt3China);
-                    precio = volumenFt3China * tarifaChina * cantidadPaquetes;
+                    console.log('Volumen en CBM:', volumenM3);
+                    console.log('Volumen en ft³:', volumenFt3);
+                    
+                    // Para China, usar conversión de cm³ a ft³ solo si viene de dimensiones
+                    let volumenParaCalculo;
+                    console.log('=== CÁLCULO DETALLADO CHINA ===');
+                    console.log('Tipo calculadora:', tipoCalculadora);
+                    console.log('volumenCm3:', volumenCm3);
+                    console.log('volumenFt3:', volumenFt3);
+                    console.log('cantidadPaquetes:', cantidadPaquetes);
+                    console.log('tarifaChina:', tarifaChina);
+                    
+                    if (tipoCalculadora === 'dimensiones') {
+                        volumenParaCalculo = convertirCm3AFt3(volumenCm3);
+                        console.log('Usando conversión cm³ a ft³:', volumenParaCalculo);
+                    } else {
+                        // Si es volumen directo, usar volumenFt3 directamente
+                        volumenParaCalculo = volumenFt3;
+                        console.log('Usando volumenFt3 directamente:', volumenParaCalculo);
+                    }
+                    
+                    precio = volumenParaCalculo * tarifaChina * cantidadPaquetes;
                     tiempo = '50-55 días';
+                    console.log('Cálculo: ', volumenParaCalculo, ' * ', tarifaChina, ' * ', cantidadPaquetes, ' = ', precio);
+                    console.log('Volumen para cálculo (ft³):', volumenParaCalculo);
                     console.log('Precio marítimo China:', precio);
                 } else {
                     console.log('No se encontró región para China');
@@ -321,8 +379,8 @@ export default function ShippingCalculator() {
             
             let volumenMostrar = '';
             if (origin === 'china') {
-                // Para China, mostrar en cm³ o M³ según el volumen
-                volumenMostrar = formatearVolumen(volumenCm3, cantidadPaquetes);
+                // Para China, mostrar siempre en M³
+                volumenMostrar = `${volumenTotalM3.toFixed(2)} M³`;
             } else if (origin === 'estados_unidos' || (origin === 'panama' && tipoEnvio === 'maritimo')) {
                 volumenMostrar = `${volumenTotalFt3.toFixed(3)} ft³`;
             } else {
