@@ -9,11 +9,13 @@ import Project2 from "@/components/sections/Project2"
 import Team2 from "@/components/sections/Team2"
 import Testimonial2 from "@/components/sections/Testimonial2"
 import Brand2 from "@/components/sections/Brand2"
-import CtaBanner from "@/components/sections/CtaBanner" 
+import CtaBanner from "@/components/sections/CtaBanner"
+import PageTracker from "@/components/analytics/PageTracker" 
 
 export default function Page() {
   return (
     <>
+      <PageTracker pageName="home" />
       <Layout headerStyle={2} footerStyle={1}>
         <div id="smooth-wrapper">
           <div id="smooth-content">

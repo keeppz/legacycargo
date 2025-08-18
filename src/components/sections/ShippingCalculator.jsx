@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { trackCalculatorUsage, trackButtonClick } from '@/lib/analytics';
 import { 
     rubros, 
     rubrosPorCategoria,
@@ -15,7 +16,7 @@ import {
     tarifasAereas
 } from './calculatorData';
 
-const PRECIO_MINIMO_CHINA = 50;
+const VOLUMEN_MINIMO_FT3 = 5; // Volumen mínimo en pies cúbicos
 
 const origenes = [
     { value: 'china', label: 'China' },
@@ -134,6 +135,26 @@ export default function ShippingCalculator() {
             // Directamente de in³ a ft³ y luego a lb
             return (l * a * h) / 1728 * 6.7;
         }
+    };
+
+    const calcularPrecioMinimo = (origen, destino, rubro) => {
+        const region = obtenerRegion(destino, origen);
+        
+        if (origen === 'china') {
+            const tarifaChina = tarifasChina[region];
+            return VOLUMEN_MINIMO_FT3 * tarifaChina;
+        } else if (origen === 'panama') {
+            const categoria = obtenerCategoria(rubro, 'panama');
+            if (region && categoria) {
+                const tarifaPanama = tarifasPanamaCoLoader[region][categoria];
+                return VOLUMEN_MINIMO_FT3 * tarifaPanama;
+            }
+        } else if (origen === 'estados_unidos') {
+            const tarifaUSA = tarifasUSA[region];
+            return VOLUMEN_MINIMO_FT3 * tarifaUSA;
+        }
+        
+        return 0; // Si no se encuentra tarifa
     };
 
     const handleSubmit = (e) => {
@@ -368,9 +389,13 @@ export default function ShippingCalculator() {
         console.log('Tiempo final:', tiempo);
         console.log('=== FIN DEBUG ===');
 
-        // Aplicar precio mínimo para envíos desde China
-        if (origin === 'china' && precio < PRECIO_MINIMO_CHINA) {
-            precio = PRECIO_MINIMO_CHINA;
+        // Calcular y aplicar precio mínimo según origen y destino
+        const precioMinimo = calcularPrecioMinimo(origin, destination, rubro);
+        console.log('Precio mínimo calculado:', precioMinimo);
+        
+        if (precio > 0 && precio < precioMinimo) {
+            console.log('Aplicando precio mínimo:', precioMinimo);
+            precio = precioMinimo;
         }
 
         if (precio > 0) {
@@ -396,6 +421,15 @@ export default function ShippingCalculator() {
             };
 
             setResult(resultData);
+
+            // Trackear uso de la calculadora
+            trackCalculatorUsage(
+                origin,
+                destination,
+                tipoEnvio,
+                rubro,
+                precio
+            );
 
             // Preparar mensaje para WhatsApp
             const mensaje = `¡Hola! Me interesa realizar un envío con las siguientes características:
@@ -692,13 +726,7 @@ ${cantidadPaquetes > 1 ? `- Cantidad de paquetes: ${cantidadPaquetes}` : ''}`;
                             <div className="disclaimer">
                                 <p>* Los precios son aproximados y están sujetos a verificación.</p>
                                 <p>* El costo final puede variar según las dimensiones exactas y el peso real.</p>
-                                {origin === 'china' && (
-                                    <>
-                                        <p>* El precio mínimo para envíos desde China es de ${PRECIO_MINIMO_CHINA}.</p>
-                                        {/* <p>* Para China se aplica tarifa especial: $22/ft³ para Zona 1 y $25/ft³ para otras zonas.</p> */}
-                                        {/* <p>* El volumen se muestra en cm³ (o M³ si supera los 100,000 cm³).</p> */}
-                                    </>
-                                )}
+                                <p>* Se aplica un precio mínimo basado en 5 ft³ según la tarifa de tu región y categoría.</p>
                             </div>
 
                             <div className="whatsapp-button">
@@ -707,6 +735,7 @@ ${cantidadPaquetes > 1 ? `- Cantidad de paquetes: ${cantidadPaquetes}` : ''}`;
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="theme-btn"
+                                    onClick={() => trackButtonClick('whatsapp_contact', 'calculator_result')}
                                 >
                                     <i className="fab fa-whatsapp" />
                                     Concreta tu envìo
