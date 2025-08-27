@@ -168,9 +168,12 @@ export const tarifasPanama = {
     }
 };
 
-// Tarifas aéreas por origen (en USD/lb) - No varían por rubro, solo por peso
+// Tarifas aéreas por origen y zona (en USD/lb)
 export const tarifasAereas = {
-    'estados_unidos': 15.0,
+    'estados_unidos': {
+        'Zona 1': 6.0,
+        'Zona 2': 9.0
+    },
     'panama': 12.0,
     'china': 18.0 // Preparado para futuro
 }; 

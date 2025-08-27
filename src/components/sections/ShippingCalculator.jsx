@@ -137,21 +137,37 @@ export default function ShippingCalculator() {
         }
     };
 
-    const calcularPrecioMinimo = (origen, destino, rubro) => {
+    const calcularPrecioMinimo = (origen, destino, rubro, tipoEnvio) => {
         const region = obtenerRegion(destino, origen);
         
         if (origen === 'china') {
             const tarifaChina = tarifasChina[region];
             return VOLUMEN_MINIMO_FT3 * tarifaChina;
         } else if (origen === 'panama') {
-            const categoria = obtenerCategoria(rubro, 'panama');
-            if (region && categoria) {
-                const tarifaPanama = tarifasPanamaCoLoader[region][categoria];
-                return VOLUMEN_MINIMO_FT3 * tarifaPanama;
+            if (tipoEnvio === 'aereo') {
+                // Para aéreo desde Panamá, usar tarifa fija por peso
+                const pesoMinimo = 10; // 10 lb mínimo para aéreo
+                return pesoMinimo * tarifasAereas[origen];
+            } else {
+                // Marítimo desde Panamá
+                const categoria = obtenerCategoria(rubro, 'panama');
+                if (region && categoria) {
+                    const tarifaPanama = tarifasPanamaCoLoader[region][categoria];
+                    return VOLUMEN_MINIMO_FT3 * tarifaPanama;
+                }
             }
         } else if (origen === 'estados_unidos') {
-            const tarifaUSA = tarifasUSA[region];
-            return VOLUMEN_MINIMO_FT3 * tarifaUSA;
+            if (tipoEnvio === 'aereo') {
+                // Para aéreo desde USA, usar tarifa por zona y peso mínimo de 5 lb
+                const pesoMinimo = 5; // 5 lb mínimo para aéreo
+                if (region && tarifasAereas[origen][region]) {
+                    return pesoMinimo * tarifasAereas[origen][region];
+                }
+            } else {
+                // Marítimo desde USA
+                const tarifaUSA = tarifasUSA[region];
+                return VOLUMEN_MINIMO_FT3 * tarifaUSA;
+            }
         }
         
         return 0; // Si no se encuentra tarifa
@@ -227,6 +243,11 @@ export default function ShippingCalculator() {
                 parseFloat(dimensions.height)
             );
             console.log('Peso volumétrico:', pesoVolumetrico);
+            
+            // Para envíos aéreos desde USA, el peso volumétrico ya está en libras
+            if (origin === 'estados_unidos' && tipoEnvio === 'aereo') {
+                console.log('Peso volumétrico en libras para USA:', pesoVolumetrico);
+            }
         } else {
             // Conversión de volumen directo
             console.log('=== CONVERSIÓN VOLUMEN DIRECTO ===');
@@ -277,9 +298,19 @@ export default function ShippingCalculator() {
             console.log('Procesando Panamá...');
             if (tipoEnvio === 'aereo') {
                 // Aéreo desde Panamá - solo por peso, no por rubro
-                const pesoAFacturar = Math.max(parseFloat(weight), pesoVolumetrico);
+                const pesoEnKg = parseFloat(weight);
+                const pesoVolumetricoEnKg = pesoVolumetrico / 2.20462; // Convertir lb a kg
+                
+                // Si el peso volumétrico es menor al peso real, usar el peso real directamente
+                const pesoAFacturar = pesoVolumetricoEnKg < pesoEnKg ? pesoEnKg : pesoVolumetricoEnKg;
+                
                 const tarifaAerea = tarifasAereas[origin];
                 console.log('Tarifa aérea Panamá:', tarifaAerea);
+                console.log('Peso en kg:', pesoEnKg);
+                console.log('Peso volumétrico en kg:', pesoVolumetricoEnKg);
+                console.log('Peso a facturar:', pesoAFacturar);
+                console.log('Criterio usado:', pesoVolumetricoEnKg < pesoEnKg ? 'Peso real' : 'Peso volumétrico');
+                
                 if (tarifaAerea) {
                     precio = pesoAFacturar * tarifaAerea * cantidadPaquetes;
                     tiempo = '3-5 días';
@@ -309,14 +340,29 @@ export default function ShippingCalculator() {
         } else if (origin === 'estados_unidos') {
             console.log('Procesando Estados Unidos...');
             if (tipoEnvio === 'aereo') {
-                // Aéreo desde Estados Unidos - solo por peso
-                const pesoAFacturar = Math.max(parseFloat(weight), pesoVolumetrico);
-                const tarifaAerea = tarifasAereas[origin];
-                console.log('Tarifa aérea USA:', tarifaAerea);
-                if (tarifaAerea) {
+                // Aéreo desde Estados Unidos - por peso y zona
+                // Para USA, el peso ya viene en libras, no necesitamos convertir
+                const pesoEnLibras = parseFloat(weight);
+                const pesoVolumetricoEnLibras = pesoVolumetrico;
+                
+                // Si el peso volumétrico es menor al peso real, usar el peso real directamente
+                const pesoAFacturar = pesoVolumetricoEnLibras < pesoEnLibras ? pesoEnLibras : pesoVolumetricoEnLibras;
+                
+                const region = obtenerRegion(destination, 'estados_unidos');
+                console.log('Región USA para aéreo:', region);
+                console.log('Peso en libras:', pesoEnLibras);
+                console.log('Peso volumétrico en libras:', pesoVolumetricoEnLibras);
+                console.log('Peso a facturar:', pesoAFacturar);
+                console.log('Criterio usado:', pesoVolumetricoEnLibras < pesoEnLibras ? 'Peso real' : 'Peso volumétrico');
+                
+                if (region && tarifasAereas[origin][region]) {
+                    const tarifaAerea = tarifasAereas[origin][region];
+                    console.log('Tarifa aérea USA por zona:', tarifaAerea);
                     precio = pesoAFacturar * tarifaAerea * cantidadPaquetes;
                     tiempo = '3-5 días';
                     console.log('Precio aéreo USA:', precio);
+                } else {
+                    console.log('No se encontró tarifa aérea para la región:', region);
                 }
             } else {
                 // Marítimo desde Estados Unidos - por zona
@@ -338,9 +384,19 @@ export default function ShippingCalculator() {
             console.log('Procesando China...');
             if (tipoEnvio === 'aereo') {
                 // Aéreo desde China - preparado para futuro
-                const pesoAFacturar = Math.max(parseFloat(weight), pesoVolumetrico);
+                const pesoEnKg = parseFloat(weight);
+                const pesoVolumetricoEnKg = pesoVolumetrico / 2.20462; // Convertir lb a kg
+                
+                // Si el peso volumétrico es menor al peso real, usar el peso real directamente
+                const pesoAFacturar = pesoVolumetricoEnKg < pesoEnKg ? pesoEnKg : pesoVolumetricoEnKg;
+                
                 const tarifaAerea = tarifasAereas[origin];
                 console.log('Tarifa aérea China:', tarifaAerea);
+                console.log('Peso en kg:', pesoEnKg);
+                console.log('Peso volumétrico en kg:', pesoVolumetricoEnKg);
+                console.log('Peso a facturar:', pesoAFacturar);
+                console.log('Criterio usado:', pesoVolumetricoEnKg < pesoEnKg ? 'Peso real' : 'Peso volumétrico');
+                
                 if (tarifaAerea) {
                     precio = pesoAFacturar * tarifaAerea * cantidadPaquetes;
                     tiempo = '5-7 días';
@@ -390,7 +446,7 @@ export default function ShippingCalculator() {
         console.log('=== FIN DEBUG ===');
 
         // Calcular y aplicar precio mínimo según origen y destino
-        const precioMinimo = calcularPrecioMinimo(origin, destination, rubro);
+        const precioMinimo = calcularPrecioMinimo(origin, destination, rubro, tipoEnvio);
         console.log('Precio mínimo calculado:', precioMinimo);
         
         if (precio > 0 && precio < precioMinimo) {
@@ -412,10 +468,50 @@ export default function ShippingCalculator() {
                 volumenMostrar = `${volumenTotalM3.toFixed(3)} m³`;
             }
             
+            // Determinar qué peso mostrar según la lógica de cálculo
+            let pesoAMostrar = '';
+            let mostrarPesoVolumetrico = true;
+            
+            if (tipoEnvio === 'aereo') {
+                if (origin === 'estados_unidos') {
+                    const pesoEnLibras = parseFloat(weight);
+                    const pesoVolumetricoEnLibras = pesoVolumetrico;
+                    
+                    if (pesoVolumetricoEnLibras < pesoEnLibras) {
+                        // Si el peso real es mayor, mostrar solo el peso real
+                        pesoAMostrar = `${pesoEnLibras.toFixed(2)} lb`;
+                        mostrarPesoVolumetrico = false;
+                    } else {
+                        // Si el peso volumétrico es mayor, mostrar ambos
+                        pesoAMostrar = `${pesoVolumetricoEnLibras.toFixed(2)} lb`;
+                        mostrarPesoVolumetrico = true;
+                    }
+                } else {
+                    // Para Panamá y China
+                    const pesoEnKg = parseFloat(weight);
+                    const pesoVolumetricoEnKg = pesoVolumetrico / 2.20462;
+                    
+                    if (pesoVolumetricoEnKg < pesoEnKg) {
+                        // Si el peso real es mayor, mostrar solo el peso real
+                        pesoAMostrar = `${pesoEnKg.toFixed(2)} kg`;
+                        mostrarPesoVolumetrico = false;
+                    } else {
+                        // Si el peso volumétrico es mayor, mostrar ambos
+                        pesoAMostrar = `${pesoVolumetricoEnKg.toFixed(2)} kg`;
+                        mostrarPesoVolumetrico = true;
+                    }
+                }
+            } else {
+                // Para envíos marítimos, mostrar peso volumétrico normalmente
+                pesoAMostrar = `${pesoVolumetrico.toFixed(2)} lb`;
+                mostrarPesoVolumetrico = true;
+            }
+            
             const resultData = {
                 price: `$${precio.toFixed(2)}`,
                 time: tiempo,
-                pesoVolumetrico: `${pesoVolumetrico.toFixed(2)} lb`,
+                pesoVolumetrico: pesoAMostrar,
+                mostrarPesoVolumetrico: mostrarPesoVolumetrico,
                 volumen: volumenMostrar,
                 cantidadPaquetes: cantidadPaquetes
             };
@@ -477,7 +573,7 @@ ${cantidadPaquetes > 1 ? `- Cantidad de paquetes: ${cantidadPaquetes}` : ''}`;
                                         }}
                                     >
                                         <option value="dimensiones">Por Dimensiones</option>
-                                        <option value="volumen" disabled={tipoEnvio === 'aereo'}>Por Volumen</option>
+                                        <option value="volumen" disabled={tipoEnvio === 'aereo' || origin === 'estados_unidos'}>Por Volumen</option>
                                     </select>
                                 </div>
                             </div>
@@ -492,6 +588,10 @@ ${cantidadPaquetes > 1 ? `- Cantidad de paquetes: ${cantidadPaquetes}` : ''}`;
                                             setOrigin(e.target.value);
                                             if (e.target.value === 'china') {
                                                 setTipoEnvio('maritimo');
+                                            } else if (e.target.value === 'estados_unidos') {
+                                                setTipoEnvio('aereo');
+                                                setUnidadMedida('in');
+                                                setTipoCalculadora('dimensiones');
                                             }
                                         }}
                                         required
@@ -518,7 +618,8 @@ ${cantidadPaquetes > 1 ? `- Cantidad de paquetes: ${cantidadPaquetes}` : ''}`;
                                             <option 
                                                 key={tipo.value} 
                                                 value={tipo.value}
-                                                disabled={origin === 'china' && tipo.value === 'aereo'}
+                                                disabled={(origin === 'china' && tipo.value === 'aereo') || 
+                                                         (origin === 'estados_unidos' && tipo.value === 'maritimo')}
                                             >
                                                 {tipo.label}
                                             </option>
@@ -604,13 +705,13 @@ ${cantidadPaquetes > 1 ? `- Cantidad de paquetes: ${cantidadPaquetes}` : ''}`;
                                     <div className="dimensions-inputs">
                                         {!isSeaShipment && (
                                             <div className="form-group">
-                                                <label>Peso (kg)</label>
+                                                <label>Peso ({origin === 'estados_unidos' ? 'lb' : 'kg'})</label>
                                                 <input
                                                     type="number"
                                                     className="form-control"
                                                     value={weight}
                                                     onChange={(e) => setWeight(e.target.value)}
-                                                    placeholder="Ingrese el peso"
+                                                    placeholder={`Ingrese el peso en ${origin === 'estados_unidos' ? 'libras' : 'kilogramos'}`}
                                                     required={!isSeaShipment}
                                                 />
                                             </div>
@@ -705,7 +806,7 @@ ${cantidadPaquetes > 1 ? `- Cantidad de paquetes: ${cantidadPaquetes}` : ''}`;
                                 
                                 {/* Para envíos aéreos */}
                                 <div className={`weight-box ${isSeaShipment ? 'hidden' : ''}`}>
-                                    <h4>Peso Volumétrico</h4>
+                                    <h4>{result.mostrarPesoVolumetrico ? 'Peso Volumétrico' : 'Peso'}</h4>
                                     <h3>{result.pesoVolumetrico}</h3>
                                 </div>
 
@@ -726,7 +827,7 @@ ${cantidadPaquetes > 1 ? `- Cantidad de paquetes: ${cantidadPaquetes}` : ''}`;
                             <div className="disclaimer">
                                 <p>* Los precios son aproximados y están sujetos a verificación.</p>
                                 <p>* El costo final puede variar según las dimensiones exactas y el peso real.</p>
-                                <p>* Se aplica un precio mínimo basado en 5 ft³ según la tarifa de tu región y categoría.</p>
+                                <p>* Se aplica un precio mínimo basado en 5 ft³ para envíos marítimos y 5 lb para envíos aéreos desde USA.</p>
                             </div>
 
                             <div className="whatsapp-button">

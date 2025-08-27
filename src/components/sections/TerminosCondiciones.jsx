@@ -44,7 +44,7 @@ export default function TerminosCondiciones() {
                                             <li>Servicios aduanales y gestión de documentos</li>
                                             <li>Almacenamiento y distribución</li>
                                             <li>Seguimiento y monitoreo de envíos</li>
-                                            <li>Paquetería internacional</li>
+                                            
                                         </ul>
                                     </div>
 
@@ -187,7 +187,7 @@ export default function TerminosCondiciones() {
                                             Para preguntas sobre estos términos o nuestros servicios, contáctanos:
                                         </p>
                                         <ul>
-                                            <li>Email: <a href="mailto:legal@legacycargo.com">legal@legacycargo.com</a></li>
+                                            <li>Email: <a href="mailto:informacion@legacycargo.com">informacion@legacycargo.com</a></li>
                                             <li>Teléfono: +58 414-2909883</li>
                                             <li>WhatsApp: +58 414-2909883</li>
                                             <li>Oficinas: Miami, FL - USA | Caracas, Venezuela</li>

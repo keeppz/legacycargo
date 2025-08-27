@@ -4,8 +4,7 @@ import Breadcrumb from '../layout/Breadcrumb'
 export default function AccountDeletion() {
     return (
         <>
-            <Breadcrumb />
-            
+                     
             <div className="account-deletion-section section-padding">
                 <div className="container">
                                     <div className="row justify-content-center">
