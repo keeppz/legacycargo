@@ -42,6 +42,9 @@ export default function Menu() {
 					<li> 
 						<Link href="/calculator">Calculadora de envíos</Link>
 					</li>
+					<li> 
+						<Link href="/tracking">Rastrea tu envío</Link>
+					</li>
 					<li>
 						<Link href="/contact">Contáctanos</Link>
 					</li>

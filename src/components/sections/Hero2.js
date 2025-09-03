@@ -66,7 +66,7 @@ export default function Hero2() {
 								width={1920}
 								height={1080}
 								priority={index === 0}
-								quality={90}
+								quality={100}
 								className="bg-cover"
 							/>
 							<div className="overlay"></div>

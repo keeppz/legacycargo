@@ -140,13 +140,16 @@
 .service-box-items {
     margin-top: 30px;
     background-color: $white;
+    border-radius: 18px;
 
     .service-thumb {
         padding: 18px 18px 65px 18px;
         position: relative;
+        border-radius: 18px;
 
         img {
             @include imgw;
+            border-radius: 10px;
         }
 
         .icon {
