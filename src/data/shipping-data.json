@@ -125,5 +125,16 @@
     "panama": 12.0,
     "china": 18.0
   },
-  "precioMinimoChina": 50
+  "preciosMinimos": {
+    "china": {
+      "maritimo": 105.0
+    },
+    "estados_unidos": {
+      "aereo": 30.0
+    },
+    "panama": {
+      "aereo": 60.0,
+      "maritimo": 70.0
+    }
+  }
 }

@@ -174,4 +174,26 @@ export const tarifasAereas = {
     },
     'panama': 12.0,
     'china': 18.0 // Preparado para futuro
+};
+
+// Precios mínimos por origen y tipo de envío
+export const preciosMinimos = {
+    'china': {
+        'maritimo': 105.0 // 5 ft³ × 21.0 (tarifa más baja)
+    },
+    'estados_unidos': {
+        'aereo': 30.0 // 5 lb × 6.0 (tarifa más baja)
+    },
+    'panama': {
+        'aereo': 60.0,    // 5 lb × 12.0
+        'maritimo': 70.0  // 5 ft³ × 14.0 (tarifa más baja)
+    }
+};
+
+// Función para calcular precio mínimo
+export const calcularPrecioMinimo = (origen, destino, rubro, tipoEnvio) => {
+    const precios = preciosMinimos[origen];
+    if (!precios) return 0;
+    
+    return precios[tipoEnvio] || 0;
 }; 

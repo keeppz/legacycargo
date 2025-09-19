@@ -13,7 +13,8 @@ import {
     tarifasPanama,
     tarifasPanamaCoLoader,
     tarifasChina,
-    tarifasAereas
+    tarifasAereas,
+    calcularPrecioMinimo
 } from './calculatorData';
 
 const VOLUMEN_MINIMO_FT3 = 5; // Volumen mínimo en pies cúbicos

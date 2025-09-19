@@ -24,7 +24,7 @@ Calcula el costo de envío basado en los parámetros proporcionados.
   },
   "weight": 10.0,    // Requerido para envíos aéreos (kg)
   "quantity": 1,     // Cantidad de paquetes (opcional, default: 1)
-  "insurance": false, // Seguro de carga 3% (opcional, default: false)
+  "insurance": false, // Seguro de carga = volumen ft³ (opcional, default: false)
   "unit": "cm"       // Unidad de medida: "cm" o "in" (opcional, default: "cm")
 }
 ```
@@ -157,13 +157,50 @@ Obtiene información de configuración disponible.
 2. **Dimensiones**: Deben ser números positivos
 3. **Peso**: Requerido para envíos aéreos
 4. **Rubro**: Requerido para envíos marítimos desde Panamá
-5. **China aéreo**: No disponible
+5. **Servicios no disponibles**:
+   - China aéreo
+   - Estados Unidos marítimo
 6. **Destinos válidos**: Deben existir en las regiones configuradas
+
+## Servicios Disponibles
+
+| Origen | Aéreo | Marítimo |
+|--------|-------|----------|
+| 🇵🇦 **Panamá** | ✅ 8-10 días | ✅ 15-20 días |
+| 🇺🇸 **Estados Unidos** | ✅ 8-10 días | ❌ No disponible |
+| 🇨🇳 **China** | ❌ No disponible | ✅ 55-65 días |
+
+## Tiempos de Envío
+
+### Panamá
+- **Aéreo**: 8-10 días
+- **Marítimo**: 15-20 días
+
+### Estados Unidos  
+- **Aéreo**: 8-10 días
+- **Marítimo**: ❌ No disponible
+
+### China
+- **Marítimo**: 55-65 días
+- **Aéreo**: ❌ No disponible
+
+## Precios Mínimos
+
+La API aplica precios mínimos equivalentes a:
+
+| Origen | Servicio | Precio Mínimo | Equivalencia |
+|--------|----------|---------------|--------------|
+| 🇨🇳 **China** | Marítimo | **$105.00** | 5 pies cúbicos |
+| 🇺🇸 **Estados Unidos** | Aéreo | **$30.00** | 5 libras |
+| 🇵🇦 **Panamá** | Aéreo | **$60.00** | 5 libras |
+| 🇵🇦 **Panamá** | Marítimo | **$70.00** | 5 pies cúbicos |
+
+> **Nota**: Si el cálculo resulta en un precio menor al mínimo establecido, se aplicará automáticamente el precio mínimo.
 
 ## Notas Importantes
 
 - Los precios están en USD
 - El peso volumétrico se calcula automáticamente para envíos aéreos
-- Para China se aplica un precio mínimo de $50
-- El seguro de carga es 3% del subtotal
+- Se aplican precios mínimos según origen y tipo de envío
+- El seguro de carga equivale al volumen en pies cúbicos (ft³)
 - Las tarifas varían según origen, destino y tipo de envío

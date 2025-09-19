@@ -31,7 +31,7 @@ const {
     tarifasUSA,
     tarifasChina,
     tarifasAereas,
-    precioMinimoChina: PRECIO_MINIMO_CHINA
+    preciosMinimos
 } = shippingData;
 
 // Función para obtener región según el origen
@@ -133,6 +133,13 @@ export async function POST(request) {
             }, { status: 400 });
         }
 
+        if (origin === 'estados_unidos' && shipmentType === 'maritimo') {
+            return NextResponse.json({
+                success: false,
+                error: 'Envíos marítimos desde Estados Unidos no están disponibles'
+            }, { status: 400 });
+        }
+
         if (shipmentType === 'aereo' && (!weight || weight <= 0)) {
             return NextResponse.json({
                 success: false,
@@ -187,7 +194,13 @@ export async function POST(request) {
                 // Aéreo desde Panamá
                 const pesoAFacturar = Math.max(parseFloat(weight), pesoVolumetrico);
                 precio = pesoAFacturar * 12.0 * quantity; // $12/lb tarifa fija
-                tiempo = '3-5 días';
+                tiempo = '8-10 días';
+                
+                // Aplicar precio mínimo
+                const precioMinimo = preciosMinimos?.panama?.aereo || 60.0;
+                if (precio < precioMinimo) {
+                    precio = precioMinimo;
+                }
             } else {
                 // Marítimo desde Panamá - usar nuevas tarifas por región y categoría
                 const categoria = obtenerCategoriaPanama(rubro);
@@ -210,6 +223,12 @@ export async function POST(request) {
                 
                 precio = volumenFt3 * tarifa * quantity;
                 tiempo = '15-20 días';
+                
+                // Aplicar precio mínimo
+                const precioMinimo = preciosMinimos?.panama?.maritimo || 70.0;
+                if (precio < precioMinimo) {
+                    precio = precioMinimo;
+                }
             }
         } else if (origin === 'estados_unidos') {
             if (shipmentType === 'aereo') {
@@ -226,20 +245,13 @@ export async function POST(request) {
                     // Tarifa fija antigua
                     precio = pesoAFacturar * tarifasZona * quantity;
                 }
-                tiempo = '3-5 días';
-            } else {
-                // Marítimo desde Estados Unidos
-                const tarifa = tarifasUSA[region];
+                tiempo = '8-10 días';
                 
-                if (!tarifa) {
-                    return NextResponse.json({
-                        success: false,
-                        error: `No se encontró tarifa para región: ${region}`
-                    }, { status: 400 });
+                // Aplicar precio mínimo
+                const precioMinimo = preciosMinimos?.estados_unidos?.aereo || 30.0;
+                if (precio < precioMinimo) {
+                    precio = precioMinimo;
                 }
-                
-                precio = volumenFt3 * tarifa * quantity;
-                tiempo = '15-20 días';
             }
         } else if (origin === 'china') {
             // Solo marítimo desde China
@@ -253,11 +265,12 @@ export async function POST(request) {
             }
             
             precio = volumenFt3 * tarifa * quantity;
-            tiempo = '45-50 días';
+            tiempo = '55-65 días';
             
             // Aplicar precio mínimo
-            if (precio < PRECIO_MINIMO_CHINA) {
-                precio = PRECIO_MINIMO_CHINA;
+            const precioMinimo = preciosMinimos?.china?.maritimo || 105.0;
+            if (precio < precioMinimo) {
+                precio = precioMinimo;
             }
         } else {
             return NextResponse.json({
@@ -266,8 +279,8 @@ export async function POST(request) {
             }, { status: 400 });
         }
 
-        // Calcular seguro de carga (3% del subtotal) si está activado
-        const seguroCarga = insurance ? precio * 0.03 : 0;
+        // Calcular seguro de carga basado en pies cúbicos si está activado
+        const seguroCarga = insurance ? volumenFt3 : 0;
         const total = precio + seguroCarga;
 
         // Preparar respuesta
