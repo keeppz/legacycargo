@@ -1,5 +1,3 @@
-'use client'
-
 // Definición de rubros sin categorías para mostrar al usuario
 export const rubros = [
     'Accesorios',

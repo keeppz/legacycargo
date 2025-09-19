@@ -1,0 +1,351 @@
+import { NextResponse } from 'next/server';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+// Cargar datos desde el archivo JSON
+let shippingData;
+try {
+    const filePath = join(process.cwd(), 'src', 'data', 'shipping-data.json');
+    const fileContents = readFileSync(filePath, 'utf8');
+    shippingData = JSON.parse(fileContents);
+} catch (error) {
+    console.error('Error cargando datos de envío:', error);
+    shippingData = {
+        rubrosPorCategoriaPanama: {},
+        regionesPorEstadoPanama: {},
+        regionesPorEstado: {},
+        tarifasPanamaCoLoader: {},
+        tarifasUSA: {},
+        tarifasChina: {},
+        tarifasAereas: {},
+        precioMinimoChina: 50
+    };
+}
+
+// Extraer datos del objeto cargado
+const {
+    rubrosPorCategoriaPanama,
+    regionesPorEstadoPanama,
+    regionesPorEstado,
+    tarifasPanamaCoLoader,
+    tarifasUSA,
+    tarifasChina,
+    tarifasAereas,
+    precioMinimoChina: PRECIO_MINIMO_CHINA
+} = shippingData;
+
+// Función para obtener región según el origen
+const obtenerRegion = (estado, origen) => {
+    // Formatear el estado: primera letra mayúscula, resto minúscula
+    const palabras = estado.toLowerCase().split(' ');
+    const estadoFormateado = palabras.map(palabra => 
+        palabra.charAt(0).toUpperCase() + palabra.slice(1)
+    ).join(' ');
+    
+    let regionesData;
+    if (origen === 'panama') {
+        regionesData = regionesPorEstadoPanama;
+    } else {
+        regionesData = regionesPorEstado;
+    }
+    
+    const region = Object.entries(regionesData).find(([region, estados]) => {
+        return estados.includes(estadoFormateado);
+    })?.[0];
+    return region;
+};
+
+// Función para obtener categoría (solo para Panamá)
+const obtenerCategoriaPanama = (rubro) => {
+    const rubroFormateado = rubro.charAt(0).toUpperCase() + rubro.slice(1).toLowerCase();
+    const categoria = Object.entries(rubrosPorCategoriaPanama).find(([categoria, rubros]) => {
+        return rubros.includes(rubroFormateado);
+    })?.[0];
+    return categoria;
+};
+
+// Función para calcular peso volumétrico
+const calcularPesoVolumetrico = (largo, ancho, alto, unidad = 'cm') => {
+    if (unidad === 'cm') {
+        // Convertir cm³ a ft³ y luego a lb (1 ft³ = 6.7 lb)
+        return ((largo * ancho * alto) / 1000000) * 35.3147 * 6.7;
+    } else {
+        // Directamente de in³ a ft³ y luego a lb
+        return (largo * ancho * alto) / 1728 * 6.7;
+    }
+};
+
+// Función para calcular volumen
+const calcularVolumen = (largo, ancho, alto, unidad = 'cm') => {
+    if (unidad === 'cm') {
+        // Para Estados Unidos y Panamá: cm³ a ft³
+        return ((largo * ancho * alto) / 1000000) * 35.3147;
+    } else {
+        // Para pulgadas: in³ a ft³
+        return (largo * ancho * alto) / 1728;
+    }
+};
+
+// Función para calcular volumen de China (cm³ a ft³ con conversión específica)
+const calcularVolumenChina = (largo, ancho, alto) => {
+    const volumenCm3 = largo * ancho * alto;
+    return volumenCm3 / 28320; // Conversión específica para China
+};
+
+export async function POST(request) {
+    try {
+        const body = await request.json();
+        
+        const {
+            origin,
+            destination,
+            shipmentType,
+            rubro = '',
+            dimensions,
+            weight = 0,
+            quantity = 1,
+            insurance = false,
+            unit = 'cm' // 'cm' o 'in'
+        } = body;
+
+        // Validaciones básicas
+        if (!origin || !destination || !shipmentType || !dimensions) {
+            return NextResponse.json({
+                success: false,
+                error: 'Faltan campos requeridos: origin, destination, shipmentType, dimensions'
+            }, { status: 400 });
+        }
+
+        const { length, width, height } = dimensions;
+        
+        if (!length || !width || !height || length <= 0 || width <= 0 || height <= 0) {
+            return NextResponse.json({
+                success: false,
+                error: 'Las dimensiones deben ser números positivos'
+            }, { status: 400 });
+        }
+
+        // Validaciones específicas
+        if (origin === 'china' && shipmentType === 'aereo') {
+            return NextResponse.json({
+                success: false,
+                error: 'Envíos aéreos desde China no están disponibles'
+            }, { status: 400 });
+        }
+
+        if (shipmentType === 'aereo' && (!weight || weight <= 0)) {
+            return NextResponse.json({
+                success: false,
+                error: 'El peso es requerido para envíos aéreos'
+            }, { status: 400 });
+        }
+
+        if (origin === 'panama' && shipmentType === 'maritimo' && !rubro) {
+            return NextResponse.json({
+                success: false,
+                error: 'El rubro es requerido para envíos marítimos desde Panamá'
+            }, { status: 400 });
+        }
+
+        // Inicializar variables de cálculo
+        let volumenM3 = 0;
+        let volumenFt3 = 0;
+        let pesoVolumetrico = 0;
+        let precio = 0;
+        let tiempo = '';
+        let tipoVolumen = '';
+
+        // Calcular volúmenes según el origen
+        if (origin === 'china') {
+            volumenFt3 = calcularVolumenChina(length, width, height);
+            volumenM3 = volumenFt3 / 35.3147;
+            tipoVolumen = 'ft³';
+        } else {
+            volumenFt3 = calcularVolumen(length, width, height, unit);
+            volumenM3 = volumenFt3 / 35.3147;
+            tipoVolumen = 'ft³';
+        }
+
+        // Calcular peso volumétrico para envíos aéreos
+        if (shipmentType === 'aereo') {
+            pesoVolumetrico = calcularPesoVolumetrico(length, width, height, unit);
+        }
+
+        // Obtener región del destino
+        const region = obtenerRegion(destination, origin);
+        
+        if (!region) {
+            return NextResponse.json({
+                success: false,
+                error: `No se encontró región para el destino: ${destination}`
+            }, { status: 400 });
+        }
+
+        // Calcular precio según origen y tipo de envío
+        if (origin === 'panama') {
+            if (shipmentType === 'aereo') {
+                // Aéreo desde Panamá
+                const pesoAFacturar = Math.max(parseFloat(weight), pesoVolumetrico);
+                precio = pesoAFacturar * 12.0 * quantity; // $12/lb tarifa fija
+                tiempo = '3-5 días';
+            } else {
+                // Marítimo desde Panamá - usar nuevas tarifas por región y categoría
+                const categoria = obtenerCategoriaPanama(rubro);
+                
+                if (!categoria) {
+                    return NextResponse.json({
+                        success: false,
+                        error: `No se encontró categoría para el rubro: ${rubro}`
+                    }, { status: 400 });
+                }
+                
+                const tarifa = tarifasPanamaCoLoader[region]?.[categoria];
+                
+                if (!tarifa) {
+                    return NextResponse.json({
+                        success: false,
+                        error: `No se encontró tarifa para región: ${region}, categoría: ${categoria}`
+                    }, { status: 400 });
+                }
+                
+                precio = volumenFt3 * tarifa * quantity;
+                tiempo = '15-20 días';
+            }
+        } else if (origin === 'estados_unidos') {
+            if (shipmentType === 'aereo') {
+                // Aéreo desde Estados Unidos - tarifas por zona
+                const pesoAFacturar = Math.max(parseFloat(weight), pesoVolumetrico);
+                const tarifasZona = tarifasAereas[origin];
+                
+                if (typeof tarifasZona === 'object') {
+                    // Mapear regiones a zonas para compatibilidad
+                    const zona = region === 'Zona 1' ? 'Zona 1' : 'Zona 2';
+                    const tarifa = tarifasZona[zona];
+                    precio = pesoAFacturar * tarifa * quantity;
+                } else {
+                    // Tarifa fija antigua
+                    precio = pesoAFacturar * tarifasZona * quantity;
+                }
+                tiempo = '3-5 días';
+            } else {
+                // Marítimo desde Estados Unidos
+                const tarifa = tarifasUSA[region];
+                
+                if (!tarifa) {
+                    return NextResponse.json({
+                        success: false,
+                        error: `No se encontró tarifa para región: ${region}`
+                    }, { status: 400 });
+                }
+                
+                precio = volumenFt3 * tarifa * quantity;
+                tiempo = '15-20 días';
+            }
+        } else if (origin === 'china') {
+            // Solo marítimo desde China
+            const tarifa = tarifasChina[region];
+            
+            if (!tarifa) {
+                return NextResponse.json({
+                    success: false,
+                    error: `No se encontró tarifa para región: ${region}`
+                }, { status: 400 });
+            }
+            
+            precio = volumenFt3 * tarifa * quantity;
+            tiempo = '45-50 días';
+            
+            // Aplicar precio mínimo
+            if (precio < PRECIO_MINIMO_CHINA) {
+                precio = PRECIO_MINIMO_CHINA;
+            }
+        } else {
+            return NextResponse.json({
+                success: false,
+                error: `Origen no soportado: ${origin}`
+            }, { status: 400 });
+        }
+
+        // Calcular seguro de carga (3% del subtotal) si está activado
+        const seguroCarga = insurance ? precio * 0.03 : 0;
+        const total = precio + seguroCarga;
+
+        // Preparar respuesta
+        const response = {
+            success: true,
+            data: {
+                pricing: {
+                    subtotal: parseFloat(precio.toFixed(2)),
+                    insurance: parseFloat(seguroCarga.toFixed(2)),
+                    total: parseFloat(total.toFixed(2))
+                },
+                shipment: {
+                    origin,
+                    destination,
+                    region,
+                    type: shipmentType,
+                    estimatedTime: tiempo
+                },
+                dimensions: {
+                    volume: parseFloat(volumenFt3.toFixed(3)),
+                    volumeUnit: tipoVolumen,
+                    volumetricWeight: parseFloat(pesoVolumetrico.toFixed(2)),
+                    weightUnit: 'kg'
+                },
+                details: {
+                    quantity,
+                    insurance,
+                    rubro: rubro || null
+                }
+            }
+        };
+
+        return NextResponse.json(response);
+
+    } catch (error) {
+        console.error('Error en calculate-shipping:', error);
+        return NextResponse.json({
+            success: false,
+            error: 'Error interno del servidor'
+        }, { status: 500 });
+    }
+}
+
+// Método GET para obtener información de configuración
+export async function GET() {
+    try {
+        // Obtener todos los rubros de las categorías de Panamá
+        const rubrosArray = [];
+        Object.values(rubrosPorCategoriaPanama || {}).forEach(rubros => {
+            if (Array.isArray(rubros)) {
+                rubrosArray.push(...rubros);
+            }
+        });
+        
+        const response = {
+            success: true,
+            data: {
+                origins: ['panama', 'estados_unidos', 'china'],
+                shipmentTypes: ['aereo', 'maritimo'],
+                units: ['cm', 'in'],
+                rubros: [...new Set(rubrosArray)], // Eliminar duplicados
+                regions: {
+                    panama: Object.keys(regionesPorEstadoPanama || {}),
+                    general: Object.keys(regionesPorEstado || {})
+                },
+                estados: {
+                    panama: Object.values(regionesPorEstadoPanama || {}).flat(),
+                    general: Object.values(regionesPorEstado || {}).flat()
+                }
+            }
+        };
+        
+        return NextResponse.json(response);
+    } catch (error) {
+        console.error('Error en GET /api/calculate-shipping:', error);
+        return NextResponse.json({
+            success: false,
+            error: 'Error interno del servidor'
+        }, { status: 500 });
+    }
+}

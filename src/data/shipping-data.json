@@ -1,0 +1,129 @@
+{
+  "rubrosPorCategoriaPanama": {
+    "Ropa": ["Ropa", "Accesorios"],
+    "Variado Bajo": ["Calzado", "Alimentos"],
+    "Ferretería y Repuestos": ["Ferretería", "Repuestos", "Autopartes"],
+    "Variado Alto": ["Juguetes", "Electrónicos", "Tecnología", "Electrodomésticos", "Accesorios", "Cosméticos", "Medicina", "Muebles", "Maquinaria", "Otros"]
+  },
+  "regionesPorEstadoPanama": {
+    "REGION 1": [
+      "Distrito Capital",
+      "Miranda",
+      "Vargas"
+    ],
+    "REGION 2": [
+      "Aragua",
+      "Carabobo"
+    ],
+    "REGION 3": [
+      "Lara",
+      "Anzoátegui",
+      "Cojedes",
+      "Yaracuy"
+    ],
+    "REGION 4": [
+      "Barinas",
+      "Guárico",
+      "Portuguesa",
+      "Falcón"
+    ],
+    "REGION 5": [
+      "Monagas",
+      "Sucre",
+      "Mérida",
+      "Bolívar",
+      "Trujillo"
+    ],
+    "REGION 6": [
+      "Táchira",
+      "Amazonas",
+      "Delta Amacuro",
+      "Apure",
+      "Nueva Esparta"
+    ]
+  },
+  "regionesPorEstado": {
+    "Zona 1": [
+      "Distrito Capital",
+      "Miranda",
+      "Vargas"
+    ],
+    "Zona 2": [
+      "Aragua",
+      "Carabobo",
+      "Lara",
+      "Yaracuy",
+      "Falcón",
+      "Guárico",
+      "Cojedes",
+      "Portuguesa",
+      "Anzoátegui",
+      "Monagas",
+      "Nueva Esparta",
+      "Sucre",
+      "Táchira",
+      "Mérida",
+      "Trujillo",
+      "Barinas",
+      "Bolívar",
+      "Amazonas",
+      "Delta Amacuro",
+      "Apure"
+    ]
+  },
+  "tarifasPanamaCoLoader": {
+    "REGION 1": {
+      "Ropa": 16.00,
+      "Variado Bajo": 16.50,
+      "Ferretería y Repuestos": 16.00,
+      "Variado Alto": 19.00
+    },
+    "REGION 2": {
+      "Ropa": 16.50,
+      "Variado Bajo": 17.00,
+      "Ferretería y Repuestos": 16.50,
+      "Variado Alto": 19.50
+    },
+    "REGION 3": {
+      "Ropa": 17.50,
+      "Variado Bajo": 18.00,
+      "Ferretería y Repuestos": 17.50,
+      "Variado Alto": 20.50
+    },
+    "REGION 4": {
+      "Ropa": 18.00,
+      "Variado Bajo": 18.50,
+      "Ferretería y Repuestos": 17.50,
+      "Variado Alto": 21.00
+    },
+    "REGION 5": {
+      "Ropa": 18.50,
+      "Variado Bajo": 19.00,
+      "Ferretería y Repuestos": 18.00,
+      "Variado Alto": 21.50
+    },
+    "REGION 6": {
+      "Ropa": 19.00,
+      "Variado Bajo": 19.50,
+      "Ferretería y Repuestos": 18.50,
+      "Variado Alto": 22.00
+    }
+  },
+  "tarifasUSA": {
+    "Zona 1": 30.0,
+    "Zona 2": 35.0
+  },
+  "tarifasChina": {
+    "Zona 1": 21.0,
+    "Zona 2": 24.0
+  },
+  "tarifasAereas": {
+    "estados_unidos": {
+      "Zona 1": 6.0,
+      "Zona 2": 9.0
+    },
+    "panama": 12.0,
+    "china": 18.0
+  },
+  "precioMinimoChina": 50
+}
