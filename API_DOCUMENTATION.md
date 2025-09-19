@@ -1,14 +1,18 @@
 # API de Calculadora de Envíos - Legacy Cargo
 
-## URL Base
+## URLs Base
 ```
-https://legacycargove.com/api/calculate-shipping
+https://legacycargove.com/api/calculate-shipping  # Calculadora de envíos
+https://legacycargove.com/api/states              # Estados y regiones
 ```
 
 ## Endpoints
 
 ### POST /api/calculate-shipping
 Calcula el costo de envío basado en los parámetros proporcionados.
+
+### GET /api/states
+Obtiene la lista de estados de Venezuela (destinos) con sus valores normalizados y configuración de regiones según el origen de envío.
 
 #### Request Body
 ```json
@@ -143,6 +147,136 @@ Obtiene información de configuración disponible.
   "unit": "cm"
 }
 ```
+
+---
+
+## GET /api/states
+
+### Descripción
+Obtiene la lista de estados de Venezuela como destinos de envío, con sus valores normalizados, nombres para mostrar y configuración de regiones según el origen del envío.
+
+### Parámetros de Query (Opcionales)
+- `origin` (string): Obtener configuración de regiones específica para un origen
+  - Valores válidos: `panama`, `estados_unidos`, `china`
+  - **Nota**: Todos los estados son de Venezuela, pero tienen diferentes configuraciones de regiones según el origen
+
+### Ejemplos de Uso
+
+#### 1. Obtener todos los estados de Venezuela con todas las configuraciones
+```bash
+GET /api/states
+```
+
+#### 2. Obtener configuración específica por origen de envío
+```bash
+GET /api/states?origin=panama          # Configuración de regiones para envíos desde Panamá
+GET /api/states?origin=estados_unidos  # Configuración de regiones para envíos desde Estados Unidos
+GET /api/states?origin=china           # Configuración de regiones para envíos desde China
+```
+
+### Response Success (200)
+
+#### Todos los estados de Venezuela (sin filtro)
+```json
+{
+  "success": true,
+  "data": {
+    "country": "Venezuela",
+    "description": "Estados de Venezuela como destinos de envío con configuraciones por origen",
+    "configurations": {
+      "panama": {
+        "description": "Configuración de regiones para envíos desde Panamá",
+        "states": [
+          {
+            "value": "distrito_capital",
+            "label": "Distrito Capital",
+            "region": "REGION 1",
+            "regionType": "panama",
+            "normalizedValue": "distrito capital"
+          }
+        ],
+        "regions": ["REGION 1", "REGION 2", "REGION 3", "REGION 4", "REGION 5", "REGION 6"]
+      },
+      "estados_unidos": {
+        "description": "Configuración de regiones para envíos desde Estados Unidos",
+        "states": [
+          {
+            "value": "distrito_capital",
+            "label": "Distrito Capital", 
+            "region": "Zona 1",
+            "regionType": "general",
+            "normalizedValue": "distrito capital"
+          }
+        ],
+        "regions": ["Zona 1", "Zona 2"]
+      },
+      "china": {
+        "description": "Configuración de regiones para envíos desde China",
+        "states": [...],
+        "regions": ["Zona 1", "Zona 2"]
+      }
+    },
+    "summary": {
+      "total_unique_states": 23,
+      "panama_regions": 23,
+      "general_regions": 23,
+      "note": "Todos los estados son destinos en Venezuela"
+    }
+  }
+}
+```
+
+#### Estados de Venezuela con configuración específica por origen
+```json
+{
+  "success": true,
+  "data": {
+    "origin": "panama",
+    "description": "Estados de Venezuela con configuración de regiones para envíos desde Panamá",
+    "states": [
+      {
+        "value": "distrito_capital",
+        "label": "Distrito Capital",
+        "region": "REGION 1",
+        "regionType": "panama",
+        "normalizedValue": "distrito capital"
+      },
+      {
+        "value": "miranda",
+        "label": "Miranda",
+        "region": "REGION 1",
+        "regionType": "panama",
+        "normalizedValue": "miranda"
+      }
+    ],
+    "regions": ["REGION 1", "REGION 2", "REGION 3", "REGION 4", "REGION 5", "REGION 6"]
+  }
+}
+```
+
+### Response Error (400)
+```json
+{
+  "success": false,
+  "error": "Origen no soportado: invalid. Orígenes válidos: panama, estados_unidos, china"
+}
+```
+
+### Campos de Respuesta
+
+- **value**: Valor normalizado para usar en APIs (ej: "distrito_capital")
+- **label**: Nombre para mostrar al usuario (ej: "Distrito Capital")  
+- **region**: Región a la que pertenece el estado según el origen
+- **regionType**: Tipo de configuración regional ("panama" o "general")
+- **normalizedValue**: Valor en minúsculas para matching interno
+
+### Notas Importantes
+
+- **Todos los estados son de Venezuela** - son los destinos de envío
+- **Diferentes configuraciones de regiones** según el origen (Panamá tiene 6 regiones, Estados Unidos y China usan 2 zonas)
+- **Mismos 23 estados** pero agrupados en regiones diferentes según las tarifas de cada origen
+
+---
 
 ## Códigos de Error
 
