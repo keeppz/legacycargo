@@ -56,6 +56,13 @@ Obtiene la lista de estados de Venezuela (destinos) con sus valores normalizados
       "volumetricWeight": 15.75,
       "weightUnit": "kg"
     },
+    "weight": {
+      "actual": 10.0,
+      "volumetric": 15.75,
+      "chargeable": 15.75,
+      "criteria": "peso_volumetrico",
+      "unit": "kg"
+    },
     "details": {
       "quantity": 1,
       "insurance": true,
@@ -325,6 +332,39 @@ Este formato es requerido para que la API de cálculo pueda encontrar correctame
 ### China
 - **Marítimo**: 55-65 días
 - **Aéreo**: ❌ No disponible
+
+## Información de Peso (Nuevo)
+
+La API ahora incluye información detallada sobre el peso en la sección `weight`:
+
+```json
+"weight": {
+  "actual": 11.02,       // Peso real (convertido según origen)
+  "volumetric": 2.13,    // Peso volumétrico calculado  
+  "chargeable": 11.02,   // Peso usado para facturar (el mayor)
+  "criteria": "peso_real", // Criterio usado: "peso_real", "peso_volumetrico", o "volumen"
+  "unit": "lb"           // Unidad: "lb" (USA), "kg" (Panamá), "N/A" (marítimo)
+}
+```
+
+### Lógica de Peso y Unidades:
+
+#### Unidades por Origen (Solo Aéreos):
+- **🇺🇸 Estados Unidos**: **Libras (lb)** - Input en kg se convierte a lb
+- **🇵🇦 Panamá**: **Kilogramos (kg)** - Input en kg se mantiene
+- **🚢 Marítimos**: **N/A** - Se usa volumen, peso no aplica
+
+#### Cálculo:
+- **Envíos Aéreos**: Se usa el mayor entre peso real y peso volumétrico
+- **Envíos Marítimos**: Se usa volumen, el peso no aplica
+- **Campo `chargeable`**: Indica el peso final usado para el cálculo del precio
+- **Campo `criteria`**: Explica qué criterio determinó el precio final
+
+#### Conversiones Automáticas:
+- Input siempre se recibe en **kg**
+- Para **Estados Unidos aéreo**: kg → lb (×2.20462)
+- Para **Panamá aéreo**: kg (sin conversión)
+- Peso volumétrico se calcula en la unidad correcta
 
 ## Precios Mínimos
 

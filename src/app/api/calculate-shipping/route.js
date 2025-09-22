@@ -158,6 +158,9 @@ export async function POST(request) {
         let volumenM3 = 0;
         let volumenFt3 = 0;
         let pesoVolumetrico = 0;
+        let pesoReal = parseFloat(weight) || 0;
+        let pesoAFacturar = 0;
+        let criterioUsado = '';
         let precio = 0;
         let tiempo = '';
         let tipoVolumen = '';
@@ -175,7 +178,16 @@ export async function POST(request) {
 
         // Calcular peso volumétrico para envíos aéreos
         if (shipmentType === 'aereo') {
-            pesoVolumetrico = calcularPesoVolumetrico(length, width, height, unit);
+            if (origin === 'estados_unidos') {
+                // Para USA: calcular en libras (lb)
+                pesoVolumetrico = calcularPesoVolumetrico(length, width, height, unit);
+                // Convertir peso real de kg a lb si es necesario
+                pesoReal = pesoReal * 2.20462; // kg a lb
+            } else if (origin === 'panama') {
+                // Para Panamá: calcular en kilogramos (kg)
+                pesoVolumetrico = calcularPesoVolumetrico(length, width, height, unit) / 2.20462; // lb a kg
+                // pesoReal ya está en kg
+            }
         }
 
         // Obtener región del destino
@@ -192,7 +204,8 @@ export async function POST(request) {
         if (origin === 'panama') {
             if (shipmentType === 'aereo') {
                 // Aéreo desde Panamá
-                const pesoAFacturar = Math.max(parseFloat(weight), pesoVolumetrico);
+                pesoAFacturar = Math.max(pesoReal, pesoVolumetrico);
+                criterioUsado = pesoReal > pesoVolumetrico ? 'peso_real' : 'peso_volumetrico';
                 precio = pesoAFacturar * 12.0 * quantity; // $12/lb tarifa fija
                 tiempo = '8-10 días';
                 
@@ -203,6 +216,8 @@ export async function POST(request) {
                 }
             } else {
                 // Marítimo desde Panamá - usar nuevas tarifas por región y categoría
+                pesoAFacturar = 0; // No aplica peso para marítimo
+                criterioUsado = 'volumen';
                 const categoria = obtenerCategoriaPanama(rubro);
                 
                 if (!categoria) {
@@ -233,7 +248,8 @@ export async function POST(request) {
         } else if (origin === 'estados_unidos') {
             if (shipmentType === 'aereo') {
                 // Aéreo desde Estados Unidos - tarifas por zona
-                const pesoAFacturar = Math.max(parseFloat(weight), pesoVolumetrico);
+                pesoAFacturar = Math.max(pesoReal, pesoVolumetrico);
+                criterioUsado = pesoReal > pesoVolumetrico ? 'peso_real' : 'peso_volumetrico';
                 const tarifasZona = tarifasAereas[origin];
                 
                 if (typeof tarifasZona === 'object') {
@@ -255,6 +271,8 @@ export async function POST(request) {
             }
         } else if (origin === 'china') {
             // Solo marítimo desde China
+            pesoAFacturar = 0; // No aplica peso para marítimo
+            criterioUsado = 'volumen';
             const tarifa = tarifasChina[region];
             
             if (!tarifa) {
@@ -303,7 +321,14 @@ export async function POST(request) {
                     volume: parseFloat(volumenFt3.toFixed(3)),
                     volumeUnit: tipoVolumen,
                     volumetricWeight: parseFloat(pesoVolumetrico.toFixed(2)),
-                    weightUnit: 'kg'
+                    weightUnit: shipmentType === 'aereo' ? (origin === 'estados_unidos' ? 'lb' : 'kg') : 'kg'
+                },
+                weight: {
+                    actual: parseFloat(pesoReal.toFixed(2)),
+                    volumetric: parseFloat(pesoVolumetrico.toFixed(2)),
+                    chargeable: parseFloat(pesoAFacturar.toFixed(2)),
+                    criteria: criterioUsado,
+                    unit: shipmentType === 'aereo' ? (origin === 'estados_unidos' ? 'lb' : 'kg') : 'N/A'
                 },
                 details: {
                     quantity,
