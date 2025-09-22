@@ -31,7 +31,7 @@ export async function GET(request) {
             Object.entries(regionData || {}).forEach(([region, estadosArray]) => {
                 estadosArray.forEach(estado => {
                     states.push({
-                        value: estado.toLowerCase().replace(/\s+/g, '_'), // valor para API
+                        value: estado.toLowerCase(), // valor para API (sin guiones bajos)
                         label: estado, // nombre para mostrar
                         region: region,
                         regionType: regionType, // 'panama' o 'general'

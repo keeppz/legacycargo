@@ -264,11 +264,19 @@ GET /api/states?origin=china           # Configuración de regiones para envíos
 
 ### Campos de Respuesta
 
-- **value**: Valor normalizado para usar en APIs (ej: "distrito_capital")
+- **value**: Valor normalizado para usar en APIs (ej: "distrito capital" - con espacios)
 - **label**: Nombre para mostrar al usuario (ej: "Distrito Capital")  
 - **region**: Región a la que pertenece el estado según el origen
 - **regionType**: Tipo de configuración regional ("panama" o "general")
 - **normalizedValue**: Valor en minúsculas para matching interno
+
+### ⚠️ Importante sobre el Campo `value`
+
+El campo `value` usa **espacios**, no guiones bajos:
+- ✅ **Correcto**: `"distrito capital"`
+- ❌ **Incorrecto**: `"distrito_capital"`
+
+Este formato es requerido para que la API de cálculo pueda encontrar correctamente las regiones.
 
 ### Notas Importantes
 
