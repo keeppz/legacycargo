@@ -297,8 +297,51 @@ export async function POST(request) {
             }, { status: 400 });
         }
 
-        // Calcular seguro de carga basado en pies cúbicos si está activado
-        const seguroCarga = insurance ? volumenFt3 : 0;
+        // Calcular seguro de carga - OBLIGATORIO para envíos marítimos
+        // El seguro está incluido en los envíos aéreos
+        let volumenParaSeguro = volumenFt3;
+        let precioMinimoAplicado = false;
+        let seguroCarga = 0;
+        let seguroObligatorio = false;
+        
+        // El seguro es OBLIGATORIO para envíos marítimos (siempre se aplica)
+        if (shipmentType === 'maritimo') {
+            seguroObligatorio = true;
+            
+            // Verificar si se aplicó precio mínimo y calcular volumen equivalente
+            if (origin === 'china') {
+                const precioMinimo = preciosMinimos?.china?.maritimo || 105.0;
+                if (precio <= precioMinimo) {
+                    // China marítimo: 5 ft³ mínimo (105.0 / 21.0 = 5 ft³)
+                    volumenParaSeguro = 5.0;
+                    precioMinimoAplicado = true;
+                }
+            } else if (origin === 'panama') {
+                const precioMinimo = preciosMinimos?.panama?.maritimo || 70.0;
+                if (precio <= precioMinimo) {
+                    // Panamá marítimo: 5 ft³ mínimo (70.0 / 14.0 = 5 ft³)
+                    volumenParaSeguro = 5.0;
+                    precioMinimoAplicado = true;
+                }
+            }
+            
+            seguroCarga = volumenParaSeguro;
+        }
+        
+        // Verificar si se aplicó precio mínimo para envíos aéreos (solo para tracking)
+        if (shipmentType === 'aereo') {
+            if (origin === 'estados_unidos') {
+                const precioMinimo = preciosMinimos?.estados_unidos?.aereo || 30.0;
+                if (precio <= precioMinimo) {
+                    precioMinimoAplicado = true;
+                }
+            } else if (origin === 'panama') {
+                const precioMinimo = preciosMinimos?.panama?.aereo || 60.0;
+                if (precio <= precioMinimo) {
+                    precioMinimoAplicado = true;
+                }
+            }
+        }
         const total = precio + seguroCarga;
 
         // Preparar respuesta
@@ -332,8 +375,12 @@ export async function POST(request) {
                 },
                 details: {
                     quantity,
-                    insurance,
-                    rubro: rubro || null
+                    insurance: shipmentType === 'maritimo', // Siempre true para marítimo, false para aéreo
+                    rubro: rubro || null,
+                    minimumPriceApplied: precioMinimoAplicado,
+                    insuranceAvailable: shipmentType === 'maritimo',
+                    insuranceMandatory: seguroObligatorio,
+                    insuranceVolume: seguroObligatorio ? parseFloat(volumenParaSeguro.toFixed(3)) : 0
                 }
             }
         };

@@ -28,7 +28,7 @@ Obtiene la lista de estados de Venezuela (destinos) con sus valores normalizados
   },
   "weight": 10.0,    // Requerido para envíos aéreos (kg)
   "quantity": 1,     // Cantidad de paquetes (opcional, default: 1)
-  "insurance": false, // Seguro de carga = volumen ft³ (opcional, default: false)
+  "insurance": false, // Seguro de carga = volumen ft³ - OBLIGATORIO para marítimo (se ignora este campo para marítimo)
   "unit": "cm"       // Unidad de medida: "cm" o "in" (opcional, default: "cm")
 }
 ```
@@ -379,10 +379,48 @@ La API aplica precios mínimos equivalentes a:
 
 > **Nota**: Si el cálculo resulta en un precio menor al mínimo establecido, se aplicará automáticamente el precio mínimo.
 
+### Seguro de Carga - Obligatorio para Marítimo
+
+🚨 **OBLIGATORIO**: El seguro de carga es **OBLIGATORIO para todos los envíos marítimos**. Se aplica automáticamente independientemente del valor del campo `insurance` en la solicitud.
+
+✈️ **Aéreos**: Los envíos aéreos ya incluyen el seguro en su tarifa base, por lo que no se cobra seguro adicional.
+
+#### Cálculo del Seguro Marítimo
+
+Cuando se aplica un precio mínimo en envíos marítimos, el seguro se calcula basado en el volumen mínimo equivalente:
+
+| Origen | Servicio | Volumen para Seguro |
+|--------|----------|-------------------|
+| 🇨🇳 **China** | Marítimo | **5.0 ft³** (precio mínimo) |
+| 🇵🇦 **Panamá** | Marítimo | **5.0 ft³** (precio mínimo) |
+| 🌐 **Cualquier** | Marítimo | **Volumen real** (carga grande) |
+
+**Ejemplos**:
+- Carga pequeña China marítimo: Subtotal $105 + Seguro $5.00 = **Total $110.00**
+- Carga grande China marítimo (35 ft³): Subtotal $740 + Seguro $35.00 = **Total $775.00**
+
+### Campos Adicionales en la Respuesta
+
+La respuesta incluye información adicional sobre el precio mínimo:
+
+```json
+{
+  "data": {
+    "details": {
+      "insurance": true,                // Siempre true para marítimo, false para aéreo
+      "minimumPriceApplied": true,      // Indica si se aplicó precio mínimo
+      "insuranceAvailable": true,       // Indica si el seguro está disponible (solo marítimo)
+      "insuranceMandatory": true,       // Indica si el seguro es obligatorio (marítimo)
+      "insuranceVolume": 5.0            // Volumen usado para calcular el seguro (ft³)
+    }
+  }
+}
+```
+
 ## Notas Importantes
 
 - Los precios están en USD
 - El peso volumétrico se calcula automáticamente para envíos aéreos
 - Se aplican precios mínimos según origen y tipo de envío
-- El seguro de carga equivale al volumen en pies cúbicos (ft³)
+- El seguro de carga es OBLIGATORIO para envíos marítimos (equivale al volumen en ft³). Los aéreos ya incluyen seguro
 - Las tarifas varían según origen, destino y tipo de envío
