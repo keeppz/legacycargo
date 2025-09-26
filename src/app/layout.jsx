@@ -6,7 +6,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata = {
   title: 'Legacy Cargo - Soluciones Logisticas Confiables',
-  description: 'Legacy Cargo website built with Next.js',
+  description: 'Logística Global para empresas de todos los sectores',
 }
 
 export default function RootLayout({ children }) {
