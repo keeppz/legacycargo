@@ -56,13 +56,13 @@ export default function Footer2() {
 										<i className="fa-solid fa-envelope" />
 										<div className="address-info">
 											<p>
-												<Link href="mailto:info@legacycargo.com">
-													info@legacycargo.com
+												<Link href="mailto:info@legacycargove.com">
+													info@legacycargove.com
 											</Link>
 											</p>
 											<p>
-												<Link href="mailto:ventas@legacycargo.com">
-													ventas@legacycargo.com
+												<Link href="mailto:ventas@legacycargove.com">
+													ventas@legacycargove.com
 											</Link>
 											</p>
 										</div>

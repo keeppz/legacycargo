@@ -1,0 +1,244 @@
+/*----------------------------------------*/
+/*  Tracking Search Bar Component CSS
+/*----------------------------------------*/
+
+.tracking-search-bar {
+    &.hero {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        background: rgba($theme-color, 0.95);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 15px 0;
+        margin: 0;
+
+        @include breakpoint(max-md) {
+            padding: 15px 0;
+        }
+
+        @include breakpoint(max-sm) {
+            padding: 12px 0;
+        }
+
+        @include breakpoint(max-xs) {
+            padding: 10px 0;
+        }
+
+        .container {
+            padding-top: 10px;
+
+            @include breakpoint(max-sm) {
+                padding-top: 5px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+    }
+
+    &.standalone {
+        background: $white;
+        padding: 40px 0;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+        @include breakpoint(max-md) {
+            padding: 30px 0;
+        }
+
+        @include breakpoint(max-sm) {
+            padding: 20px 0;
+            margin: 0 15px;
+        }
+    }
+
+    .tracking-search-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+        
+
+        @include breakpoint(max-lg) {
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+
+        @include breakpoint(max-md) {
+            gap: 12px;
+        }
+
+        @include breakpoint(max-sm) {
+            gap: 10px;
+        }
+
+        @include breakpoint(max-xs) {
+            gap: 8px;
+        }
+
+        .search-content {
+            flex: 0 0 auto;
+
+            h3 {
+                font-size: 24px;
+                font-weight: 700;
+                color: $black;
+                margin-bottom: 5px;
+                line-height: 1.2;
+                color: $white;
+
+                @include breakpoint(max-lg) {
+                    font-size: 20px;
+                }
+
+                @include breakpoint(max-md) {
+                    font-size: 18px;
+                    margin-bottom: 3px;
+                }
+
+                @include breakpoint(max-sm) {
+                    font-size: 15px;
+                    margin-bottom: 2px;
+                }
+
+                @include breakpoint(max-xs) {
+                    font-size: 14px;
+                }
+            }
+
+            p {
+                font-size: 16px;
+                color: $white;
+                margin: 0;
+
+                @include breakpoint(max-md) {
+                    font-size: 14px;
+                }
+
+                @include breakpoint(max-sm) {
+                    font-size: 12px;
+                }
+
+                @include breakpoint(max-xs) {
+                    font-size: 11px;
+                }
+            }
+        }
+
+        .tracking-search-form {
+            flex: 1;
+            max-width: 500px;
+
+            @include breakpoint(max-lg) {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .search-input-group {
+                display: flex;
+                border-radius: 50px;
+                overflow: hidden;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                background: $white;
+
+                @include breakpoint(max-sm) {
+                    border-radius: 20px;
+                }
+
+                @include breakpoint(max-xs) {
+                    border-radius: 18px;
+                }
+
+                .tracking-input {
+                    flex: 1;
+                    border: none;
+                    padding: 15px 20px;
+                    font-size: 16px;
+                    background: transparent;
+                    color: $black;
+                    outline: none;
+
+                    @include breakpoint(max-md) {
+                        padding: 12px 15px;
+                        font-size: 14px;
+                    }
+
+                    @include breakpoint(max-sm) {
+                        padding: 10px 12px;
+                        font-size: 13px;
+                    }
+
+                    @include breakpoint(max-xs) {
+                        padding: 8px 10px;
+                        font-size: 12px;
+                    }
+
+                    &::placeholder {
+                        color: rgba($black, 0.5);
+                    }
+
+                    &:disabled {
+                        opacity: 0.6;
+                        cursor: not-allowed;
+                    }
+                }
+
+                .tracking-search-btn {
+                    background: $dark-grey;
+                    color: $white;
+                    border: none;
+                    padding: 15px 25px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    white-space: nowrap;
+
+                    @include breakpoint(max-md) {
+                        padding: 12px 18px;
+                        font-size: 14px;
+                        gap: 5px;
+                    }
+
+                    @include breakpoint(max-sm) {
+                        padding: 10px 14px;
+                        font-size: 13px;
+                        gap: 4px;
+                    }
+
+                    @include breakpoint(max-xs) {
+                        padding: 8px 12px;
+                        font-size: 12px;
+                        gap: 3px;
+                    }
+
+                    &:hover:not(:disabled) {
+                        background: darken($theme-color, 10%);
+                        transform: translateY(-1px);
+                    }
+
+                    &:disabled {
+                        opacity: 0.6;
+                        cursor: not-allowed;
+                        transform: none;
+                    }
+
+                    .fa-spinner {
+                        animation: spin 1s linear infinite;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

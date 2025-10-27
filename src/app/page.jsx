@@ -20,6 +20,7 @@ export default function Page() {
         <div id="smooth-wrapper">
           <div id="smooth-content">
             <Hero2 />
+            
             <About2 />
             <Service1 />
             <Project2 />

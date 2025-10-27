@@ -1,49 +1,82 @@
-import { track } from '@vercel/analytics';
+// Google Analytics 4 y Search Console
+export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID
 
-// Función para trackear uso de la calculadora
-export const trackCalculatorUsage = (origin, destination, tipoEnvio, rubro, precio) => {
-  track('calculator_used', {
-    origin,
-    destination,
-    tipoEnvio,
-    rubro,
-    precio: Math.round(precio * 100) / 100, // Redondear a 2 decimales
-    timestamp: new Date().toISOString()
-  });
-};
+// https://developers.google.com/analytics/devguides/collection/gtagjs/pages
+export const pageview = (url) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('config', GA_TRACKING_ID, {
+      page_path: url,
+    })
+  }
+}
 
-// Función para trackear navegación a páginas específicas
+// Función para trackear vistas de página con nombre personalizado
 export const trackPageView = (pageName) => {
-  track('page_view', {
-    page: pageName,
-    timestamp: new Date().toISOString()
-  });
-};
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'page_view', {
+      page_title: pageName,
+      page_location: window.location.href,
+      page_path: window.location.pathname,
+    })
+  }
+}
 
-// Función para trackear clicks en botones importantes
-export const trackButtonClick = (buttonName, location) => {
-  track('button_click', {
-    button: buttonName,
-    location,
-    timestamp: new Date().toISOString()
-  });
-};
+// https://developers.google.com/analytics/devguides/collection/gtagjs/events
+export const event = ({ action, category, label, value }) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', action, {
+      event_category: category,
+      event_label: label,
+      value: value,
+    })
+  }
+}
 
-// Función para trackear formularios enviados
-export const trackFormSubmission = (formName, data) => {
-  track('form_submitted', {
-    form: formName,
-    data: JSON.stringify(data),
-    timestamp: new Date().toISOString()
-  });
-};
+// Eventos específicos para SEO
+export const trackImportationSearch = (origin, destination) => {
+  event({
+    action: 'search_importation',
+    category: 'importation',
+    label: `${origin}_to_${destination}`,
+  })
+}
 
-// Función para trackear errores
-export const trackError = (errorType, errorMessage, context) => {
-  track('error_occurred', {
-    type: errorType,
-    message: errorMessage,
-    context,
-    timestamp: new Date().toISOString()
-  });
-};
+export const trackServiceView = (service) => {
+  event({
+    action: 'view_service',
+    category: 'service',
+    label: service,
+  })
+}
+
+export const trackQuoteRequest = (origin, destination, service) => {
+  event({
+    action: 'request_quote',
+    category: 'conversion',
+    label: `${service}_${origin}_to_${destination}`,
+  })
+}
+
+export const trackContactForm = (formType) => {
+  event({
+    action: 'contact_form_submit',
+    category: 'conversion',
+    label: formType,
+  })
+}
+
+// Configuración de Google Search Console
+export const searchConsoleConfig = {
+  siteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  propertyId: process.env.NEXT_PUBLIC_GSC_PROPERTY_ID,
+}
+
+// Configuración de Bing Webmaster Tools
+export const bingConfig = {
+  siteVerification: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION,
+}
+
+// Configuración de Yandex Webmaster
+export const yandexConfig = {
+  siteVerification: process.env.NEXT_PUBLIC_YANDEX_SITE_VERIFICATION,
+}

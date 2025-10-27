@@ -1,20 +1,20 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { collection, doc, getDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { trackButtonClick } from '@/lib/analytics';
 
 export default function TrackingSection() {
+    const searchParams = useSearchParams();
     const [trackingCode, setTrackingCode] = useState('');
     const [shipment, setShipment] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    const handleSearch = async (e) => {
-        e.preventDefault();
-        
-        if (!trackingCode.trim()) {
+    const searchShipment = async (code) => {
+        if (!code || !code.trim()) {
             setError('Por favor ingrese un código de tracking');
             return;
         }
@@ -25,7 +25,7 @@ export default function TrackingSection() {
 
         try {
             // Buscar en la colección shipments usando el docId
-            const shipmentRef = doc(db, 'shipments', trackingCode.trim());
+            const shipmentRef = doc(db, 'shipments', code.trim());
             const shipmentDoc = await getDoc(shipmentRef);
 
             if (shipmentDoc.exists()) {
@@ -49,6 +49,21 @@ export default function TrackingSection() {
             setLoading(false);
         }
     };
+
+    const handleSearch = async (e) => {
+        e.preventDefault();
+        await searchShipment(trackingCode);
+    };
+
+    // Efecto para buscar automáticamente cuando viene código por URL
+    useEffect(() => {
+        const codeFromUrl = searchParams.get('code');
+        if (codeFromUrl) {
+            const decodedCode = decodeURIComponent(codeFromUrl).toUpperCase();
+            setTrackingCode(decodedCode);
+            searchShipment(decodedCode);
+        }
+    }, [searchParams]);
 
     const formatDate = (timestamp) => {
         if (!timestamp) return 'N/A';
@@ -311,7 +326,7 @@ export default function TrackingSection() {
                             <p>Si tienes problemas para rastrear tu envío o necesitas información adicional, no dudes en contactarnos.</p>
                             <div className="help-actions">
                                 <a
-                                    href="https://wa.me/584126396424?text=Hola, necesito ayuda con el tracking de mi envío"
+                                    href={`https://wa.me/584126396424?text=Hola, necesito ayuda con el tracking de mi envío Código de Tracking: ${shipment.id}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="theme-btn"

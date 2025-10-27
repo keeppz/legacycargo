@@ -63,6 +63,7 @@ export const regionesPorEstadoPanama = {
         'Trujillo'
     ],
     'REGION 6': [
+        'Zulia',
         'Táchira',
         'Amazonas',
         'Delta Amacuro',
@@ -91,6 +92,7 @@ export const regionesPorEstado = {
         'Monagas',
         'Nueva Esparta',
         'Sucre',
+        'Zulia',
         'Táchira',
         'Mérida',
         'Trujillo',

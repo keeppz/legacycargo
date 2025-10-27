@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { corsHeaders, handleOptions } from '@/lib/cors';
 
 // Función para cargar datos desde el archivo JSON
 const loadShippingData = () => {
@@ -16,6 +17,11 @@ const loadShippingData = () => {
         };
     }
 };
+
+// Handler para preflight requests (OPTIONS)
+export async function OPTIONS(request) {
+    return handleOptions();
+}
 
 export async function GET(request) {
     try {
@@ -85,7 +91,7 @@ export async function GET(request) {
                     return NextResponse.json({
                         success: false,
                         error: `Origen no soportado: ${origin}. Orígenes válidos: panama, estados_unidos, china`
-                    }, { status: 400 });
+                    }, { status: 400, headers: corsHeaders });
             }
         } else {
             // Devolver todos los estados de Venezuela con sus configuraciones por origen
@@ -121,14 +127,14 @@ export async function GET(request) {
             };
         }
         
-        return NextResponse.json(response);
+        return NextResponse.json(response, { headers: corsHeaders });
         
     } catch (error) {
         console.error('Error en endpoint de estados:', error);
         return NextResponse.json({
             success: false,
             error: 'Error interno del servidor'
-        }, { status: 500 });
+        }, { status: 500, headers: corsHeaders });
     }
 }
 
@@ -136,5 +142,5 @@ export async function POST(request) {
     return NextResponse.json({
         success: false,
         error: 'Método POST no permitido. Use GET para obtener estados de Venezuela.'
-    }, { status: 405 });
+    }, { status: 405, headers: corsHeaders });
 }

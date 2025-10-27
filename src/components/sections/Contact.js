@@ -5,7 +5,7 @@ export default function Contact() {
 	const contactInfo = {
 		address: "Av. Principal, Ciudad, Venezuela",
 		phone: "+58 412 123 4567",
-		email: "info@legacycargo.com",
+		email: "info@legacycargove.com",
 		whatsapp: "+584121234567" // Número de WhatsApp sin espacios ni caracteres especiales
 	};
 

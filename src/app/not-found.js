@@ -68,9 +68,9 @@ export default function NotFound() {
                 <i className="fa-solid fa-phone"></i>
                 +58 414-2909883
               </a>
-              <a href="mailto:info@legacycargo.com" className="contact-item">
+              <a href="mailto:info@legacycargove.com" className="contact-item">
                 <i className="fa-solid fa-envelope"></i>
-                info@legacycargo.com
+                info@legacycargove.com
               </a>
               <a href="https://api.whatsapp.com/send?phone=584142909883&text=Hola%2C%20necesito%20ayuda%20con%20la%20página%20web." 
                  target="_blank" 

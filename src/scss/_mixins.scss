@@ -99,6 +99,16 @@
             @content ;
         }
     }
+    @else if $point==max-1679 {
+        @media (max-width: 1679px) {
+            @content ;
+        }
+    }
+    @else if $point==max-1579 {
+        @media (max-width: 1579px) {
+            @content ;
+        }
+    }
 }
 
 @mixin before {

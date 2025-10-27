@@ -1,6 +1,29 @@
 import Layout from "../../components/layout/Layout"
 import ServiceTemplate from "../../components/services/ServiceTemplate"
 import ClientBrand1 from "../../components/ClientBrand1"
+import { Metadata } from 'next'
+
+export const metadata = {
+  title: 'Transporte Terrestre a Venezuela | Legacy Cargo - Logística Internacional',
+  description: 'Servicio de transporte terrestre hacia Venezuela desde Panamá y otros países. Carga terrestre, seguimiento GPS, gestión aduanera completa. Cotización gratuita.',
+  keywords: 'transporte terrestre venezuela, carga terrestre venezuela, logistica terrestre, importaciones terrestres venezuela, carretera venezuela, envíos terrestres',
+  openGraph: {
+    title: 'Transporte Terrestre a Venezuela | Legacy Cargo',
+    description: 'Servicio de transporte terrestre hacia Venezuela desde Panamá y otros países. Carga terrestre con seguimiento GPS.',
+    url: 'https://legacycargove.com/service-terrestre',
+    images: [
+      {
+        url: '/assets/img/transporte-terrestre-venezuela.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Transporte Terrestre a Venezuela - Legacy Cargo',
+      },
+    ],
+  },
+  alternates: {
+    canonical: '/service-terrestre',
+  },
+}
 
 export default function ServicioTerrestre() {
 	const serviceData = {
@@ -8,12 +31,11 @@ export default function ServicioTerrestre() {
 		description: "Ofrecemos soluciones de transporte terrestre eficientes y confiables para sus envíos nacionales e internacionales. Nuestra flota moderna y conductores profesionales garantizan un servicio de calidad.",
 		imageUrl: "/assets/img/service/terrestre.jpg",
 		benefits: [
-			"Flota moderna y segura",
+			"Flota eficaz y segura",
 			"Conductores profesionales",
 			"Monitoreo en tiempo real",
 			"Manejo especializado de carga",
-			"Seguros de carga incluidos",
-			"Documentación simplificada"
+			
 		],
 		serviceProcess: "Nuestro proceso incluye la recolección de su carga, documentación, transporte, seguimiento en tiempo real y entrega final en destino."
 	}

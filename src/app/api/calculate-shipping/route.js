@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { corsHeaders, handleOptions } from '@/lib/cors';
 
 // Cargar datos desde el archivo JSON
 let shippingData;
@@ -92,6 +93,13 @@ const calcularVolumenChina = (largo, ancho, alto) => {
     return volumenCm3 / 28320; // Conversión específica para China
 };
 
+// Handler para preflight requests (OPTIONS)
+// Este método maneja las solicitudes preflight de CORS que los navegadores envían
+// antes de hacer la solicitud real (especialmente para POST/PUT/DELETE)
+export async function OPTIONS(request) {
+    return handleOptions();
+}
+
 export async function POST(request) {
     try {
         const body = await request.json();
@@ -113,7 +121,7 @@ export async function POST(request) {
             return NextResponse.json({
                 success: false,
                 error: 'Faltan campos requeridos: origin, destination, shipmentType, dimensions'
-            }, { status: 400 });
+            }, { status: 400, headers: corsHeaders });
         }
 
         const { length, width, height } = dimensions;
@@ -122,7 +130,7 @@ export async function POST(request) {
             return NextResponse.json({
                 success: false,
                 error: 'Las dimensiones deben ser números positivos'
-            }, { status: 400 });
+            }, { status: 400, headers: corsHeaders });
         }
 
         // Validaciones específicas
@@ -130,28 +138,28 @@ export async function POST(request) {
             return NextResponse.json({
                 success: false,
                 error: 'Envíos aéreos desde China no están disponibles'
-            }, { status: 400 });
+            }, { status: 400, headers: corsHeaders });
         }
 
         if (origin === 'estados_unidos' && shipmentType === 'maritimo') {
             return NextResponse.json({
                 success: false,
                 error: 'Envíos marítimos desde Estados Unidos no están disponibles'
-            }, { status: 400 });
+            }, { status: 400, headers: corsHeaders });
         }
 
         if (shipmentType === 'aereo' && (!weight || weight <= 0)) {
             return NextResponse.json({
                 success: false,
                 error: 'El peso es requerido para envíos aéreos'
-            }, { status: 400 });
+            }, { status: 400, headers: corsHeaders });
         }
 
         if (origin === 'panama' && shipmentType === 'maritimo' && !rubro) {
             return NextResponse.json({
                 success: false,
                 error: 'El rubro es requerido para envíos marítimos desde Panamá'
-            }, { status: 400 });
+            }, { status: 400, headers: corsHeaders });
         }
 
         // Inicializar variables de cálculo
@@ -197,7 +205,7 @@ export async function POST(request) {
             return NextResponse.json({
                 success: false,
                 error: `No se encontró región para el destino: ${destination}`
-            }, { status: 400 });
+            }, { status: 400, headers: corsHeaders });
         }
 
         // Calcular precio según origen y tipo de envío
@@ -224,7 +232,7 @@ export async function POST(request) {
                     return NextResponse.json({
                         success: false,
                         error: `No se encontró categoría para el rubro: ${rubro}`
-                    }, { status: 400 });
+                    }, { status: 400, headers: corsHeaders });
                 }
                 
                 const tarifa = tarifasPanamaCoLoader[region]?.[categoria];
@@ -233,7 +241,7 @@ export async function POST(request) {
                     return NextResponse.json({
                         success: false,
                         error: `No se encontró tarifa para región: ${region}, categoría: ${categoria}`
-                    }, { status: 400 });
+                    }, { status: 400, headers: corsHeaders });
                 }
                 
                 precio = volumenFt3 * tarifa * quantity;
@@ -279,7 +287,7 @@ export async function POST(request) {
                 return NextResponse.json({
                     success: false,
                     error: `No se encontró tarifa para región: ${region}`
-                }, { status: 400 });
+                }, { status: 400, headers: corsHeaders });
             }
             
             precio = volumenFt3 * tarifa * quantity;
@@ -294,7 +302,7 @@ export async function POST(request) {
             return NextResponse.json({
                 success: false,
                 error: `Origen no soportado: ${origin}`
-            }, { status: 400 });
+            }, { status: 400, headers: corsHeaders });
         }
 
         // Calcular seguro de carga - OBLIGATORIO para envíos marítimos
@@ -385,14 +393,14 @@ export async function POST(request) {
             }
         };
 
-        return NextResponse.json(response);
+        return NextResponse.json(response, { headers: corsHeaders });
 
     } catch (error) {
         console.error('Error en calculate-shipping:', error);
         return NextResponse.json({
             success: false,
             error: 'Error interno del servidor'
-        }, { status: 500 });
+        }, { status: 500, headers: corsHeaders });
     }
 }
 
@@ -425,12 +433,12 @@ export async function GET() {
             }
         };
         
-        return NextResponse.json(response);
+        return NextResponse.json(response, { headers: corsHeaders });
     } catch (error) {
         console.error('Error en GET /api/calculate-shipping:', error);
         return NextResponse.json({
             success: false,
             error: 'Error interno del servidor'
-        }, { status: 500 });
+        }, { status: 500, headers: corsHeaders });
     }
 }

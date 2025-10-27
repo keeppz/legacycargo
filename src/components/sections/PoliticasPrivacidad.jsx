@@ -133,7 +133,7 @@ export default function PoliticasPrivacidad() {
                                             Si tienes preguntas sobre esta Política de Privacidad o deseas ejercer tus derechos, contáctanos:
                                         </p>
                                         <ul>
-                                            <li>Email: <a href="mailto:info@legacycargo.com">privacidad@legacycargo.com</a></li>
+                                            <li>Email: <a href="mailto:info@legacycargove.com">privacidad@legacycargove.com</a></li>
                                             <li>Teléfono: +58 414-2909883</li>
                                             <li>Dirección: Oficinas en Miami, FL y Caracas, VE</li>
                                         </ul>

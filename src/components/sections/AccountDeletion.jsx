@@ -51,7 +51,7 @@ export default function AccountDeletion() {
                                                 <div className="step-number">1</div>
                                                 <div className="step-content">
                                                     <h4>Contactar Soporte</h4>
-                                                    <p>Envía un correo electrónico a <strong>datos@legacycargo.com</strong> con el asunto "Solicitud de Eliminación de Datos"</p>
+                                                    <p>Envía un correo electrónico a <strong>soporte@legacycargove.com</strong> con el asunto "Solicitud de Eliminación de Datos"</p>
                                                 </div>
                                             </div>
                                             
@@ -222,13 +222,13 @@ export default function AccountDeletion() {
                                         <div className="contact-info">
                                             <div className="contact-method">
                                                 <h4>Correo Electrónico Principal</h4>
-                                                <p><a href="mailto:soporte@legacycargo.com">soporte@legacycargo.com</a></p>
+                                                <p><a href="mailto:soporte@legacycargove.com">soporte@legacycargove.com</a></p>
                                                 <p><strong>Tiempo de respuesta:</strong> 24-48 horas</p>
                                             </div>
                                             
                                             <div className="contact-method">
                                                 <h4>Correo Electrónico Alternativo</h4>
-                                                <p><a href="mailto:privacidad@legacycargo.com">@legacycargo.com</a></p>
+                                                    <p><a href="mailto:soporte@legacycargove.com">soporte@legacycargove.com</a></p>
                                                 <p><strong>Tiempo de respuesta:</strong> 48-72 horas</p>
                                             </div>
                                             

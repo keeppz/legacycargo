@@ -50,7 +50,7 @@ export default function Footer1() {
 							<div className="content">
 								<p>Correo Electrónico</p>
 								<h3>
-									<Link href="mailto:info@legacycargo.com">info@legacycargo.com</Link>
+									<Link href="mailto:info@legacycargove.com">info@legacycargove.com</Link>
 								</h3>
 							</div>
 						</div>

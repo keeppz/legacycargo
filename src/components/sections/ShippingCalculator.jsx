@@ -314,7 +314,7 @@ export default function ShippingCalculator() {
                 
                 if (tarifaAerea) {
                     precio = pesoAFacturar * tarifaAerea * cantidadPaquetes;
-                    tiempo = '3-5 días';
+                    tiempo = '8-10 días';
                     console.log('Precio aéreo Panamá:', precio);
                 }
             } else {
@@ -360,7 +360,7 @@ export default function ShippingCalculator() {
                     const tarifaAerea = tarifasAereas[origin][region];
                     console.log('Tarifa aérea USA por zona:', tarifaAerea);
                     precio = pesoAFacturar * tarifaAerea * cantidadPaquetes;
-                    tiempo = '3-5 días';
+                    tiempo = '8-10 días';
                     console.log('Precio aéreo USA:', precio);
                 } else {
                     console.log('No se encontró tarifa aérea para la región:', region);
