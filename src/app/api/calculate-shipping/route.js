@@ -26,6 +26,7 @@ try {
 // Extraer datos del objeto cargado
 const {
     rubrosPorCategoriaPanama,
+    regionesPorEstadoYCategoriaPanama,
     regionesPorEstadoPanama,
     regionesPorEstado,
     tarifasPanamaCoLoader,
@@ -63,6 +64,27 @@ const obtenerCategoriaPanama = (rubro) => {
         return rubros.includes(rubroFormateado);
     })?.[0];
     return categoria;
+};
+
+// Función para obtener región según estado, origen y categoría (para Panamá)
+// Algunos estados como Zulia tienen regiones diferentes según la categoría del producto
+const obtenerRegionPorCategoria = (estado, origen, categoria = null) => {
+    // Formatear el estado
+    const palabras = estado.toLowerCase().split(' ');
+    const estadoFormateado = palabras.map(palabra => 
+        palabra.charAt(0).toUpperCase() + palabra.slice(1)
+    ).join(' ');
+    
+    // Para Panamá con categoría, verificar si hay configuración especial
+    if (origen === 'panama' && categoria && regionesPorEstadoYCategoriaPanama) {
+        const regionPorCategoria = regionesPorEstadoYCategoriaPanama[estadoFormateado];
+        if (regionPorCategoria && regionPorCategoria[categoria]) {
+            return regionPorCategoria[categoria];
+        }
+    }
+    
+    // Si no hay configuración especial, usar región fija
+    return obtenerRegion(estadoFormateado, origen);
 };
 
 // Función para calcular peso volumétrico
@@ -235,12 +257,22 @@ export async function POST(request) {
                     }, { status: 400, headers: corsHeaders });
                 }
                 
-                const tarifa = tarifasPanamaCoLoader[region]?.[categoria];
+                // Obtener región específica para esta categoría (importante para estados como Zulia)
+                const regionParaCategoria = obtenerRegionPorCategoria(destination, origin, categoria);
+                
+                if (!regionParaCategoria) {
+                    return NextResponse.json({
+                        success: false,
+                        error: `No se encontró región para el destino: ${destination}`
+                    }, { status: 400, headers: corsHeaders });
+                }
+                
+                const tarifa = tarifasPanamaCoLoader[regionParaCategoria]?.[categoria];
                 
                 if (!tarifa) {
                     return NextResponse.json({
                         success: false,
-                        error: `No se encontró tarifa para región: ${region}, categoría: ${categoria}`
+                        error: `No se encontró tarifa para región: ${regionParaCategoria}, categoría: ${categoria}`
                     }, { status: 400, headers: corsHeaders });
                 }
                 

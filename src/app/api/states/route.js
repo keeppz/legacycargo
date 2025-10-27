@@ -119,10 +119,10 @@ export async function GET(request) {
                     }
                 },
                 summary: {
-                    total_unique_states: 23, // Todos son estados de Venezuela
+                    total_unique_states: 24, // 23 estados + Distrito Capital = 24 entidades federales
                     panama_regions: panamaStates.length,
                     general_regions: generalStates.length,
-                    note: 'Todos los estados son destinos en Venezuela'
+                    note: 'Todos los estados son destinos en Venezuela. Incluye Zulia con configuración especial por categoría.'
                 }
             };
         }

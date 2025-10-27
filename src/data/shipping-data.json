@@ -5,6 +5,38 @@
     "Ferretería y Repuestos": ["Ferretería", "Repuestos", "Autopartes"],
     "Variado Alto": ["Juguetes", "Electrónicos", "Tecnología", "Electrodomésticos", "Accesorios", "Cosméticos", "Medicina", "Muebles", "Maquinaria", "Otros"]
   },
+  "regionesPorEstadoYCategoriaPanama": {
+    "Zulia": {
+      "Ropa": "REGION 6",
+      "Variado Bajo": "REGION 5",
+      "Ferretería y Repuestos": "REGION 6",
+      "Variado Alto": "REGION 5"
+    },
+    "Amazonas": {
+      "Ropa": "REGION 6",
+      "Variado Bajo": "REGION 5",
+      "Ferretería y Repuestos": "REGION 6",
+      "Variado Alto": "REGION 5"
+    },
+    "Delta Amacuro": {
+      "Ropa": "REGION 6",
+      "Variado Bajo": "REGION 5",
+      "Ferretería y Repuestos": "REGION 6",
+      "Variado Alto": "REGION 5"
+    },
+    "Apure": {
+      "Ropa": "REGION 6",
+      "Variado Bajo": "REGION 5",
+      "Ferretería y Repuestos": "REGION 6",
+      "Variado Alto": "REGION 5"
+    },
+    "Nueva Esparta": {
+      "Ropa": "REGION 6",
+      "Variado Bajo": "REGION 5",
+      "Ferretería y Repuestos": "REGION 6",
+      "Variado Alto": "REGION 5"
+    }
+  },
   "regionesPorEstadoPanama": {
     "REGION 1": [
       "Distrito Capital",
@@ -35,11 +67,7 @@
       "Trujillo"
     ],
     "REGION 6": [
-      "Táchira",
-      "Amazonas",
-      "Delta Amacuro",
-      "Apure",
-      "Nueva Esparta"
+      "Táchira"
     ]
   },
   "regionesPorEstado": {
@@ -68,7 +96,8 @@
       "Bolívar",
       "Amazonas",
       "Delta Amacuro",
-      "Apure"
+      "Apure",
+      "Zulia"
     ]
   },
   "tarifasPanamaCoLoader": {
