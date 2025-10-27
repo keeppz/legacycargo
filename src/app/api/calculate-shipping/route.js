@@ -384,14 +384,21 @@ export async function POST(request) {
         }
         const total = precio + seguroCarga;
 
-        // Preparar respuesta
+        // Función helper para asegurar que los números sean doubles válidos
+        const toDouble = (value) => {
+            const num = parseFloat(value.toFixed(2));
+            // Si es un entero, agregar .0 explícitamente
+            return num === Math.floor(num) ? num + 0.0 : num;
+        };
+        
+        // Preparar respuesta con tipos explícitos
         const response = {
             success: true,
             data: {
                 pricing: {
-                    subtotal: parseFloat(precio.toFixed(2)),
-                    insurance: parseFloat(seguroCarga.toFixed(2)),
-                    total: parseFloat(total.toFixed(2))
+                    subtotal: toDouble(precio),
+                    insurance: toDouble(seguroCarga),
+                    total: toDouble(total)
                 },
                 shipment: {
                     origin,
@@ -401,26 +408,26 @@ export async function POST(request) {
                     estimatedTime: tiempo
                 },
                 dimensions: {
-                    volume: parseFloat(volumenFt3.toFixed(3)),
+                    volume: parseFloat(volumenFt3.toFixed(3)) + 0.0,
                     volumeUnit: tipoVolumen,
-                    volumetricWeight: parseFloat(pesoVolumetrico.toFixed(2)),
+                    volumetricWeight: toDouble(pesoVolumetrico),
                     weightUnit: shipmentType === 'aereo' ? (origin === 'estados_unidos' ? 'lb' : 'kg') : 'kg'
                 },
                 weight: {
-                    actual: parseFloat(pesoReal.toFixed(2)),
-                    volumetric: parseFloat(pesoVolumetrico.toFixed(2)),
-                    chargeable: parseFloat(pesoAFacturar.toFixed(2)),
+                    actual: toDouble(pesoReal),
+                    volumetric: toDouble(pesoVolumetrico),
+                    chargeable: toDouble(pesoAFacturar),
                     criteria: criterioUsado,
                     unit: shipmentType === 'aereo' ? (origin === 'estados_unidos' ? 'lb' : 'kg') : 'N/A'
                 },
                 details: {
-                    quantity,
+                    quantity: parseInt(quantity), // Asegurar que quantity sea int
                     insurance: shipmentType === 'maritimo', // Siempre true para marítimo, false para aéreo
                     rubro: rubro || null,
                     minimumPriceApplied: precioMinimoAplicado,
                     insuranceAvailable: shipmentType === 'maritimo',
                     insuranceMandatory: seguroObligatorio,
-                    insuranceVolume: seguroObligatorio ? parseFloat(volumenParaSeguro.toFixed(3)) : 0
+                    insuranceVolume: seguroObligatorio ? (parseFloat(volumenParaSeguro.toFixed(3)) + 0.0) : 0.0
                 }
             }
         };
