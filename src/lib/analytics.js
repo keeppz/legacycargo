@@ -65,6 +65,24 @@ export const trackContactForm = (formType) => {
   })
 }
 
+// Evento para trackear uso de calculadora
+export const trackCalculatorUsage = (origin, destination, shipmentType) => {
+  event({
+    action: 'calculator_usage',
+    category: 'tool',
+    label: `${origin}_to_${destination}_${shipmentType}`,
+  })
+}
+
+// Evento para trackear clicks en botones
+export const trackButtonClick = (buttonName, location) => {
+  event({
+    action: 'button_click',
+    category: 'engagement',
+    label: `${buttonName}_${location}`,
+  })
+}
+
 // Configuración de Google Search Console
 export const searchConsoleConfig = {
   siteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,

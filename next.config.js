@@ -76,9 +76,9 @@ const nextConfig = {
   },
   
   // Configuración experimental
-  experimental: {
-    optimizeCss: true,
-  },
+  // experimental: {
+  //   optimizeCss: true, // Deshabilitado temporalmente por problemas con critters
+  // },
   
   // Configuración de webpack para optimizaciones
   webpack: (config, { dev, isServer }) => {
