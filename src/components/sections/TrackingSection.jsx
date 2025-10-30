@@ -326,7 +326,7 @@ export default function TrackingSection() {
                             <p>Si tienes problemas para rastrear tu envío o necesitas información adicional, no dudes en contactarnos.</p>
                             <div className="help-actions">
                                 <a
-                                    href={`https://wa.me/584126396424?text=Hola, necesito ayuda con el tracking de mi envío Código de Tracking: ${shipment.id}`}
+                                    href={`https://wa.me/584126396424?text=Hola, necesito ayuda con el tracking de mi envío${shipment ? ` Código de Tracking: ${shipment.id}` : ''}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="theme-btn"
