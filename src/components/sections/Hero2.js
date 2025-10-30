@@ -168,64 +168,54 @@ export default function Hero2() {
 							<div className="overlay"></div>
 						</div>
 						<div className="container">
-							<div className="row align-items-center justify-content-start">
-								<div className="col-12 col-lg-8 col-xl-7">
-									<div className="hero-content">
-										<h5 className="hero-subtitle" style={{ color: slide.colors.subtitle }}>
-											{slide.subtitle}
-										</h5>
-										<h1 className="hero-title">
-											<span style={{ color: slide.colors.title }}>{slide.title}</span>
-											{slide.titleSecond && (
-												<>
-													{' '}
-													<span style={{ color: slide.colors.titleSecond }}>{slide.titleSecond}</span>
-												</>
-											)}
-											{slide.titleThird && (
-												<>
-													<br />
-													<span style={{ color: slide.colors.titleThird }}>{slide.titleThird}</span>
-												</>
-											)}
-											{slide.titleFourth && (
-												<>
-													<br />
-													<span style={{ color: slide.colors.titleFourth }}>{slide.titleFourth}</span>
-												</>
-											)}
-										</h1>
-										<p className="hero-description" style={{ color: slide.colors.description }}>
-											{slide.description}
-										</p>
-										<div className="hero-button">
-											<HeroButton 
-												href="/about"
-												colors={{
-													bg: slide.colors.button1Bg,
-													text: slide.colors.button1Text,
-													hoverBg: slide.colors.button1HoverBg,
-													hoverText: slide.colors.button1HoverText
-												}}
-											>
-												Saber Más
-												<i className="fa-solid fa-arrow-right-long" />
-											</HeroButton>
-											<HeroButton 
-												href="/calculator"
-												colors={{
-													bg: slide.colors.button2Bg,
-													text: slide.colors.button2Text,
-													hoverBg: slide.colors.button2HoverBg,
-													hoverText: slide.colors.button2HoverText
-												}}
-											>
-												Cotiza tu Envío
-												<i className="fa-solid fa-arrow-right-long" />
-											</HeroButton>
-										</div>
+							<div className="row align-items-center" style={{ minHeight: '85vh' }}>
+							<div className="col-lg-7">
+								<div className="hero-content">
+									<h5 style={{ color: slide.colors.subtitle }}>
+										{slide.subtitle}
+									</h5>
+									<h1>
+										<span style={{ color: slide.colors.title }}>{slide.title}</span> <br />
+										<span style={{ color: slide.colors.titleSecond }}>{slide.titleSecond}</span> <br />
+										<span style={{ color: slide.colors.titleThird }}>{slide.titleThird}</span>
+										{slide.titleFourth && (
+											<>
+												<br />
+												<span style={{ color: slide.colors.titleFourth }}>{slide.titleFourth}</span>
+											</>
+										)}
+									</h1>
+									<p style={{ color: slide.colors.description }}>
+										{slide.description}
+									</p>
+									<div className="hero-button">
+										<HeroButton 
+											href="/about"
+											colors={{
+												bg: slide.colors.button1Bg,
+												text: slide.colors.button1Text,
+												hoverBg: slide.colors.button1HoverBg,
+												hoverText: slide.colors.button1HoverText
+											}}
+										>
+											Saber Mas
+											<i className="fa-solid fa-arrow-right-long" />
+										</HeroButton>
+										<HeroButton 
+											href="/calculator"
+											colors={{
+												bg: slide.colors.button2Bg,
+												text: slide.colors.button2Text,
+												hoverBg: slide.colors.button2HoverBg,
+												hoverText: slide.colors.button2HoverText
+											}}
+										>
+											Cotiza tu Envío
+											<i className="fa-solid fa-arrow-right-long" />
+										</HeroButton>
 									</div>
 								</div>
+							</div>
 							</div>
 						</div>
 					</SwiperSlide>
