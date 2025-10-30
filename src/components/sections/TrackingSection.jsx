@@ -261,15 +261,18 @@ export default function TrackingSection() {
                                             <p>{shipment.type_of_shipment || 'N/A'}</p>
                                         </div>
                                         
-                                        {/* <div className="detail-item">
-                                            <h4>Peso</h4>
-                                            <p>{shipment.weight || 'N/A'}</p>
-                                        </div> */}
-                                        
-                                        <div className="detail-item">
-                                            <h4>Volumen</h4>
-                                            <p>{shipment.total_size || 'N/A'}</p>
-                                        </div>
+                                        {/* Mostrar peso para envíos aéreos, volumen para los demás */}
+                                        {shipment.type_of_shipment?.toLowerCase().includes('aer') ? (
+                                            <div className="detail-item">
+                                                <h4>Peso</h4>
+                                                <p>{shipment.weight || 'N/A'}</p>
+                                            </div>
+                                        ) : (
+                                            <div className="detail-item">
+                                                <h4>Volumen</h4>
+                                                <p>{shipment.total_size || 'N/A'}</p>
+                                            </div>
+                                        )}
                                     </div>
 
                                     {/* {shipment.description && (
