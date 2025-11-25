@@ -9,22 +9,23 @@
         left: 0;
         right: 0;
         z-index: 10;
-        background: rgba($theme-color, 0.95);
+        background: rgba($white, 0.95);
         backdrop-filter: blur(10px);
         border-top: 1px solid rgba(255, 255, 255, 0.2);
-        padding: 15px 0;
+        padding: 0 0 40px 0;
         margin: 0;
+        
 
         @include breakpoint(max-md) {
-            padding: 15px 0;
+            padding: 0 0 30px 0;
         }
 
         @include breakpoint(max-sm) {
-            padding: 12px 0;
+            padding: 0 0 15px 0;
         }
 
         @include breakpoint(max-xs) {
-            padding: 10px 0;
+            padding: 0 0 10px 0;
         }
 
         .container {
@@ -88,7 +89,7 @@
                 color: $black;
                 margin-bottom: 5px;
                 line-height: 1.2;
-                color: $white;
+                color: $black;
 
                 @include breakpoint(max-lg) {
                     font-size: 20px;
@@ -111,7 +112,7 @@
 
             p {
                 font-size: 16px;
-                color: $white;
+                color: $black;
                 margin: 0;
 
                 @include breakpoint(max-md) {
@@ -143,6 +144,7 @@
                 overflow: hidden;
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
                 background: $white;
+                transition: box-shadow 0.3s ease;
 
                 @include breakpoint(max-sm) {
                     border-radius: 20px;
@@ -150,6 +152,10 @@
 
                 @include breakpoint(max-xs) {
                     border-radius: 18px;
+                }
+
+                &:focus-within {
+                    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
                 }
 
                 .tracking-input {

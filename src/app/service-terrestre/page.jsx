@@ -1,7 +1,6 @@
 import Layout from "../../components/layout/Layout"
 import ServiceTemplate from "../../components/services/ServiceTemplate"
 import ClientBrand1 from "../../components/ClientBrand1"
-import { Metadata } from 'next'
 
 export const metadata = {
   title: 'Transporte Terrestre a Venezuela | Legacy Cargo - Logística Internacional',
@@ -13,7 +12,7 @@ export const metadata = {
     url: 'https://legacycargove.com/service-terrestre',
     images: [
       {
-        url: '/assets/img/transporte-terrestre-venezuela.jpg',
+        url: '/assets/img/service/terrestre.jpg',
         width: 1200,
         height: 630,
         alt: 'Transporte Terrestre a Venezuela - Legacy Cargo',

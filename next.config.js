@@ -75,12 +75,11 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   
-  // Configuración experimental
-  // experimental: {
-  //   optimizeCss: true, // Deshabilitado temporalmente por problemas con critters
-  // },
+  // Configuración para Turbopack (Next.js 16+)
+  // Turbopack tiene soporte nativo para SCSS, no necesita configuración adicional
+  turbopack: {},
   
-  // Configuración de webpack para optimizaciones
+  // Configuración de webpack para optimizaciones (fallback)
   webpack: (config, { dev, isServer }) => {
     // Optimizaciones de producción
     if (!dev && !isServer) {

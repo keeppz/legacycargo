@@ -1,5 +1,4 @@
 import Layout from "../../components/layout/Layout"
-import { Metadata } from 'next'
 
 export const metadata = {
   title: 'Importaciones desde Estados Unidos a Venezuela | Legacy Cargo - Logística Internacional',
@@ -11,7 +10,7 @@ export const metadata = {
     url: 'https://legacycargove.com/importaciones-estados-unidos-venezuela',
     images: [
       {
-        url: '/assets/img/importaciones-usa-venezuela.jpg',
+        url: '/assets/img/service/aereo.jpg',
         width: 1200,
         height: 630,
         alt: 'Importaciones desde Estados Unidos a Venezuela - Legacy Cargo',
@@ -22,7 +21,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Importaciones desde Estados Unidos a Venezuela | Legacy Cargo',
     description: 'Especialistas en importaciones desde Estados Unidos a Venezuela. Servicios de logística internacional.',
-    images: ['/assets/img/importaciones-usa-venezuela.jpg'],
+    images: ['/assets/img/service/aereo.jpg'],
   },
   alternates: {
     canonical: '/importaciones-estados-unidos-venezuela',

@@ -17,27 +17,45 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./src/*", "./*"],
-      "@components/*": ["./src/components/*", "./components/*"],
-      "@lib/*": ["./src/lib/*", "./lib/*"],
-      "@styles/*": ["./src/styles/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@contexts/*": ["./src/contexts/*"]
+      "@/*": [
+        "./src/*",
+        "./*"
+      ],
+      "@components/*": [
+        "./src/components/*",
+        "./components/*"
+      ],
+      "@lib/*": [
+        "./src/lib/*",
+        "./lib/*"
+      ],
+      "@styles/*": [
+        "./src/styles/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@contexts/*": [
+        "./src/contexts/*"
+      ]
     }
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

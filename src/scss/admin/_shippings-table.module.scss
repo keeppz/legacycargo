@@ -79,27 +79,25 @@
     display: flex;
     gap: $spacer;
 
-    :global {
-      .select-trigger {
-        min-width: 150px;
-        border: 1px solid $border-color;
-        border-radius: $border-radius-sm;
-        padding: 0.5rem;
-        background-color: $white;
-        font-size: 0.875rem;
-        
-        &:hover {
-          border-color: darken($border-color, 10%);
-        }
-        
-        &:focus {
-          border-color: $theme-color;
-          box-shadow: 0 0 0 2px rgba($theme-color, 0.1);
-        }
-        
-        &:last-child {
-          min-width: 80px;
-        }
+    .selectTrigger {
+      min-width: 150px;
+      border: 1px solid $border-color;
+      border-radius: $border-radius-sm;
+      padding: 0.5rem;
+      background-color: $white;
+      font-size: 0.875rem;
+      
+      &:hover {
+        border-color: darken($border-color, 10%);
+      }
+      
+      &:focus {
+        border-color: $theme-color;
+        box-shadow: 0 0 0 2px rgba($theme-color, 0.1);
+      }
+      
+      &:last-child {
+        min-width: 80px;
       }
     }
   }

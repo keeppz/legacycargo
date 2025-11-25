@@ -1,5 +1,4 @@
 import Layout from "../../components/layout/Layout"
-import { Metadata } from 'next'
 
 export const metadata = {
   title: 'Importaciones desde Panamá a Venezuela | Legacy Cargo - Logística Internacional',
@@ -11,7 +10,7 @@ export const metadata = {
     url: 'https://legacycargove.com/importaciones-panama-venezuela',
     images: [
       {
-        url: '/assets/img/importaciones-panama-venezuela.jpg',
+        url: '/assets/img/service/maritimo.jpg',
         width: 1200,
         height: 630,
         alt: 'Importaciones desde Panamá a Venezuela - Legacy Cargo',
@@ -22,7 +21,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Importaciones desde Panamá a Venezuela | Legacy Cargo',
     description: 'Especialistas en importaciones desde Panamá a Venezuela. Servicios de logística internacional.',
-    images: ['/assets/img/importaciones-panama-venezuela.jpg'],
+    images: ['/assets/img/service/maritimo.jpg'],
   },
   alternates: {
     canonical: '/importaciones-panama-venezuela',

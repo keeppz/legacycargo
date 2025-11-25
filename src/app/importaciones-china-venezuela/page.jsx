@@ -1,5 +1,4 @@
 import Layout from "../../components/layout/Layout"
-import { Metadata } from 'next'
 
 export const metadata = {
   title: 'Importaciones desde China a Venezuela | Legacy Cargo - Logística Internacional',
@@ -11,7 +10,7 @@ export const metadata = {
     url: 'https://legacycargove.com/importaciones-china-venezuela',
     images: [
       {
-        url: '/assets/img/importaciones-china-venezuela.jpg',
+        url: '/assets/img/logo/logo.png',
         width: 1200,
         height: 630,
         alt: 'Importaciones desde China a Venezuela - Legacy Cargo',
@@ -22,7 +21,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Importaciones desde China a Venezuela | Legacy Cargo',
     description: 'Especialistas en importaciones desde China a Venezuela. Servicios de logística internacional.',
-    images: ['/assets/img/importaciones-china-venezuela.jpg'],
+    images: ['/assets/img/logo/logo.png'],
   },
   alternates: {
     canonical: '/importaciones-china-venezuela',

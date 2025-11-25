@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import TrackingSearchBar from './TrackingSearchBar';
 
 const swiperOptions = {
 	modules: [Autoplay, Pagination, Navigation],
@@ -26,34 +27,78 @@ const swiperOptions = {
 };
 
 const slides = [
-	{
-		image: "/assets/img/hero/03.jpg",
-		subtitle: "Transporte Aéreo Internacional",
-		title: "Conectamos",
-		titleSecond: "Mundos,",
-		titleThird: "Entregamos Confianza",
-		description: "Especialistas en envíos desde USA y Panamá hacia Venezuela. Tu carga llega rápido, segura y sin complicaciones. Dejamos la logística en manos expertas."
-},
-	{
-		image: "/assets/img/hero/04.jpg",
-		subtitle: "Transporte Marítimo Internacional",
-		title: "Soluciones",
-		titleSecond: "Marítimas",
-		titleThird: "Globales",
-		description: "Trasladamos tu mercancía vía marítima desde USA, Panamá y China con máxima seguridad. Nos encargamos de todo el proceso logístico para tu tranquilidad."
-		},
-	{
-		image: "/assets/img/hero/05.jpg",
-		subtitle: "Servicios Aduanales Completos",
-		title: "Trámites",
-		titleSecond: "Aduaneros",
-		titleThird: "Sin Complicaciones",
-		description: "Nuestros expertos en gestión aduanera manejan toda la documentación legal para que tu carga fluya sin obstáculos. Importa con total tranquilidad."
-		}
-
+ 	{
+ 		image: "/assets/img/hero/todas-02.png",
+ 		subtitle: "El aliado que impulsa",
+ 		title: "Tus envíos",
+ 		titleSecond: "Conectamos Mundos, Entregamos",
+ 		titleThird: " Confianza y Tranquilidad",
+ 		description: "Especialistas en envíos desde China, USA y Panamá hacia Venezuela. Tu carga llega rápido, segura y sin complicaciones. Dejan la logística en manos expertas.",
+		subtitlecolor: "#fff",
+		titlecolor: "#fff",
+		titleSecondcolor: "#fff",
+		titleThirdcolor: "#fff",
+		descriptioncolor: "#fff",
+ },
+		  {
+		 image: "/assets/img/hero/todas-05.png",
+		 subtitle: "Soluciones Marítimas Globales",
+		 title: "La opción ",
+		 titleSecond: "mas eficiente para cargas",
+		 titleThird: "de gran volumen",
+		 description: "Consolidamos tu carga en contenedores desde China y Panamá hacia Venezuela con máxima seguridad y costos optimizados.",
+		 subtitlecolor: "#fff",
+		 titlecolor: "#fff",
+		 titleSecondcolor: "text-white",
+		 titleThirdcolor: "text-white",
+		 descriptioncolor: "#fff",
+	  },
+	 	{
+	 	image: "/assets/img/hero/legacy cargo-04.png",
+	 	subtitle: "Servicios Aduanales Completos",
+	 	title: "Trámites",
+	 	titleSecond: "Aduaneros",
+	 	titleThird: "Sin Complicaciones",
+	 	description: "Nuestros expertos en gestión aduanera manejan toda la documentación legal para que tu carga fluya sin obstáculos. Importa con total tranquilidad."
+	 },
+	 {
+	 	image: "/assets/img/hero/legacy cargo-03.png",
+	 	subtitle: "Servicios Aereos Completos",
+	 	title: "Trámites",
+	 	titleSecond: "Aereos",
+	 	titleThird: "Sin Complicaciones",
+	 	description: "Nuestros expertos en gestión aerea manejan toda la documentación legal para que tu carga fluya sin obstáculos. Importa con total tranquilidad."
+	 }
 ];
 
 export default function Hero2() {
+	// Función helper para determinar si es un color hexadecimal o una clase
+	const getColorStyle = (colorValue) => {
+		if (!colorValue) return {};
+		
+		// Si empieza con #, es un color hexadecimal
+		if (colorValue.startsWith('#')) {
+			return { color: colorValue };
+		}
+		
+		// Si empieza con "text-", es una clase de Tailwind, retornar objeto vacío
+		// para que se aplique la clase directamente
+		return {};
+	};
+
+	// Función helper para obtener la clase de color
+	const getColorClass = (colorValue) => {
+		if (!colorValue) return '';
+		
+		// Si empieza con "text-", es una clase de Tailwind
+		if (colorValue.startsWith('text-')) {
+			return colorValue;
+		}
+		
+		// Si es hexadecimal, retornar string vacío (se usará style)
+		return '';
+	};
+
 	return (
 		<section className="hero-section fix hero-2">
 			<Swiper {...swiperOptions} className="hero-slider-2">
@@ -75,15 +120,36 @@ export default function Hero2() {
 							<div className="row align-items-center min-vh-100">
 								<div className="col-lg-7">
 									<div className="hero-content">
-										<h5 >
+										<h5 
+											style={getColorStyle(slide.subtitlecolor)}
+											className={getColorClass(slide.subtitlecolor)}
+										>
 											{slide.subtitle}
 										</h5>
-										<h1>
+										<h1 
+											style={getColorStyle(slide.titlecolor)}
+											className={getColorClass(slide.titlecolor)}
+										>
 											{slide.title} <br />
-											{slide.titleSecond} <br />
-											<span style={{ color: '#ff282e' }}>{slide.titleThird}</span>
 										</h1>
-										<p>
+										<h2>
+											<span 
+												style={getColorStyle(slide.titleSecondcolor)}
+												className={getColorClass(slide.titleSecondcolor)}
+											>
+												{slide.titleSecond}
+											</span> <br />
+											<span 
+												style={getColorStyle(slide.titleThirdcolor)}
+												className={getColorClass(slide.titleThirdcolor)}
+											>
+												{slide.titleThird}
+											</span>
+										</h2>	
+										<p 
+											style={getColorStyle(slide.descriptioncolor)}
+											className={getColorClass(slide.descriptioncolor)}
+										>
 											{slide.description}
 										</p>
 										<div className="hero-button">
@@ -118,6 +184,7 @@ export default function Hero2() {
 					<i className="fas fa-arrow-right" />
 				</button>
 			</div>
+			<TrackingSearchBar />
 		</section>
 	);
 }

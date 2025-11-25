@@ -5,7 +5,7 @@ export const seoConfig = {
     name: 'Legacy Cargo',
     description: 'Especialistas en importaciones a Venezuela desde China, Panamá y Estados Unidos',
     url: 'https://legacycargove.com',
-    logo: 'https://legacycargove.com/logo192.png',
+    logo: 'https://legacycargove.com/logo.png',
     phone: '+58-XXX-XXX-XXXX',
     email: 'info@legacycargove.com',
     address: {
@@ -96,8 +96,8 @@ export const seoConfig = {
     "name": "Legacy Cargo",
     "description": "Especialistas en importaciones a Venezuela desde China, Panamá y Estados Unidos",
     "url": "https://legacycargove.com",
-    "logo": "https://legacycargove.com/logo192.png",
-    "image": "https://legacycargove.com/assets/img/legacy-cargo-office.jpg",
+    "logo": "https://legacycargove.com/logo.png",
+    "image": "https://legacycargove.com/assets/img/.jpg",
     "telephone": "+58-XXX-XXX-XXXX",
     "email": "info@legacycargove.com",
     "address": {
