@@ -55,19 +55,19 @@ const slides = [
 	  },
 	 	{
 	 	image: "/assets/img/hero/legacy cargo-04.png",
-	 	subtitle: "Servicios Aduanales Completos",
-	 	title: "Trámites",
-	 	titleSecond: "Aduaneros",
-	 	titleThird: "Sin Complicaciones",
-	 	description: "Nuestros expertos en gestión aduanera manejan toda la documentación legal para que tu carga fluya sin obstáculos. Importa con total tranquilidad."
+	 	subtitle: "Tu carga llega con control y",
+	 	title: "Precisión",
+	 	titleSecond: "Aduana sin complicaciones de la",
+	 	titleThird: "mano de Legacy Cargo",
+	 	description: "Movilizamos tu carga desde China, Panamá y Miami hacia Venezuela, con procesos aduanales claros, seguros ytiempos de liberación optimizados."
 	 },
 	 {
 	 	image: "/assets/img/hero/legacy cargo-03.png",
-	 	subtitle: "Servicios Aereos Completos",
-	 	title: "Trámites",
-	 	titleSecond: "Aereos",
-	 	titleThird: "Sin Complicaciones",
-	 	description: "Nuestros expertos en gestión aerea manejan toda la documentación legal para que tu carga fluya sin obstáculos. Importa con total tranquilidad."
+	 	subtitle: "Tu carga vuela con seguridad y",
+	 	title: "Rapidez",
+	 	titleSecond: "El transporte ideal para lo que",
+	 	titleThird: "no puede esperar.",
+	 	description: "Movemos tu mercancía vía aérea desde China, Panamá y Miami hacia Venezuela con procesos claros y tiempos de tránsito reducidos."
 	 }
 ];
 
