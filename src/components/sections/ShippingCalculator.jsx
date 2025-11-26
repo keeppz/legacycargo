@@ -490,14 +490,23 @@ export default function ShippingCalculator() {
                     const pesoTotalReal = pesoPorPaquete * cantidadPaquetes;
                     const pesoTotalVolumetrico = pesoVolumetricoPorPaquete * cantidadPaquetes;
                     
+                    console.log('=== VISUALIZACIÓN PESO USA ===');
+                    console.log('Peso por paquete:', pesoPorPaquete);
+                    console.log('Peso volumétrico por paquete:', pesoVolumetricoPorPaquete);
+                    console.log('Cantidad de paquetes:', cantidadPaquetes);
+                    console.log('Peso total real:', pesoTotalReal);
+                    console.log('Peso total volumétrico:', pesoTotalVolumetrico);
+                    
                     if (pesoTotalVolumetrico < pesoTotalReal) {
                         // Si el peso real total es mayor, mostrar el peso real total
                         pesoAMostrar = `${pesoTotalReal.toFixed(2)} lb`;
                         mostrarPesoVolumetrico = false;
+                        console.log('Mostrando peso real total:', pesoAMostrar);
                     } else {
                         // Si el peso volumétrico total es mayor, mostrar el peso volumétrico total
                         pesoAMostrar = `${pesoTotalVolumetrico.toFixed(2)} lb`;
                         mostrarPesoVolumetrico = true;
+                        console.log('Mostrando peso volumétrico total:', pesoAMostrar);
                     }
                 } else {
                     // Para Panamá y China
