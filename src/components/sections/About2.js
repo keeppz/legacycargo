@@ -10,7 +10,7 @@ export default function About2() {
 		<>
 			<section className="about-section fix section-padding" id="about">
 				<div className="about-shape-4 float-bob-x">
-					<img src="assets/img/about/about-shape-4.png" alt="img" />
+					<img src="assets/img/about/transparencias-02.png" alt="img" />
 				</div>
 				<div className="about-shape-5 float-bob-y">
 					<img src="assets/img/about/about-shape-5.png" alt="img" />

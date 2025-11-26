@@ -10,7 +10,7 @@ export default function CalculatorPage() {
     return (
         <>
             <PageTracker pageName="calculator" />
-            <Layout headerStyle={2} footerStyle={1}>
+        <Layout headerStyle={2} footerStyle={1}>
             <div id="smooth-wrapper">
                 <div id="smooth-content">
                     <Breadcrumb breadcrumbTitle="Calculadora de Envíos" />

@@ -343,24 +343,32 @@ export default function ShippingCalculator() {
             if (tipoEnvio === 'aereo') {
                 // Aéreo desde Estados Unidos - por peso y zona
                 // Para USA, el peso ya viene en libras, no necesitamos convertir
-                const pesoEnLibras = parseFloat(weight);
-                const pesoVolumetricoEnLibras = pesoVolumetrico;
+                const pesoPorPaquete = parseFloat(weight);
+                const pesoVolumetricoPorPaquete = pesoVolumetrico;
                 
-                // Si el peso volumétrico es menor al peso real, usar el peso real directamente
-                const pesoAFacturar = pesoVolumetricoEnLibras < pesoEnLibras ? pesoEnLibras : pesoVolumetricoEnLibras;
+                // Calcular pesos totales considerando la cantidad de paquetes
+                const pesoTotalReal = pesoPorPaquete * cantidadPaquetes;
+                const pesoTotalVolumetrico = pesoVolumetricoPorPaquete * cantidadPaquetes;
+                
+                // Comparar los pesos totales y usar el mayor
+                const pesoTotalAFacturar = pesoTotalVolumetrico < pesoTotalReal ? pesoTotalReal : pesoTotalVolumetrico;
                 
                 const region = obtenerRegion(destination, 'estados_unidos');
                 console.log('Región USA para aéreo:', region);
-                console.log('Peso en libras:', pesoEnLibras);
-                console.log('Peso volumétrico en libras:', pesoVolumetricoEnLibras);
-                console.log('Peso a facturar:', pesoAFacturar);
-                console.log('Criterio usado:', pesoVolumetricoEnLibras < pesoEnLibras ? 'Peso real' : 'Peso volumétrico');
+                console.log('Peso por paquete (lb):', pesoPorPaquete);
+                console.log('Peso volumétrico por paquete (lb):', pesoVolumetricoPorPaquete);
+                console.log('Cantidad de paquetes:', cantidadPaquetes);
+                console.log('Peso total real (lb):', pesoTotalReal);
+                console.log('Peso total volumétrico (lb):', pesoTotalVolumetrico);
+                console.log('Peso total a facturar (lb):', pesoTotalAFacturar);
+                console.log('Criterio usado:', pesoTotalVolumetrico < pesoTotalReal ? 'Peso real total' : 'Peso volumétrico total');
                 
                 if (region && tarifasAereas[origin][region]) {
                     const tarifaAerea = tarifasAereas[origin][region];
                     console.log('Tarifa aérea USA por zona:', tarifaAerea);
-                    precio = pesoAFacturar * tarifaAerea * cantidadPaquetes;
+                    precio = pesoTotalAFacturar * tarifaAerea;
                     tiempo = '8-10 días';
+                    console.log('Cálculo: ', pesoTotalAFacturar, ' * ', tarifaAerea, ' = ', precio);
                     console.log('Precio aéreo USA:', precio);
                 } else {
                     console.log('No se encontró tarifa aérea para la región:', region);
@@ -475,16 +483,20 @@ export default function ShippingCalculator() {
             
             if (tipoEnvio === 'aereo') {
                 if (origin === 'estados_unidos') {
-                    const pesoEnLibras = parseFloat(weight);
-                    const pesoVolumetricoEnLibras = pesoVolumetrico;
+                    const pesoPorPaquete = parseFloat(weight);
+                    const pesoVolumetricoPorPaquete = pesoVolumetrico;
                     
-                    if (pesoVolumetricoEnLibras < pesoEnLibras) {
-                        // Si el peso real es mayor, mostrar solo el peso real
-                        pesoAMostrar = `${pesoEnLibras.toFixed(2)} lb`;
+                    // Calcular pesos totales
+                    const pesoTotalReal = pesoPorPaquete * cantidadPaquetes;
+                    const pesoTotalVolumetrico = pesoVolumetricoPorPaquete * cantidadPaquetes;
+                    
+                    if (pesoTotalVolumetrico < pesoTotalReal) {
+                        // Si el peso real total es mayor, mostrar el peso real total
+                        pesoAMostrar = `${pesoTotalReal.toFixed(2)} lb`;
                         mostrarPesoVolumetrico = false;
                     } else {
-                        // Si el peso volumétrico es mayor, mostrar ambos
-                        pesoAMostrar = `${pesoVolumetricoEnLibras.toFixed(2)} lb`;
+                        // Si el peso volumétrico total es mayor, mostrar el peso volumétrico total
+                        pesoAMostrar = `${pesoTotalVolumetrico.toFixed(2)} lb`;
                         mostrarPesoVolumetrico = true;
                     }
                 } else {
