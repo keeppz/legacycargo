@@ -1,9 +1,30 @@
 {
   "rubrosPorCategoriaPanama": {
-    "Ropa": ["Ropa", "Accesorios"],
-    "Variado Bajo": ["Calzado", "Alimentos"],
-    "Ferretería y Repuestos": ["Ferretería", "Repuestos", "Autopartes"],
-    "Variado Alto": ["Juguetes", "Electrónicos", "Tecnología", "Electrodomésticos", "Accesorios", "Cosméticos", "Medicina", "Muebles", "Maquinaria", "Otros"]
+    "Ropa": [
+      "Ropa",
+      "Accesorios"
+    ],
+    "Variado Bajo": [
+      "Calzado",
+      "Alimentos"
+    ],
+    "Ferretería y Repuestos": [
+      "Ferretería",
+      "Repuestos",
+      "Autopartes"
+    ],
+    "Variado Alto": [
+      "Juguetes",
+      "Electrónicos",
+      "Tecnología",
+      "Electrodomésticos",
+      "Accesorios",
+      "Cosméticos",
+      "Medicina",
+      "Muebles",
+      "Maquinaria",
+      "Otros"
+    ]
   },
   "regionesPorEstadoYCategoriaPanama": {
     "Zulia": {
@@ -152,10 +173,14 @@
       "Zona 2": 9.0
     },
     "panama": 12.0,
-    "china": 18.0
+    "china": {
+      "Zona 1": 23.0,
+      "Zona 2": 25.0
+    }
   },
   "preciosMinimos": {
     "china": {
+      "aereo": 115.0,
       "maritimo": 105.0
     },
     "estados_unidos": {

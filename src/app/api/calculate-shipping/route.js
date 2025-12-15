@@ -40,17 +40,17 @@ const {
 const obtenerRegion = (estado, origen) => {
     // Formatear el estado: primera letra mayúscula, resto minúscula
     const palabras = estado.toLowerCase().split(' ');
-    const estadoFormateado = palabras.map(palabra => 
+    const estadoFormateado = palabras.map(palabra =>
         palabra.charAt(0).toUpperCase() + palabra.slice(1)
     ).join(' ');
-    
+
     let regionesData;
     if (origen === 'panama') {
         regionesData = regionesPorEstadoPanama;
     } else {
         regionesData = regionesPorEstado;
     }
-    
+
     const region = Object.entries(regionesData).find(([region, estados]) => {
         return estados.includes(estadoFormateado);
     })?.[0];
@@ -71,10 +71,10 @@ const obtenerCategoriaPanama = (rubro) => {
 const obtenerRegionPorCategoria = (estado, origen, categoria = null) => {
     // Formatear el estado
     const palabras = estado.toLowerCase().split(' ');
-    const estadoFormateado = palabras.map(palabra => 
+    const estadoFormateado = palabras.map(palabra =>
         palabra.charAt(0).toUpperCase() + palabra.slice(1)
     ).join(' ');
-    
+
     // Para Panamá con categoría, verificar si hay configuración especial
     if (origen === 'panama' && categoria && regionesPorEstadoYCategoriaPanama) {
         const regionPorCategoria = regionesPorEstadoYCategoriaPanama[estadoFormateado];
@@ -82,7 +82,7 @@ const obtenerRegionPorCategoria = (estado, origen, categoria = null) => {
             return regionPorCategoria[categoria];
         }
     }
-    
+
     // Si no hay configuración especial, usar región fija
     return obtenerRegion(estadoFormateado, origen);
 };
@@ -125,7 +125,7 @@ export async function OPTIONS(request) {
 export async function POST(request) {
     try {
         const body = await request.json();
-        
+
         const {
             origin,
             destination,
@@ -147,7 +147,7 @@ export async function POST(request) {
         }
 
         const { length, width, height } = dimensions;
-        
+
         if (!length || !width || !height || length <= 0 || width <= 0 || height <= 0) {
             return NextResponse.json({
                 success: false,
@@ -155,13 +155,6 @@ export async function POST(request) {
             }, { status: 400, headers: corsHeaders });
         }
 
-        // Validaciones específicas
-        if (origin === 'china' && shipmentType === 'aereo') {
-            return NextResponse.json({
-                success: false,
-                error: 'Envíos aéreos desde China no están disponibles'
-            }, { status: 400, headers: corsHeaders });
-        }
 
         if (origin === 'estados_unidos' && shipmentType === 'maritimo') {
             return NextResponse.json({
@@ -222,7 +215,7 @@ export async function POST(request) {
 
         // Obtener región del destino
         const region = obtenerRegion(destination, origin);
-        
+
         if (!region) {
             return NextResponse.json({
                 success: false,
@@ -238,7 +231,7 @@ export async function POST(request) {
                 criterioUsado = pesoReal > pesoVolumetrico ? 'peso_real' : 'peso_volumetrico';
                 precio = pesoAFacturar * 12.0 * quantity; // $12/lb tarifa fija
                 tiempo = '8-10 días';
-                
+
                 // Aplicar precio mínimo
                 const precioMinimo = preciosMinimos?.panama?.aereo || 60.0;
                 if (precio < precioMinimo) {
@@ -249,36 +242,36 @@ export async function POST(request) {
                 pesoAFacturar = 0; // No aplica peso para marítimo
                 criterioUsado = 'volumen';
                 const categoria = obtenerCategoriaPanama(rubro);
-                
+
                 if (!categoria) {
                     return NextResponse.json({
                         success: false,
                         error: `No se encontró categoría para el rubro: ${rubro}`
                     }, { status: 400, headers: corsHeaders });
                 }
-                
+
                 // Obtener región específica para esta categoría (importante para estados como Zulia)
                 const regionParaCategoria = obtenerRegionPorCategoria(destination, origin, categoria);
-                
+
                 if (!regionParaCategoria) {
                     return NextResponse.json({
                         success: false,
                         error: `No se encontró región para el destino: ${destination}`
                     }, { status: 400, headers: corsHeaders });
                 }
-                
+
                 const tarifa = tarifasPanamaCoLoader[regionParaCategoria]?.[categoria];
-                
+
                 if (!tarifa) {
                     return NextResponse.json({
                         success: false,
                         error: `No se encontró tarifa para región: ${regionParaCategoria}, categoría: ${categoria}`
                     }, { status: 400, headers: corsHeaders });
                 }
-                
+
                 precio = volumenFt3 * tarifa * quantity;
                 tiempo = '15-20 días';
-                
+
                 // Aplicar precio mínimo
                 const precioMinimo = preciosMinimos?.panama?.maritimo || 70.0;
                 if (precio < precioMinimo) {
@@ -291,7 +284,7 @@ export async function POST(request) {
                 pesoAFacturar = Math.max(pesoReal, pesoVolumetrico);
                 criterioUsado = pesoReal > pesoVolumetrico ? 'peso_real' : 'peso_volumetrico';
                 const tarifasZona = tarifasAereas[origin];
-                
+
                 if (typeof tarifasZona === 'object') {
                     // Mapear regiones a zonas para compatibilidad
                     const zona = region === 'Zona 1' ? 'Zona 1' : 'Zona 2';
@@ -302,7 +295,7 @@ export async function POST(request) {
                     precio = pesoAFacturar * tarifasZona * quantity;
                 }
                 tiempo = '8-10 días';
-                
+
                 // Aplicar precio mínimo
                 const precioMinimo = preciosMinimos?.estados_unidos?.aereo || 30.0;
                 if (precio < precioMinimo) {
@@ -310,25 +303,61 @@ export async function POST(request) {
                 }
             }
         } else if (origin === 'china') {
-            // Solo marítimo desde China
-            pesoAFacturar = 0; // No aplica peso para marítimo
-            criterioUsado = 'volumen';
-            const tarifa = tarifasChina[region];
-            
-            if (!tarifa) {
-                return NextResponse.json({
-                    success: false,
-                    error: `No se encontró tarifa para región: ${region}`
-                }, { status: 400, headers: corsHeaders });
-            }
-            
-            precio = volumenFt3 * tarifa * quantity;
-            tiempo = '55-65 días';
-            
-            // Aplicar precio mínimo
-            const precioMinimo = preciosMinimos?.china?.maritimo || 105.0;
-            if (precio < precioMinimo) {
-                precio = precioMinimo;
+            if (shipmentType === 'aereo') {
+                // Aéreo desde China - por zona (igual que marítimo)
+                pesoVolumetrico = calcularPesoVolumetrico(length, width, height, unit) / 2.20462; // lb a kg
+                pesoAFacturar = Math.max(pesoReal, pesoVolumetrico);
+                criterioUsado = pesoReal > pesoVolumetrico ? 'peso_real' : 'peso_volumetrico';
+
+                const tarifasZona = tarifasAereas['china'];
+
+                if (!tarifasZona || typeof tarifasZona !== 'object') {
+                    return NextResponse.json({
+                        success: false,
+                        error: 'Tarifas aéreas de China no configuradas correctamente'
+                    }, { status: 400, headers: corsHeaders });
+                }
+
+                // Mapear regiones a zonas para compatibilidad
+                const zona = region === 'Zona 1' ? 'Zona 1' : 'Zona 2';
+                const tarifa = tarifasZona[zona];
+
+                if (!tarifa) {
+                    return NextResponse.json({
+                        success: false,
+                        error: `No se encontró tarifa aérea para la zona: ${zona}`
+                    }, { status: 400, headers: corsHeaders });
+                }
+
+                precio = pesoAFacturar * tarifa * quantity;
+                tiempo = '5-7 días';
+
+                // Aplicar precio mínimo
+                const precioMinimo = preciosMinimos?.china?.aereo || 115.0;
+                if (precio < precioMinimo) {
+                    precio = precioMinimo;
+                }
+            } else {
+                // Marítimo desde China
+                pesoAFacturar = 0; // No aplica peso para marítimo
+                criterioUsado = 'volumen';
+                const tarifa = tarifasChina[region];
+
+                if (!tarifa) {
+                    return NextResponse.json({
+                        success: false,
+                        error: `No se encontró tarifa para región: ${region}`
+                    }, { status: 400, headers: corsHeaders });
+                }
+
+                precio = volumenFt3 * tarifa * quantity;
+                tiempo = '55-65 días';
+
+                // Aplicar precio mínimo
+                const precioMinimo = preciosMinimos?.china?.maritimo || 105.0;
+                if (precio < precioMinimo) {
+                    precio = precioMinimo;
+                }
             }
         } else {
             return NextResponse.json({
@@ -343,11 +372,11 @@ export async function POST(request) {
         let precioMinimoAplicado = false;
         let seguroCarga = 0;
         let seguroObligatorio = false;
-        
+
         // El seguro es OBLIGATORIO para envíos marítimos (siempre se aplica)
         if (shipmentType === 'maritimo') {
             seguroObligatorio = true;
-            
+
             // Verificar si se aplicó precio mínimo y calcular volumen equivalente
             if (origin === 'china') {
                 const precioMinimo = preciosMinimos?.china?.maritimo || 105.0;
@@ -364,10 +393,10 @@ export async function POST(request) {
                     precioMinimoAplicado = true;
                 }
             }
-            
+
             seguroCarga = volumenParaSeguro;
         }
-        
+
         // Verificar si se aplicó precio mínimo para envíos aéreos (solo para tracking)
         if (shipmentType === 'aereo') {
             if (origin === 'estados_unidos') {
@@ -377,6 +406,11 @@ export async function POST(request) {
                 }
             } else if (origin === 'panama') {
                 const precioMinimo = preciosMinimos?.panama?.aereo || 60.0;
+                if (precio <= precioMinimo) {
+                    precioMinimoAplicado = true;
+                }
+            } else if (origin === 'china') {
+                const precioMinimo = preciosMinimos?.china?.aereo || 115.0;
                 if (precio <= precioMinimo) {
                     precioMinimoAplicado = true;
                 }
@@ -390,7 +424,7 @@ export async function POST(request) {
             // Si es un entero, agregar .0 explícitamente
             return num === Math.floor(num) ? num + 0.0 : num;
         };
-        
+
         // Preparar respuesta con tipos explícitos
         const response = {
             success: true,
@@ -453,7 +487,7 @@ export async function GET() {
                 rubrosArray.push(...rubros);
             }
         });
-        
+
         const response = {
             success: true,
             data: {
@@ -471,7 +505,7 @@ export async function GET() {
                 }
             }
         };
-        
+
         return NextResponse.json(response, { headers: corsHeaders });
     } catch (error) {
         console.error('Error en GET /api/calculate-shipping:', error);

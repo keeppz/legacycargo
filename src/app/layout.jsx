@@ -150,7 +150,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="es">
-      <body>
+      <body suppressHydrationWarning>
         <FontAwesomeLoader />
         <AuthProvider>
           {children}

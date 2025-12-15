@@ -168,14 +168,18 @@ export const tarifasPanama = {
     }
 };
 
-// Tarifas aéreas por origen y zona (en USD/lb)
+// Tarifas aéreas por origen y zona
+// Estados Unidos: USD/lb, Panamá: USD/kg, China: USD/kg
 export const tarifasAereas = {
     'estados_unidos': {
         'Zona 1': 6.0,
         'Zona 2': 9.0
     },
     'panama': 12.0,
-    'china': 18.0 // Preparado para futuro
+    'china': {
+        'Zona 1': 23.0,  // USD por kilogramo
+        'Zona 2': 25.0   // USD por kilogramo
+    }
 };
 
 // Precios mínimos por origen y tipo de envío
@@ -196,6 +200,6 @@ export const preciosMinimos = {
 export const calcularPrecioMinimo = (origen, destino, rubro, tipoEnvio) => {
     const precios = preciosMinimos[origen];
     if (!precios) return 0;
-    
+
     return precios[tipoEnvio] || 0;
 }; 

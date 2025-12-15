@@ -40,7 +40,7 @@ export default function Offcanvas({ isOffCanvas, handleOffCanvas }) {
 									</button>
 								</div>
 							</div>
-							
+
 							<div className="offcanvas__menu mb-4">
 								<ul className="menu-overflow">
 									<li className="menu-item mb-3">
@@ -51,7 +51,7 @@ export default function Offcanvas({ isOffCanvas, handleOffCanvas }) {
 									</li>
 									<li className="menu-item-has-children mb-3">
 										<a onClick={() => handleToggle(1)} className="has-dropdown main-nav-link">
-											Servicios 
+											Servicios
 											<i className={`fa-solid ${isActive.key === 1 ? "fa-minus" : "fa-plus"} ms-2`}></i>
 										</a>
 										<ul className={`sub-menu ${isActive.key === 1 ? "active" : ""}`}>
@@ -66,15 +66,18 @@ export default function Offcanvas({ isOffCanvas, handleOffCanvas }) {
 										<Link href="/calculator" onClick={handleOffCanvas} className="main-nav-link">Calculadora de envíos</Link>
 									</li>
 									<li className="menu-item mb-3">
+										<Link href="/tracking" onClick={handleOffCanvas} className="main-nav-link">Seguimiento de envíos</Link>
+									</li>
+									<li className="menu-item mb-3">
 										<Link href="/contact" onClick={handleOffCanvas} className="main-nav-link">Contáctanos</Link>
 									</li>
 								</ul>
 							</div>
-							
+
 							<p className="text d-none d-xl-block">
 								Legacy Cargo, expertos en soluciones logísticas internacionales. Conectamos a Venezuela con el mundo a través de servicios confiables y eficientes.
 							</p>
-							
+
 							<div className="offcanvas__contact">
 								<h4>Información de Contacto</h4>
 								<ul>

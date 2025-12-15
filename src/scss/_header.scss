@@ -1,26 +1,27 @@
 .header-top-wrapper {
-    @include flex;
-    justify-content: space-between;
+	@include flex;
+	justify-content: space-between;
 
-    span {
-        color: rgba(255, 255, 255, .8);
-        i {
-            color: $white;
-            margin-right: 5px;
-        }
-    }
+	span {
+		color: rgba(255, 255, 255, .8);
 
-    .social-icon {
-        gap: 17px;
+		i {
+			color: $white;
+			margin-right: 5px;
+		}
+	}
 
-        a {
-            color: $white;
+	.social-icon {
+		gap: 17px;
 
-            &:hover {
-                color: $theme-color;
-            }
-        }
-    }
+		a {
+			color: $white;
+
+			&:hover {
+				color: $theme-color;
+			}
+		}
+	}
 }
 
 .header-top-wrapper-2 {
@@ -30,9 +31,9 @@
 	justify-content: space-between;
 	position: relative;
 	z-index: 9;
-	
 
-	@include breakpoint (max-xl){
+
+	@include breakpoint (max-xl) {
 		display: none;
 	}
 
@@ -47,7 +48,7 @@
 		background-color: transparent;
 		z-index: -1;
 
-		@include breakpoint (max-xxl){
+		@include breakpoint (max-xxl) {
 			display: none;
 		}
 	}
@@ -91,11 +92,11 @@
 
 	.social-icon {
 		gap: 20px;
-		
+
 		a {
 			color: $header-color;
 
-			@include breakpoint (max-xxl){
+			@include breakpoint (max-xxl) {
 				color: $white;
 			}
 
@@ -107,43 +108,43 @@
 }
 
 .header-top-section {
-	@include breakpoint (max-sm){
+	@include breakpoint (max-sm) {
 		display: none;
 	}
 
-    .container-fluid {
-        padding: 0 150px;
+	.container-fluid {
+		padding: 0 150px;
 
-		@include breakpoint (max-xl4){
+		@include breakpoint (max-xl4) {
 			padding: 0 50px;
 		}
 
-		@include breakpoint (max-xxxl){
+		@include breakpoint (max-xxxl) {
 			padding: 0 40px;
 		}
 
-		@include breakpoint (max-xl){
+		@include breakpoint (max-xl) {
 			padding: 0 20px;
 		}
-    }
+	}
 }
 
 .header-section {
-    .container-fluid {
-        padding: 0 150px;
+	.container-fluid {
+		padding: 0 150px;
 
-		@include breakpoint (max-xl4){
+		@include breakpoint (max-xl4) {
 			padding: 0 50px;
 		}
 
-		@include breakpoint (max-xxxl){
+		@include breakpoint (max-xxxl) {
 			padding: 0 40px;
 		}
 
-		@include breakpoint (max-xl){
+		@include breakpoint (max-xl) {
 			padding: 0 20px;
 		}
-    }
+	}
 }
 
 .header-section-2 {
@@ -154,20 +155,20 @@
 	z-index: 999;
 
 	.container-fluid {
-        padding: 0 90px;
+		padding: 0 90px;
 
-		@include breakpoint (max-xl4){
+		@include breakpoint (max-xl4) {
 			padding: 0 50px;
 		}
 
-		@include breakpoint (max-xxxl){
+		@include breakpoint (max-xxxl) {
 			padding: 0 40px;
 		}
 
-		@include breakpoint (max-xl){
+		@include breakpoint (max-xl) {
 			padding: 0 20px;
 		}
-    }
+	}
 }
 
 .header-top-sectionss {
@@ -176,7 +177,7 @@
 	position: relative;
 	z-index: 99;
 
-	@include breakpoint (max-lg){
+	@include breakpoint (max-lg) {
 		display: none;
 	}
 
@@ -186,7 +187,7 @@
 		z-index: -1;
 		left: 81%;
 
-		@include breakpoint (max-xl4){
+		@include breakpoint (max-xl4) {
 			display: none;
 		}
 	}
@@ -199,14 +200,14 @@
 		position: relative;
 
 		&::after {
-				@include before;
-				background-color: $theme-color;
-				width: 16%;
+			@include before;
+			background-color: $theme-color;
+			width: 16%;
 
-				@include breakpoint (max-xl4){
-					display: none;
-				}
+			@include breakpoint (max-xl4) {
+				display: none;
 			}
+		}
 	}
 
 	&.top-style-3 {
@@ -218,13 +219,13 @@
 	.container-fluid {
 		padding: 0 130px;
 
-		@include breakpoint (max-xxl){
+		@include breakpoint (max-xxl) {
 			padding: 0 50px;
 		}
 	}
 }
 
-.header-top-wrappers{
+.header-top-wrappers {
 	@include flex;
 	justify-content: space-between;
 
@@ -267,7 +268,7 @@
 		.flag-wrap {
 			position: relative;
 			width: 160px;
-			
+
 			.nice-select {
 				padding: 0 0 0 60px;
 				background: transparent;
@@ -290,24 +291,26 @@
 					border-color: $theme-color;
 					border-right: 2px solid theme-color;
 				}
-	
-				span{
+
+				span {
 					font-size: 16px;
 					font-weight: 500;
 					text-transform: capitalize;
 					color: $white;
 				}
 			}
-	
+
 			.flag {
 				position: absolute;
 				top: 0;
 				left: 15px;
 				z-index: 1;
-				@include breakpoint(max-md){
+
+				@include breakpoint(max-md) {
 					display: none
 				}
-				img{
+
+				img {
 					@include imgw;
 					border: 4px solid $white;
 					border-radius: 50%;
@@ -319,7 +322,7 @@
 	&.style-2 {
 		margin-left: 250px;
 
-		@include breakpoint (max-xl4){
+		@include breakpoint (max-xl4) {
 			margin-left: 0;
 		}
 	}
@@ -327,135 +330,135 @@
 
 
 .main-header-wrapper {
-    @include flex;
-    gap: 100px;
+	@include flex;
+	gap: 100px;
 
-	@include breakpoint (max-xl4){
+	@include breakpoint (max-xl4) {
 		gap: 70px;
 	}
 
-	@include breakpoint (max-xxxl){
+	@include breakpoint (max-xxxl) {
 		gap: 40px;
 	}
 
-	@include breakpoint (max-xl){
+	@include breakpoint (max-xl) {
 		padding: 15px 0;
 	}
 
-    .main-header-items {
-        width: 100%;
+	.main-header-items {
+		width: 100%;
 
-        .header-contact-info-area {
-            @include flex;
-            justify-content: space-between;
-            padding: 0 50px;
-            border: 1px solid #D4DCED;
+		.header-contact-info-area {
+			@include flex;
+			justify-content: space-between;
+			padding: 0 50px;
+			border: 1px solid #D4DCED;
 
-			@include breakpoint (max-xxxl){
+			@include breakpoint (max-xxxl) {
 				padding: 0 30px;
 			}
 
-			@include breakpoint (max-xl){
+			@include breakpoint (max-xl) {
 				display: none;
 			}
-        
-        
-            @include breakpoint (max-sm){
-                gap: 30px;
-            }
-        
-            .contact-info-items {
-                @include flex;
-                gap: 20px;
-                justify-content: space-between;
-                position: relative;
-                padding: 30px 0;
-                border-right: 1px solid #D4DCED;
-                padding-right: 50px;
 
-				@include breakpoint (max-xxl){
+
+			@include breakpoint (max-sm) {
+				gap: 30px;
+			}
+
+			.contact-info-items {
+				@include flex;
+				gap: 20px;
+				justify-content: space-between;
+				position: relative;
+				padding: 30px 0;
+				border-right: 1px solid #D4DCED;
+				padding-right: 50px;
+
+				@include breakpoint (max-xxl) {
 					border-right: none;
 					padding-right: 0;
 				}
-        
-                .icon {
-                    width: 40px;
-                    height: 40px;
-                    line-height: 40px;
-                    text-align: center;
-                    position: relative;
-                    background-color:  $white;
-                    border-radius: 50%;
-                    color: $theme-color;
-                    box-shadow: (0px 4px 25px rgba(0, 0, 0, 0.06));
-                    position: relative;
 
-					@include breakpoint (max-xxl){
+				.icon {
+					width: 40px;
+					height: 40px;
+					line-height: 40px;
+					text-align: center;
+					position: relative;
+					background-color: $white;
+					border-radius: 50%;
+					color: $theme-color;
+					box-shadow: (0px 4px 25px rgba(0, 0, 0, 0.06));
+					position: relative;
+
+					@include breakpoint (max-xxl) {
 						width: 30px;
 						height: 30px;
 						line-height: 30px;
 					}
 
-                    &::before {
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        width: 64px;
-                        height: 64px;
-                        content: "";
-                        background-color: transparent;
-                        border-radius: 50%;
-                        border: 1px solid rgba(30, 32, 35, 0.10);
-                        transform: translate(-50%,-50%);
+					&::before {
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						width: 64px;
+						height: 64px;
+						content: "";
+						background-color: transparent;
+						border-radius: 50%;
+						border: 1px solid rgba(30, 32, 35, 0.10);
+						transform: translate(-50%, -50%);
 
-						@include breakpoint (max-xxl){
+						@include breakpoint (max-xxl) {
 							width: 54px;
 							height: 54px;
 						}
-                    }
-                }
-        
-                .content {
-                    p {
-                        color: $text-color;
-                        margin-bottom: 5px;
-                        text-transform: capitalize;
-                        font-size: 14px;
-                        font-weight: 500;
-                        opacity: 0.7;
-                    }
-        
-                    h3 {
-                        font-size: 20px;
-                        color: $header-color;
-                        text-transform: initial;
+					}
+				}
 
-						@include breakpoint (max-xxxl){
+				.content {
+					p {
+						color: $text-color;
+						margin-bottom: 5px;
+						text-transform: capitalize;
+						font-size: 14px;
+						font-weight: 500;
+						opacity: 0.7;
+					}
+
+					h3 {
+						font-size: 20px;
+						color: $header-color;
+						text-transform: initial;
+
+						@include breakpoint (max-xxxl) {
 							font-size: 18px;
 						}
-        
-                        a {
-                            color: $header-color;
-                        }
-                    }
-                }
 
-                &.style-2 {
-                    border: none;
-                    padding-right: 0;
-                }
-            }
+						a {
+							color: $header-color;
+						}
+					}
+				}
+
+				&.style-2 {
+					border: none;
+					padding-right: 0;
+				}
+			}
 
 			.header-button {
 				.theme-btn {
-					@include breakpoint (max-xxxl){
+					@include breakpoint (max-xxxl) {
 						font-size: 14px;
 						padding: 24px 27px;
 					}
 				}
 			}
-        }
-    }
+		}
+	}
 }
 
 .header-section-22 {
@@ -466,7 +469,7 @@
 		background-color: $theme-color;
 		width: 16%;
 
-		@include breakpoint (max-xl4){
+		@include breakpoint (max-xl4) {
 			display: none;
 		}
 	}
@@ -476,7 +479,7 @@
 	margin-left: 250px;
 	position: relative;
 
-	@include breakpoint (max-xl4){
+	@include breakpoint (max-xl4) {
 		margin-left: 0;
 	}
 
@@ -486,7 +489,7 @@
 		left: -200px;
 		z-index: 9;
 
-		@include breakpoint (max-xl4){
+		@include breakpoint (max-xl4) {
 			display: none;
 		}
 	}
@@ -494,22 +497,22 @@
 	.container-fluid {
 		padding: 0 130px;
 
-		@include breakpoint (max-xxl){
+		@include breakpoint (max-xxl) {
 			padding: 0 50px;
 		}
 
-		@include breakpoint (max-lg){
+		@include breakpoint (max-lg) {
 			padding: 0 40px;
 		}
 
-		@include breakpoint (max-sm){
+		@include breakpoint (max-sm) {
 			padding: 0 15px;
 		}
 	}
 
 	.header-main {
 		.logo {
-			@include breakpoint (max-xl4){
+			@include breakpoint (max-xl4) {
 				display: block !important;
 			}
 		}
@@ -523,7 +526,8 @@
 
 					.has-homemenu {
 						left: -200px;
-						@include breakpoint (max-xxxl){
+
+						@include breakpoint (max-xxxl) {
 							left: -300px;
 						}
 					}
@@ -534,7 +538,7 @@
 		.header-right {
 			gap: 40px;
 
-			@include breakpoint (max-lg){
+			@include breakpoint (max-lg) {
 				gap: 25px;
 			}
 
@@ -544,11 +548,11 @@
 					padding: 22px 30px;
 				}
 
-				@include breakpoint (max-xl4){
+				@include breakpoint (max-xl4) {
 					margin-right: 0;
 				}
 
-				@include breakpoint (max-xxxl){
+				@include breakpoint (max-xxxl) {
 					display: none;
 				}
 			}
@@ -569,7 +573,7 @@
 		position: relative;
 		z-index: 1;
 
-		@include breakpoint (max-xxs){
+		@include breakpoint (max-xxs) {
 			padding: 0 15px;
 		}
 
@@ -585,28 +589,30 @@
 			z-index: -1;
 			border-radius: 0 13px 13px 0;
 
-			@include breakpoint (max-xxl){
+			@include breakpoint (max-xxl) {
 				display: none;
 			}
 
-			
+
 		}
 
 		.header-main {
-			@include breakpoint (max-xxl){
+			padding: 10px 0 5px 0;
+
+			@include breakpoint (max-xxl) {
 				gap: 30px;
 			}
 
 			.main-menu {
 				ul {
-					@include breakpoint (max-lg){
+					@include breakpoint (max-lg) {
 						display: none !important;
 					}
-					
-					
+
+
 					li {
-	
-						@include breakpoint (max-xxl){
+
+						@include breakpoint (max-xxl) {
 							margin-inline-end: 25px;
 
 							a {
@@ -616,7 +622,7 @@
 						}
 
 						// Ajuste para pantallas medianas (992px - 1199px)
-						@include breakpoint (max-xxl){
+						@include breakpoint (max-xxl) {
 							margin-inline-end: 1px;
 							margin-left: 20px;
 
@@ -625,7 +631,8 @@
 								font-size: 13px;
 							}
 						}
-						@include breakpoint (xxl){
+
+						@include breakpoint (xxl) {
 							margin-inline-end: 1px !important;
 							margin-left: 20px !important;
 
@@ -634,7 +641,8 @@
 								color: $white;
 							}
 						}
-						@include breakpoint (xl){
+
+						@include breakpoint (xl) {
 							margin-inline-end: 1px;
 							margin-left: 20px;
 
@@ -642,9 +650,9 @@
 								font-size: 15px;
 							}
 						}
-						
+
 						.has-homemenu {
-							@include breakpoint (max-xl4){
+							@include breakpoint (max-xl4) {
 								left: -50px;
 							}
 						}
@@ -654,115 +662,122 @@
 		}
 	}
 
-	.header-right {
-		gap: 50px !important;
+	.header-left {
 
-		@include breakpoint (max-xxl){
-			gap: 30px !important;
+		padding: 10px 0 5px 0;
+	}
+}
+
+.header-right {
+	gap: 50px !important;
+
+	@include breakpoint (max-xxl) {
+		gap: 30px !important;
+	}
+
+	// Ajuste para pantallas medianas (992px - 1199px)
+	@include breakpoint (max-xl) {
+		gap: 25px !important;
+	}
+
+	.header-button {
+		margin-right: 57px;
+
+		@include breakpoint (max-xxl) {
+			display: none;
 		}
 
-		// Ajuste para pantallas medianas (992px - 1199px)
-		@include breakpoint (max-xl){
-			gap: 25px !important;
+		@include breakpoint (xl) {
+			align-items: center;
+			justify-content: center;
+
+
 		}
 
-		.header-button {
-			margin-right: 57px;
+		.theme-btn {
+			background-color: $header-color;
+			margin-top: 10px;
+			margin-right: 50px !important;
 
-			@include breakpoint (max-xxl){
+			@include breakpoint (xxl) {
+				margin-right: 20px !important;
+				font-size: 14px;
+				max-height: 60px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+			}
+
+			&:hover {
+
+				&::before,
+				&::after {
+					background-color: $theme-color;
+				}
+			}
+		}
+	}
+
+	.search-item {
+		@include flex;
+		gap: 40px;
+		margin-right: 40px;
+
+		@include breakpoint (max-xxl) {
+			margin-right: 0;
+		}
+
+		@include breakpoint (max-md) {
+			gap: 20px;
+		}
+
+		.search-icon {
+			color: $white;
+
+			@include breakpoint (max-xxl) {
+				color: $white;
+			}
+
+			@include breakpoint (max-sm) {
 				display: none;
 			}
+		}
 
-			@include breakpoint (xl){
-				align-items: center;
-				justify-content: center;
-				
-				
-			}
+		.sidebar__toggle {
+			color: $white;
 
-			.theme-btn {
-				background-color: $header-color;
-				margin-top: 10px;
-				margin-right: 50px !important;
-
-				@include breakpoint (xxl){
-					margin-right: 20px !important;
-					font-size: 14px;
-					max-height: 60px;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					
-				}
-
-				&:hover {
-					&::before,&::after {
-						background-color: $theme-color;
-					}
-				}
+			@include breakpoint (max-xxl) {
+				color: $white;
 			}
 		}
 
-		.search-item {
-			@include flex;
-			gap: 40px;
-			margin-right: 40px;
-			
-			@include breakpoint (max-xxl){
-				margin-right: 0;
+		.header__hamburger {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			@include breakpoint (max-lg) {
+				display: flex !important;
 			}
 
-			@include breakpoint (max-md){
-				gap: 20px;
-			}
-
-			.search-icon {
-				color: $white;
-
-				@include breakpoint (max-xxl){
-					color: $white;
-				}
-				
-				@include breakpoint (max-sm){
-					display: none;
-				}
+			@include breakpoint (lg) {
+				display: none !important;
 			}
 
 			.sidebar__toggle {
+				cursor: pointer;
+				padding: 5px;
+				font-size: 20px;
 				color: $white;
+				transition: all 0.3s ease;
 
-				@include breakpoint (max-xxl){
-					color: $white;
-				}
-			}
-
-			.header__hamburger {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				
-				@include breakpoint (max-lg){
-					display: flex !important;
+				&:hover {
+					color: $theme-color;
 				}
 
-				@include breakpoint (lg){
-					display: none !important;
-				}
-
-				.sidebar__toggle {
-					cursor: pointer;
-					padding: 5px;
-					font-size: 20px;
-					color: $white;
-					transition: all 0.3s ease;
-
-					&:hover {
-						color: $theme-color;
-					}
-
-					i {
-						font-size: 18px;
-					}
+				i {
+					font-size: 18px;
 				}
 			}
 		}
@@ -771,7 +786,7 @@
 
 //>>>>> Header Main Start <<<<<//
 .menu-thumb {
-	@include breakpoint (max-xl){
+	@include breakpoint (max-xl) {
 		display: none !important;
 	}
 
@@ -784,11 +799,11 @@
 	padding: 10px 0;
 	max-width: 100%;
 	box-sizing: border-box;
-	
+
 	.main-menu {
 		ul {
 			margin-bottom: 0;
-			
+
 			li {
 				position: relative;
 				list-style: none;
@@ -799,16 +814,16 @@
 				@include breakpoint(max-xl) {
 					margin-inline-end: 30px;
 				}
-	
+
 				&:last-child {
 					margin-inline-end: 0;
 				}
-	
+
 				a {
 					display: inline-block;
 					font-size: 17px;
 					font-weight: 600;
-					color:  $white;
+					color: $white;
 					padding: 20px 0;
 					text-align: left;
 					position: relative;
@@ -820,17 +835,18 @@
 						font-size: 15px;
 						padding: 18px 0;
 					}
-					
+
 
 					i {
 						margin-left: 7px;
 					}
-	
+
 					&:hover {
 						color: $theme-color !important;
 					}
-	
+
 				}
+
 				.submenu {
 					position: absolute;
 					top: 100%;
@@ -843,9 +859,9 @@
 					opacity: 0;
 					transform-origin: top center;
 					color: $white;
-					box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
-					-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
-					-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+					box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+					-webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+					-moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 					transform: translateY(10px);
 					@include transition;
 					box-sizing: border-box;
@@ -855,7 +871,7 @@
 						width: 100%;
 						margin: 0;
 						padding: 0;
-	
+
 						a {
 							position: relative;
 							z-index: 11;
@@ -874,17 +890,20 @@
 								color: $white !important;
 							}
 						}
+
 						&:last-child {
 							a {
 								border: none;
 							}
 						}
+
 						.submenu {
 							inset-inline-start: 100%;
 							top: 0;
 							visibility: hidden;
 							opacity: 0;
 						}
+
 						&:hover {
 							>a {
 								background: $theme-color;
@@ -894,6 +913,7 @@
 									color: $theme-color;
 								}
 							}
+
 							>.submenu {
 								-webkit-transform: translateY(1);
 								-moz-transform: translateY(1);
@@ -905,9 +925,11 @@
 							}
 						}
 					}
+
 					li.has-dropdown {
 						>a {
 							color: $white;
+
 							&::after {
 								position: absolute;
 								top: 50%;
@@ -934,11 +956,11 @@
 	padding: 10px 0;
 	max-width: 100%;
 	box-sizing: border-box;
-	
+
 	.main-menu {
 		ul {
 			margin-bottom: 0;
-			
+
 			li {
 				position: relative;
 				list-style: none;
@@ -949,16 +971,16 @@
 				@include breakpoint(max-xl) {
 					margin-inline-end: 30px;
 				}
-	
+
 				&:last-child {
 					margin-inline-end: 0;
 				}
-	
+
 				a {
 					display: inline-block;
 					font-size: 17px;
 					font-weight: 600;
-					color:  $white;
+					color: $white;
 					padding: 20px 0;
 					text-align: left;
 					position: relative;
@@ -974,12 +996,13 @@
 					i {
 						margin-left: 7px;
 					}
-	
+
 					&:hover {
 						color: $theme-color !important;
 					}
-	
+
 				}
+
 				.submenu {
 					position: absolute;
 					top: 100%;
@@ -992,9 +1015,9 @@
 					opacity: 0;
 					transform-origin: top center;
 					color: $header-color;
-					box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
-					-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
-					-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+					box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+					-webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+					-moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 					transform: translateY(10px);
 					@include transition;
 					box-sizing: border-box;
@@ -1004,7 +1027,7 @@
 						width: 100%;
 						margin: 0;
 						padding: 0;
-	
+
 						a {
 							position: relative;
 							z-index: 11;
@@ -1017,24 +1040,27 @@
 							width: 100%;
 							border-bottom: 1px solid #eeeeee;
 							margin: 0;
-							
+
 							box-sizing: border-box;
 
 							&:hover {
 								color: $white !important;
 							}
 						}
+
 						&:last-child {
 							a {
 								border: none;
 							}
 						}
+
 						.submenu {
 							inset-inline-start: 100%;
 							top: 0;
 							visibility: hidden;
 							opacity: 0;
 						}
+
 						&:hover {
 							>a {
 								background: $theme-color;
@@ -1044,6 +1070,7 @@
 									color: $theme-color;
 								}
 							}
+
 							>.submenu {
 								-webkit-transform: translateY(1);
 								-moz-transform: translateY(1);
@@ -1055,6 +1082,7 @@
 							}
 						}
 					}
+
 					li.has-dropdown {
 						>a {
 							&::after {
@@ -1081,26 +1109,26 @@
 					visibility: hidden;
 					box-sizing: border-box;
 
-					@include breakpoint (max-xl){
+					@include breakpoint (max-xl) {
 						width: 450px;
 						left: -200px;
 						padding: 25px 20px 10px 20px;
 					}
 
-					@include breakpoint (max-lg){
+					@include breakpoint (max-lg) {
 						width: 400px;
 						left: -150px;
 						padding: 20px 15px 10px 15px;
 					}
 
-					@include breakpoint (max-md){
+					@include breakpoint (max-md) {
 						width: 350px;
 						max-width: 85vw;
 						left: -100px;
 						padding: 15px 10px 5px 10px;
 					}
 
-					@include breakpoint (max-sm){
+					@include breakpoint (max-sm) {
 						width: 300px;
 						max-width: 80vw;
 						left: -50px;
@@ -1112,37 +1140,37 @@
 						gap: 30px;
 						justify-content: space-between;
 
-						@include breakpoint (max-xl){
+						@include breakpoint (max-xl) {
 							gap: 20px;
 						}
 
-						@include breakpoint (max-lg){
+						@include breakpoint (max-lg) {
 							flex-wrap: wrap;
 							gap: 15px;
 							justify-content: center;
 						}
 
-						@include breakpoint (max-md){
+						@include breakpoint (max-md) {
 							gap: 10px;
 						}
 
 						.homemenu {
 							position: relative;
 							max-width: 100%;
-							
-							@include breakpoint (max-lg){
+
+							@include breakpoint (max-lg) {
 								flex: 1 1 45%;
 								min-width: 120px;
 							}
 
-							@include breakpoint (max-md){
+							@include breakpoint (max-md) {
 								flex: 1 1 100%;
 							}
 
 							.homemenu-thumb {
 								position: relative;
 								overflow: hidden;
-	
+
 								.demo-button {
 									position: absolute;
 									top: 50%;
@@ -1158,11 +1186,11 @@
 									@include transition;
 									margin-top: 20px;
 
-									@include breakpoint (max-sm){
+									@include breakpoint (max-sm) {
 										width: 80%;
 										gap: 5px;
 									}
-	
+
 									.theme-btn {
 										padding: 14px 20px;
 										color: $black !important;
@@ -1172,21 +1200,21 @@
 										border-radius: 0px !important;
 										background-color: $theme-color;
 
-										@include breakpoint (max-sm){
+										@include breakpoint (max-sm) {
 											padding: 10px 15px;
 											font-size: 12px;
 										}
-	
+
 										&:hover {
 											color: $white !important;
-											
+
 											&::before {
 												background-color: $header-color;
 											}
 										}
 									}
 								}
-	
+
 								&::before {
 									background: -webkit-gradient(linear, left top, left bottom, from(rgba(20, 19, 19, 0)), to(#5e5ef6));
 									background: linear-gradient(to bottom, rgba(99, 92, 92, 0) 0%, #252527 100%);
@@ -1204,18 +1232,20 @@
 									transition: all 0.3s ease-in-out;
 									content: "";
 								}
-								&:hover{
-	
+
+								&:hover {
+
 									&::before {
 										visibility: visible;
 										opacity: 1;
 									}
-	
+
 									.demo-button {
 										opacity: 1;
 										visibility: visible;
 										margin-top: 0;
 									}
+
 									& .homemenu-btn {
 										opacity: 1;
 										visibility: visible;
@@ -1223,25 +1253,26 @@
 										transform: translateY(50%);
 									}
 								}
+
 								img {
 									width: 100%;
 									height: auto;
 									max-width: 100%;
 								}
 							}
-	
+
 							.homemenu-title {
 								text-align: center;
 								margin: 15px auto;
 								display: inline-block;
 								font-size: 16px;
 
-								@include breakpoint (max-md){
+								@include breakpoint (max-md) {
 									font-size: 14px;
 									margin: 10px auto;
 								}
 
-								@include breakpoint (max-sm){
+								@include breakpoint (max-sm) {
 									font-size: 12px;
 									margin: 8px auto;
 								}
@@ -1249,14 +1280,16 @@
 						}
 					}
 				}
-				
+
 				&:hover {
 					>a {
-						color:  $theme-color;
+						color: $theme-color;
+
 						&::after {
-							color:  $theme-color;
+							color: $theme-color;
 						}
 					}
+
 					>.submenu {
 						visibility: visible;
 						opacity: 1;
@@ -1270,7 +1303,7 @@
 	.header-right {
 		gap: 30px;
 
-		@include breakpoint (max-xxl){
+		@include breakpoint (max-xxl) {
 			gap: 20px;
 		}
 
@@ -1279,16 +1312,16 @@
 			gap: 18px;
 		}
 
-        .search-icon {
-            color: $header-color;
-            font-size: 18px;
-        }
+		.search-icon {
+			color: $header-color;
+			font-size: 18px;
+		}
 	}
 
 	.sidebar__toggle {
 		cursor: pointer;
 		font-size: 20px;
-        color: $white;
+		color: $white;
 	}
 }
 
@@ -1321,7 +1354,7 @@
 			}
 		}
 	}
-	
+
 	&.header-2 {
 		.mega-menu-wrapper {
 			&::before {
@@ -1334,11 +1367,11 @@
 //>>>>> Offcanvas Start <<<<<//
 .offcanvas__info {
 	background: $white none repeat scroll 0 0;
-	border-left: 2px solid  $theme-color;
+	border-left: 2px solid $theme-color;
 	position: fixed;
 	right: 0;
 	top: 0;
-	width: 400px;
+	width: 100%;
 	height: 100%;
 	-webkit-transform: translateX(calc(100% + 80px));
 	-moz-transform: translateX(calc(100% + 80px));
@@ -1355,38 +1388,37 @@
 
 	// Responsive widths para evitar scroll horizontal
 	@include breakpoint(max-lg) {
-		width: 350px;
+		width: 100%;
 	}
 
 	@include breakpoint(max-md) {
-		width: 300px;
+		width: 100%;
 	}
 
 	@include breakpoint(max-sm) {
-		width: 280px;
-		max-width: 90vw;
+		width: 100%;
 	}
 
 	@include breakpoint(max-xs) {
-		width: 260px;
-		max-width: 90vw;
+		width: 100%;
 	}
 
 	&::-webkit-scrollbar {
 		display: none;
 	}
-	
+
 	// Versión dark background
 	&.dark-bg {
 		background: $dark-grey;
-		
+		width: 100%;
+
 		.offcanvas__menu {
 			ul {
 				text-align: center;
-				
+
 				li {
 					position: relative;
-					
+
 					.main-nav-link {
 						color: $white;
 						font-size: 17px;
@@ -1401,13 +1433,13 @@
 							font-size: 16px;
 							padding: 6px 0;
 						}
-						
+
 						&:hover {
 							color: $theme-color;
 							transform: translateX(0);
 						}
 					}
-					
+
 					&.menu-item-has-children {
 						.has-dropdown {
 							cursor: pointer;
@@ -1419,42 +1451,42 @@
 								font-size: 16px;
 							}
 
-														
-							
+
+
 							i {
 								transition: all 0.3s ease;
 							}
 						}
-						
+
 						.sub-menu {
 							overflow: hidden;
 							max-height: 0;
 							padding-left: 0;
 							margin-top: 10px;
 							transition: max-height 0.4s ease-in-out;
-							
+
 							&.active {
 								max-height: 200px;
 							}
-							
+
 							li {
 								transform: translateY(-10px);
 								opacity: 0;
 								transition: all 0.3s ease;
 								transition-delay: 0.05s;
-								
+
 								&:nth-child(2) {
 									transition-delay: 0.1s;
 								}
-								
+
 								&:nth-child(3) {
 									transition-delay: 0.15s;
 								}
-								
+
 								&:nth-child(4) {
 									transition-delay: 0.2s;
 								}
-								
+
 								.sub-nav-link {
 									color: $white;
 									font-size: 16px;
@@ -1467,7 +1499,7 @@
 										font-size: 15px;
 										padding: 6px 0;
 									}
-									
+
 									&:before {
 										content: "";
 										position: absolute;
@@ -1478,14 +1510,14 @@
 										height: 6px;
 										background-color: $theme-color;
 										border-radius: 50%;
-										
+
 										@include breakpoint (max-sm) {
 											left: -8px;
 											width: 4px;
 											height: 4px;
 										}
 									}
-									
+
 									&:hover {
 										color: $theme-color;
 										transform: translateX(0);
@@ -1493,7 +1525,7 @@
 								}
 							}
 						}
-						
+
 						.sub-menu.active li {
 							transform: translateY(0);
 							opacity: 1;
@@ -1502,12 +1534,12 @@
 				}
 			}
 		}
-		
+
 		.text {
 			color: $white;
 			text-align: center;
 		}
-		
+
 		.offcanvas__content {
 			h4 {
 				color: $white;
@@ -1519,14 +1551,14 @@
 					margin-bottom: 12px;
 				}
 			}
-			
+
 			.offcanvas__contact {
 				margin-top: 30px;
 
 				@include breakpoint(max-sm) {
 					margin-top: 25px;
 				}
-				
+
 				ul {
 					li {
 						a {
@@ -1536,7 +1568,7 @@
 								font-size: 14px;
 							}
 						}
-						
+
 						.offcanvas__contact-icon {
 							i {
 								color: $theme-color;
@@ -1544,7 +1576,7 @@
 						}
 					}
 				}
-				
+
 				.legacy-btn {
 					background-color: $theme-color;
 					border-color: $theme-color;
@@ -1556,7 +1588,7 @@
 						font-size: 14px;
 					}
 				}
-				
+
 				.legacy-social {
 					gap: 15px;
 					justify-content: center;
@@ -1564,7 +1596,7 @@
 					@include breakpoint(max-sm) {
 						gap: 12px;
 					}
-					
+
 					a {
 						color: $white;
 						background-color: $theme-color;
@@ -1581,7 +1613,7 @@
 							height: 35px;
 							font-size: 14px;
 						}
-						
+
 						&:hover {
 							background-color: adjust-color($theme-color, $lightness: -5%);
 						}
@@ -1655,7 +1687,7 @@
 						color: $text-color;
 					}
 
-					&:not(:last-child){
+					&:not(:last-child) {
 						margin-bottom: 15px;
 					}
 
@@ -1674,7 +1706,7 @@
 			}
 
 			.header-button {
-				
+
 				.theme-btn {
 					width: 100%;
 					padding: 16px 40px;
@@ -1689,12 +1721,12 @@
 						color: $black !important;
 					}
 
-					@include breakpoint (max-xxl){
+					@include breakpoint (max-xxl) {
 						font-size: 14px;
 						padding: 12px 20px;
 					}
 
-					@include breakpoint (max-xl){
+					@include breakpoint (max-xl) {
 						font-size: 13px;
 						padding: 10px 18px;
 					}
@@ -1702,30 +1734,30 @@
 			}
 
 			.social-icon {
-                margin-top: 30px;
-                gap: 10px;
+				margin-top: 30px;
+				gap: 10px;
 
-                a {
-                    width: 45px;
-                    height: 45px;
-                    line-height: 45px;
-                    text-align: center;
-                    font-size: 16px;
-                    display: block;
-                    background: transparent;
-                    color: $text-color;
-                    border-radius: 50%;
-                    -webkit-transition: all .4s ease-in-out;
-                    transition: all .4s ease-in-out;
-                    text-align: center;
-                    border: 1px solid $border-color;
+				a {
+					width: 45px;
+					height: 45px;
+					line-height: 45px;
+					text-align: center;
+					font-size: 16px;
+					display: block;
+					background: transparent;
+					color: $text-color;
+					border-radius: 50%;
+					-webkit-transition: all .4s ease-in-out;
+					transition: all .4s ease-in-out;
+					text-align: center;
+					border: 1px solid $border-color;
 
-                    &:hover {
-                        background-color: $theme-color;
-                        color: $white;
-                    }
-                }
-            }
+					&:hover {
+						background-color: $theme-color;
+						color: $white;
+					}
+				}
+			}
 		}
 	}
 }
@@ -1734,17 +1766,22 @@
 	position: fixed;
 	height: 100%;
 	width: 100%;
-	background: #151515;
+	background: rgba(21, 21, 21, 0.7);
 	z-index: 900;
 	top: 0;
 	opacity: 0;
 	visibility: hidden;
 	right: 0;
+	transition: all 0.3s ease;
+	backdrop-filter: blur(0px);
+	-webkit-backdrop-filter: blur(0px);
 }
 
 .offcanvas__overlay.overlay-open {
-	opacity: 0.8;
+	opacity: 1;
 	visibility: visible;
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
 }
 
 @media (max-width:450px) {
@@ -1761,18 +1798,18 @@
 
 
 //>>>>> Breadcrumb Start <<<<<//
-.breadcrumb-wrapper{
+.breadcrumb-wrapper {
 	position: relative;
 	overflow: hidden;
 	z-index: 9;
 	padding-top: 255px;
-    padding-bottom: 120px;
+	padding-bottom: 120px;
 
-	@include breakpoint (max-xl){
+	@include breakpoint (max-xl) {
 		padding-top: 150px;
 	}
 
-	@include breakpoint (max-lg){
+	@include breakpoint (max-lg) {
 		padding-top: 160px;
 	}
 
@@ -1783,18 +1820,19 @@
 		background: $header-color;
 	}
 
-	.shape-image  {
+	.shape-image {
 		position: absolute;
 		right: 0;
 		bottom: 10%;
 
-		@include breakpoint (max-lg){
+		@include breakpoint (max-lg) {
 			display: none;
 		}
 	}
 
-	.page-heading{
+	.page-heading {
 		text-align: center;
+
 		h1 {
 			color: $white;
 			font-size: 74px;
@@ -1802,11 +1840,11 @@
 			z-index: 9;
 			text-transform: uppercase;
 
-			@include breakpoint(max-lg){
+			@include breakpoint(max-lg) {
 				font-size: 60px;
 			}
 
-			@include breakpoint(max-sm){
+			@include breakpoint(max-sm) {
 				font-size: 42px;
 			}
 		}
@@ -1817,28 +1855,29 @@
 			gap: 10px;
 			justify-content: center;
 
-			@include breakpoint (max-sm){
+			@include breakpoint (max-sm) {
 				margin-top: 15px;
 			}
-			
-			li{
+
+			li {
 				color: $theme-color;
 				text-transform: capitalize;
 				font-weight: 500;
 				font-size: 18px;
-	
+
 				a {
-					color: $white;				;
+					color: $white;
+					;
 					@include transition;
-	
-					&:hover{
+
+					&:hover {
 						color: $theme-color;
 					}
 				}
-	
+
 				i {
 					color: $white;
-                    opacity: .8;
+					opacity: .8;
 				}
 			}
 		}
@@ -1877,220 +1916,220 @@
 }
 
 .header-area {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 99;
-    transition: all 0.3s ease;
-    background: transparent;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 99;
+	transition: all 0.3s ease;
+	background: transparent;
 
-    &.sticky {
-        background: #fff;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+	&.sticky {
+		background: #fff;
+		box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
-        .main-menu > li > a {
-            color: var(--heading-color);
-        }
+		.main-menu>li>a {
+			color: var(--heading-color);
+		}
 
-        .theme-btn {
-            background: var(--theme-color);
-            color: #fff;
+		.theme-btn {
+			background: var(--theme-color);
+			color: #fff;
 
-            &:hover {
-                background: var(--heading-color);
-            }
-        }
+			&:hover {
+				background: var(--heading-color);
+			}
+		}
 
-        .mobile-menu-btn {
-            color: var(--heading-color);
-        }
-    }
+		.mobile-menu-btn {
+			color: var(--heading-color);
+		}
+	}
 
-    .header-wrap {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 20px 0;
-        position: relative;
-    }
+	.header-wrap {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 20px 0;
+		position: relative;
+	}
 
-    .header-logo {
-        img {
-            max-height: 50px;
-        }
-    }
+	.header-logo {
+		img {
+			max-height: 50px;
+		}
+	}
 
-    .main-menu {
-        display: flex;
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-        
-        @include breakpoint(max-lg) {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 300px;
-            height: 100vh;
-            background: #fff;
-            padding: 80px 30px 30px;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-            z-index: 101;
-            transition: all 0.3s ease;
+	.main-menu {
+		display: flex;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
 
-            &.show {
-                display: block;
-                right: 0;
-            }
-        }
+		@include breakpoint(max-lg) {
+			display: none;
+			position: fixed;
+			top: 0;
+			right: -300px;
+			width: 300px;
+			height: 100vh;
+			background: #fff;
+			padding: 80px 30px 30px;
+			box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+			overflow-y: auto;
+			z-index: 101;
+			transition: all 0.3s ease;
 
-        > li {
-            margin: 0 15px;
-            position: relative;
+			&.show {
+				display: block;
+				right: 0;
+			}
+		}
 
-            @include breakpoint(max-lg) {
-                margin: 0;
-                padding: 10px 0;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            }
+		>li {
+			margin: 0 15px;
+			position: relative;
 
-            > a {
-                color: #fff;
-                font-size: 16px;
-                font-weight: 500;
-                padding: 10px 0;
-                display: block;
-                position: relative;
-                transition: all 0.3s ease;
+			@include breakpoint(max-lg) {
+				margin: 0;
+				padding: 10px 0;
+				border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+			}
 
-                @include breakpoint(max-lg) {
-                    color: var(--heading-color);
-                    padding: 5px 0;
-                }
+			>a {
+				color: #fff;
+				font-size: 16px;
+				font-weight: 500;
+				padding: 10px 0;
+				display: block;
+				position: relative;
+				transition: all 0.3s ease;
 
-                &:hover {
-                    color: var(--theme-color);
-                }
-            }
+				@include breakpoint(max-lg) {
+					color: var(--heading-color);
+					padding: 5px 0;
+				}
 
-            &:hover {
-                > .sub-menu {
-                    opacity: 1;
-                    visibility: visible;
-                    transform: translateY(0);
-                }
-            }
-        }
-    }
+				&:hover {
+					color: var(--theme-color);
+				}
+			}
 
-    .header-right {
-        display: flex;
-        align-items: center;
-        gap: 20px;
+			&:hover {
+				>.sub-menu {
+					opacity: 1;
+					visibility: visible;
+					transform: translateY(0);
+				}
+			}
+		}
+	}
 
-        .theme-btn {
-            background: transparent;
-            color: #fff;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: 500;
-            transition: all 0.3s;
+	.header-right {
+		display: flex;
+		align-items: center;
+		gap: 20px;
 
-            @include breakpoint(max-lg) {
-                display: none;
-            }
+		.theme-btn {
+			background: transparent;
+			color: #fff;
+			border: 2px solid rgba(255, 255, 255, 0.2);
+			padding: 10px 20px;
+			border-radius: 5px;
+			font-weight: 500;
+			transition: all 0.3s;
 
-            &:hover {
-                background: #fff;
-                color: var(--theme-color);
-                border-color: #fff;
-            }
-        }
+			@include breakpoint(max-lg) {
+				display: none;
+			}
 
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 0;
-            line-height: 1;
-            z-index: 102;
-            position: relative;
+			&:hover {
+				background: #fff;
+				color: var(--theme-color);
+				border-color: #fff;
+			}
+		}
 
-            @include breakpoint(max-lg) {
-                display: block;
-            }
+		.mobile-menu-btn {
+			display: none;
+			background: none;
+			border: none;
+			color: #fff;
+			font-size: 24px;
+			cursor: pointer;
+			padding: 0;
+			line-height: 1;
+			z-index: 102;
+			position: relative;
 
-            &.active {
-                color: var(--theme-color);
-            }
-        }
-    }
+			@include breakpoint(max-lg) {
+				display: block;
+			}
 
-    .sub-menu {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 220px;
-        background: #fff;
-        padding: 15px 0;
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(20px);
-        transition: all 0.3s ease;
-        list-style-type: none;
-        margin: 0;
-        z-index: 99;
+			&.active {
+				color: var(--theme-color);
+			}
+		}
+	}
 
-        @include breakpoint(max-lg) {
-            position: static;
-            width: 100%;
-            display: none;
-            transform: none;
-            box-shadow: none;
-            opacity: 1;
-            visibility: visible;
-            padding: 10px 0 10px 15px;
-        }
+	.sub-menu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 220px;
+		background: #fff;
+		padding: 15px 0;
+		box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(20px);
+		transition: all 0.3s ease;
+		list-style-type: none;
+		margin: 0;
+		z-index: 99;
 
-        li {
-            a {
-                padding: 8px 25px;
-                display: block;
-                color: var(--heading-color);
-                font-size: 15px;
-                transition: all 0.3s ease;
+		@include breakpoint(max-lg) {
+			position: static;
+			width: 100%;
+			display: none;
+			transform: none;
+			box-shadow: none;
+			opacity: 1;
+			visibility: visible;
+			padding: 10px 0 10px 15px;
+		}
 
-                &:hover {
-                    color: var(--theme-color);
-                    padding-left: 30px;
-                }
-            }
-        }
-    }
+		li {
+			a {
+				padding: 8px 25px;
+				display: block;
+				color: var(--heading-color);
+				font-size: 15px;
+				transition: all 0.3s ease;
 
-    .mobile-menu-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.7);
-        z-index: 100;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
+				&:hover {
+					color: var(--theme-color);
+					padding-left: 30px;
+				}
+			}
+		}
+	}
 
-        &.show {
-            opacity: 1;
-            visibility: visible;
-        }
-    }
+	.mobile-menu-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		background: rgba(0, 0, 0, 0.7);
+		z-index: 100;
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.3s ease;
+
+		&.show {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
 }
