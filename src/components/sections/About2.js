@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import ModalVideo from 'react-modal-video'
+import Lightbox from "yet-another-react-lightbox"
+import "yet-another-react-lightbox/styles.css"
+import { InstagramEmbed } from 'react-social-media-embed'
 import Link from 'next/link'
-import "../../../node_modules/react-modal-video/css/modal-video.css"
 import Image from 'next/image'
 
 export default function About2() {
@@ -133,7 +134,60 @@ export default function About2() {
 					</div>
 				</div>
 			</section>
-			<ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="JXMWOmuR1hU" onClose={() => setOpen(false)} />
+			
+			{/* Modal personalizado para Instagram Reels */}
+			{isOpen && (
+				<div 
+					onClick={() => setOpen(false)}
+					style={{
+						position: 'fixed',
+						top: 0,
+						left: 0,
+						right: 0,
+						bottom: 0,
+						backgroundColor: 'rgba(0, 0, 0, 0.95)',
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'center',
+						zIndex: 9999,
+						padding: '20px',
+						cursor: 'pointer',
+					}}
+				>
+					<div 
+						onClick={(e) => e.stopPropagation()}
+						style={{
+							position: 'relative',
+							maxWidth: '500px',
+							width: '100%',
+							cursor: 'default',
+						}}
+					>
+						<button
+							onClick={() => setOpen(false)}
+							style={{
+								position: 'absolute',
+								top: '-50px',
+								right: '0',
+								background: 'transparent',
+								border: 'none',
+								color: 'white',
+								fontSize: '32px',
+								cursor: 'pointer',
+								zIndex: 10000,
+								padding: '10px',
+							}}
+							aria-label="Cerrar"
+						>
+							✕
+						</button>
+						<InstagramEmbed 
+							url="https://www.instagram.com/p/DSkXJuIjgjl"
+							width="100%"
+						/>
+					</div>
+				</div>
+			)}
 		</>
 	)
 }

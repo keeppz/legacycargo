@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -29,6 +30,7 @@ const swiperOptions = {
 const slides = [
 	{
 		image: "/assets/img/hero/todas-02.png",
+		imageMobile: "/assets/img/hero/barco legacy.png",
 		subtitle: "El aliado que impulsa",
 		title: "Tus envíos",
 		titleSecond: "Conectamos Mundos, Entregamos",
@@ -42,6 +44,7 @@ const slides = [
 	},
 	{
 		image: "/assets/img/hero/todas-05.png",
+		imageMobile: "/assets/img/hero/montacarga.png",
 		subtitle: "Soluciones Marítimas Globales",
 		title: "La opción ",
 		titleSecond: "mas eficiente para cargas",
@@ -55,6 +58,7 @@ const slides = [
 	},
 	{
 		image: "/assets/img/hero/legacy cargo-04.png",
+		imageMobile: "/assets/img/hero/papeles legacy .jpg",
 		subtitle: "Tu carga llega con control y",
 		title: "Precisión",
 		titleSecond: "Aduana sin complicaciones de la",
@@ -63,6 +67,7 @@ const slides = [
 	},
 	{
 		image: "/assets/img/hero/legacy cargo-03.png",
+		imageMobile: "/assets/img/hero/avion legacy.png",
 		subtitle: "Tu carga vuela con seguridad y",
 		title: "Rapidez",
 		titleSecond: "El transporte ideal para lo que",
@@ -72,6 +77,23 @@ const slides = [
 ];
 
 export default function Hero2() {
+	// Hook para detectar tamaño de pantalla
+	const [isMobile, setIsMobile] = useState(false);
+
+	useEffect(() => {
+		const checkMobile = () => {
+			setIsMobile(window.innerWidth < 768);
+		};
+		
+		// Check inicial
+		checkMobile();
+		
+		// Listener para cambios de tamaño
+		window.addEventListener('resize', checkMobile);
+		
+		return () => window.removeEventListener('resize', checkMobile);
+	}, []);
+
 	// Función helper para determinar si es un color hexadecimal o una clase
 	const getColorStyle = (colorValue) => {
 		if (!colorValue) return {};
@@ -106,7 +128,7 @@ export default function Hero2() {
 					<SwiperSlide key={index}>
 						<div className="slider-image">
 							<Image
-								src={slide.image}
+								src={isMobile ? slide.imageMobile : slide.image}
 								alt={slide.title}
 								width={1920}
 								height={1080}

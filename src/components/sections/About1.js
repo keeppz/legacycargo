@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import ModalVideo from 'react-modal-video'
-import "../../../node_modules/react-modal-video/css/modal-video.css"
+import Lightbox from "yet-another-react-lightbox"
+import "yet-another-react-lightbox/styles.css"
 export default function About1() {
 	const [isOpen, setOpen] = useState(false)
 	return (
@@ -100,7 +100,21 @@ export default function About1() {
 					</div>
 				</div>
 			</section>
-			<ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="JXMWOmuR1hU" onClose={() => setOpen(false)} />
+			<Lightbox
+				open={isOpen}
+				close={() => setOpen(false)}
+				slides={[
+					{
+						type: "video",
+						sources: [
+							{
+								src: "https://www.youtube.com/watch?v=JXMWOmuR1hU",
+								type: "video/youtube",
+							},
+						],
+					},
+				]}
+			/>
 		</>
 	)
 }

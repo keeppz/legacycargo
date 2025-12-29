@@ -1,10 +1,10 @@
 // import "swiper/css";
 import Link from 'next/link'
-import "../../../node_modules/react-modal-video/css/modal-video.css"
 import Image from 'next/image'
 
 import { useState } from "react"
-import ModalVideo from "react-modal-video"
+import Lightbox from "yet-another-react-lightbox"
+import "yet-another-react-lightbox/styles.css"
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 
@@ -390,12 +390,20 @@ export default function NewsList() {
 					</div>
 				</div>
 			</section>
-			<ModalVideo
-				channel="youtube"
-				youtube={{ mute: 0, autoplay: 0 }}
-				isOpen={isOpen}
-				videoId="Cn4G2lZ_g2I"
-				onClose={() => setOpen(false)}
+			<Lightbox
+				open={isOpen}
+				close={() => setOpen(false)}
+				slides={[
+					{
+						type: "video",
+						sources: [
+							{
+								src: "https://www.youtube.com/watch?v=Cn4G2lZ_g2I",
+								type: "video/youtube",
+							},
+						],
+					},
+				]}
 			/>
 		</>
 	)
