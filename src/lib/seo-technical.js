@@ -91,7 +91,7 @@ export const technicalSEO = {
     locale: 'es_VE',
     siteName: 'Legacy Cargo',
     images: {
-      default: '/assets/img/og-image.jpg',
+      default: '/assets/img/logo.png',
       width: 1200,
       height: 630
     }

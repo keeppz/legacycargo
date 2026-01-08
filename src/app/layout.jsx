@@ -55,10 +55,11 @@ export const metadata = {
     siteName: 'Legacy Cargo',
     images: [
       {
-        url: '/assets/img/logo/logo.png',
+        url: 'https://legacycargove.com/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'Legacy Cargo - Importaciones a Venezuela',
+        alt: 'Legacy Cargo - Importaciones Internacionales a Venezuela',
+        type: 'image/png',
       },
     ],
     locale: 'es_VE',
@@ -68,7 +69,9 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Legacy Cargo - Importaciones a Venezuela desde China, Panamá y Estados Unidos',
     description: 'Especialistas en importaciones a Venezuela desde China, Panamá y Estados Unidos. Servicios de logística internacional.',
-    images: ['/assets/img/logo/logo.png'],
+    images: ['https://legacycargove.com/opengraph-image.png'],
+    creator: '@legacycargo',
+    site: '@legacycargo',
   },
   robots: {
     index: true,
@@ -95,7 +98,7 @@ export default function RootLayout({ children }) {
     "name": "Legacy Cargo",
     "description": "Especialistas en importaciones a Venezuela desde China, Panamá y Estados Unidos",
     "url": "https://legacycargove.com",
-    "logo": "https://legacycargove.com/assets/logo.png",
+    "logo": "https://legacycargove.com/logo.png",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+58-XXX-XXX-XXXX",

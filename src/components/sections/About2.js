@@ -22,7 +22,7 @@ export default function About2() {
 							<div className="col-md-6">
 								<div className="about-image">
 									<Image
-										src="/assets/img/about/03.jpg"
+										src="/assets/img/about/IMG_2359.jpg"
 										alt="about image"
 										width={1920}
 										height={1080}
