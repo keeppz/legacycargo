@@ -84,22 +84,65 @@ export async function POST(request) {
       );
     }
     
+    // Generar prealertID automáticamente si se proporcionan country y type_of_shipment
+    let prealertID = data.prealertID; // Usar el proporcionado si existe
+    
+    if (!prealertID) {
+      // Llamar al endpoint generate-preid para obtener un ID
+      const generateIdBody = {};
+      
+      // Si hay country y type_of_shipment, incluirlos
+      if (data.country) {
+        generateIdBody.country = data.country;
+      }
+      if (data.type_of_shipment) {
+        generateIdBody.type_of_shipment = data.type_of_shipment;
+      }
+      
+      try {
+        // Hacer la llamada interna al endpoint generate-preid
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+        const response = await fetch(`${baseUrl}/api/generate-preid`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(generateIdBody),
+        });
+        
+        if (!response.ok) {
+          throw new Error('Error al generar prealertID');
+        }
+        
+        const result = await response.json();
+        prealertID = result.prealertID;
+      } catch (error) {
+        console.error('Error generando prealertID:', error);
+        return NextResponse.json(
+          { error: 'Error al generar prealertID', message: error.message },
+          { status: 500 }
+        );
+      }
+    }
+    
     // Preparar datos para guardar
     const prealertData = {
       ...data,
+      prealertID: prealertID, // Incluir el prealertID generado o proporcionado
       createdAt: new Date(),
       status: data.status || 'pending',
       last_update: new Date()
     };
     
-    // Guardar en Firestore
-    const docRef = await adminDb.collection('prealerts').add(prealertData);
+    // Guardar en Firestore usando el prealertID como ID del documento
+    await adminDb.collection('prealerts').doc(prealertID).set(prealertData);
     
     return NextResponse.json({
       success: true,
-      id: docRef.id,
+      id: prealertID, // El ID del documento es el prealertID
+      prealertID: prealertID, // Retornar el prealertID en la respuesta
       prealert: {
-        id: docRef.id,
+        id: prealertID,
         ...prealertData
       }
     }, { status: 201 });
