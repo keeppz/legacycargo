@@ -31,7 +31,7 @@ export const metadata = {
   manifest: '/manifest.json',
   icons: {
     icon: '/favicon.ico',
-    apple: '/logo.png',
+    apple: '/logo_index.png',
   },
   themeColor: '#1e40af',
   appleWebApp: {
@@ -55,7 +55,7 @@ export const metadata = {
     siteName: 'Legacy Cargo',
     images: [
       {
-        url: 'https://legacycargove.com/logo.png',
+        url: 'https://legacycargove.com/logo_index.png',
         width: 512,
         height: 512,
         alt: 'Legacy Cargo - Importaciones Internacionales a Venezuela',
@@ -69,7 +69,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Legacy Cargo - Importaciones a Venezuela desde China, Panamá y Estados Unidos',
     description: 'Especialistas en importaciones a Venezuela desde China, Panamá y Estados Unidos. Servicios de logística internacional.',
-    images: ['https://legacycargove.com/logo.png'],
+    images: ['https://legacycargove.com/logo_index.png'],
     creator: '@legacycargo',
     site: '@legacycargo',
   },
