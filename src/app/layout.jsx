@@ -98,7 +98,7 @@ export default function RootLayout({ children }) {
     "name": "Legacy Cargo",
     "description": "Especialistas en importaciones a Venezuela desde China, Panamá y Estados Unidos",
     "url": "https://legacycargove.com",
-    "logo": "https://legacycargove.com/logo.png",
+    "logo": "https://legacycargove.com/logo_index.png",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+58-XXX-XXX-XXXX",
