@@ -10,6 +10,7 @@ import {
     regionesPorEstado,
     regionesPorEstadoPanama,
     tarifasUSA,
+    tarifasUSAMaritimo,
     tarifasPanama,
     tarifasPanamaCoLoader,
     tarifasChina,
@@ -166,7 +167,7 @@ export default function ShippingCalculator() {
                 }
             } else {
                 // Marítimo desde USA
-                const tarifaUSA = tarifasUSA[region];
+                const tarifaUSA = tarifasUSAMaritimo[region];
                 return VOLUMEN_MINIMO_FT3 * tarifaUSA;
             }
         }
@@ -378,11 +379,11 @@ export default function ShippingCalculator() {
                 const region = obtenerRegion(destination, 'estados_unidos');
                 console.log('Región USA:', region);
                 if (region) {
-                    const tarifaMaritima = tarifasUSA[region];
+                    const tarifaMaritima = tarifasUSAMaritimo[region];
                     console.log('Tarifa marítima USA:', tarifaMaritima);
                     if (tarifaMaritima) {
                         precio = volumenFt3 * tarifaMaritima * cantidadPaquetes;
-                        tiempo = '15-20 días';
+                        tiempo = '40-45 días';
                         console.log('Precio marítimo USA:', precio);
                     }
                 } else {
@@ -600,7 +601,7 @@ ${cantidadPaquetes > 1 ? `- Cantidad de paquetes: ${cantidadPaquetes}` : ''}`;
                                         }}
                                     >
                                         <option value="dimensiones">Por Dimensiones</option>
-                                        <option value="volumen" disabled={tipoEnvio === 'aereo' || origin === 'estados_unidos'}>Por Volumen</option>
+                                        <option value="volumen" disabled={tipoEnvio === 'aereo'}>Por Volumen</option>
                                     </select>
                                 </div>
                             </div>
@@ -613,10 +614,9 @@ ${cantidadPaquetes > 1 ? `- Cantidad de paquetes: ${cantidadPaquetes}` : ''}`;
                                         value={origin}
                                         onChange={(e) => {
                                             setOrigin(e.target.value);
+                                            // USA ahora soporta marítimo y aéreo, no forzar tipo de envío
                                             if (e.target.value === 'estados_unidos') {
-                                                setTipoEnvio('aereo');
                                                 setUnidadMedida('in');
-                                                setTipoCalculadora('dimensiones');
                                             }
                                         }}
                                         required
@@ -642,7 +642,6 @@ ${cantidadPaquetes > 1 ? `- Cantidad de paquetes: ${cantidadPaquetes}` : ''}`;
                                             <option
                                                 key={tipo.value}
                                                 value={tipo.value}
-                                                disabled={origin === 'estados_unidos' && tipo.value === 'maritimo'}
                                             >
                                                 {tipo.label}
                                             </option>

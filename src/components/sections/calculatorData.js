@@ -104,10 +104,16 @@ export const regionesPorEstado = {
     ]
 };
 
-// Estructura para las tarifas por región y categoría
+// Tarifas aéreas USA (en USD/lb) - LEGACY: Se mantiene para compatibilidad con código antiguo
 export const tarifasUSA = {
     'Zona 1': 30.0,
     'Zona 2': 35.0
+};
+
+// Tarifas marítimas para USA por región (en USD/ft³)
+export const tarifasUSAMaritimo = {
+    'Zona 1': 35.0,
+    'Zona 2': 37.0
 };
 
 // Tarifas específicas para China por región (en USD/ft³) - Solo marítimo por ahora
@@ -188,7 +194,8 @@ export const preciosMinimos = {
         'maritimo': 105.0 // 5 ft³ × 21.0 (tarifa más baja)
     },
     'estados_unidos': {
-        'aereo': 30.0 // 5 lb × 6.0 (tarifa más baja)
+        'aereo': 30.0,      // 5 lb × 6.0 (tarifa más baja)
+        'maritimo': 175.0   // 5 ft³ × 35.0 (tarifa más baja)
     },
     'panama': {
         'aereo': 60.0,    // 5 lb × 12.0
