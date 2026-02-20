@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Layout from "@/components/layout/Layout"
-import TrackingSection from "@/components/sections/TrackingSection"
+import TrackingTabs from "@/components/sections/TrackingTabs"
 import PageTracker from "@/components/analytics/PageTracker"
 
 export default function TrackingPage() {
@@ -12,7 +12,7 @@ export default function TrackingPage() {
             <Layout headerStyle={2} footerStyle={1}>
                 <div id="smooth-wrapper">
                     <div id="smooth-content">
-                        <TrackingSection />
+                        <TrackingTabs />
                     </div>
                 </div>
             </Layout>

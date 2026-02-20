@@ -393,13 +393,14 @@ export default function ShippingCalculator() {
         } else if (origin === 'china') {
             console.log('Procesando China...');
             if (tipoEnvio === 'aereo') {
-                // Aéreo desde China - por zona (igual que marítimo)
+                // Aéreo desde China - factor directo 6100
                 const region = obtenerRegion(destination, 'china');
                 console.log('Región China para aéreo:', region);
 
                 if (region && tarifasAereas[origin][region]) {
                     const pesoEnKg = parseFloat(weight);
-                    const pesoVolumetricoEnKg = pesoVolumetrico / 2.20462; // Convertir lb a kg
+                    // Factor directo: cm³ / 6100 = kg
+                    const pesoVolumetricoEnKg = (parseFloat(dimensions.length) * parseFloat(dimensions.width) * parseFloat(dimensions.height)) / 6100;
 
                     // Si el peso volumétrico es menor al peso real, usar el peso real
                     const pesoAFacturar = pesoVolumetricoEnKg < pesoEnKg ? pesoEnKg : pesoVolumetricoEnKg;
@@ -517,7 +518,13 @@ export default function ShippingCalculator() {
                 } else {
                     // Para Panamá y China
                     const pesoEnKg = parseFloat(weight);
-                    const pesoVolumetricoEnKg = pesoVolumetrico / 2.20462;
+                    let pesoVolumetricoEnKg;
+                    if (origin === 'china') {
+                        // Factor directo: cm³ / 6100 = kg
+                        pesoVolumetricoEnKg = (parseFloat(dimensions.length) * parseFloat(dimensions.width) * parseFloat(dimensions.height)) / 6100;
+                    } else {
+                        pesoVolumetricoEnKg = pesoVolumetrico / 2.20462;
+                    }
 
                     if (pesoVolumetricoEnKg < pesoEnKg) {
                         // Si el peso real es mayor, mostrar solo el peso real

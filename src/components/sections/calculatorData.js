@@ -119,7 +119,7 @@ export const tarifasUSAMaritimo = {
 // Tarifas específicas para China por región (en USD/ft³) - Solo marítimo por ahora
 export const tarifasChina = {
     'Zona 1': 21.0,
-    'Zona 2': 24.0
+    'Zona 2': 23.0
 };
 
 // Nuevas tarifas de Panamá según el tabulador actualizado + $2.00 USD (en USD/ft³)
