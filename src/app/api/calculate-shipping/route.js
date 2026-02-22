@@ -304,8 +304,8 @@ export async function POST(request) {
             }
         } else if (origin === 'china') {
             if (shipmentType === 'aereo') {
-                // Aéreo desde China - por zona (igual que marítimo)
-                pesoVolumetrico = calcularPesoVolumetrico(length, width, height, unit) / 2.20462; // lb a kg
+                // Aéreo desde China - factor directo 6100
+                pesoVolumetrico = (length * width * height) / 6100; // cm³ directo a kg
                 pesoAFacturar = Math.max(pesoReal, pesoVolumetrico);
                 criterioUsado = pesoReal > pesoVolumetrico ? 'peso_real' : 'peso_volumetrico';
 
