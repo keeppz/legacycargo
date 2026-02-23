@@ -183,8 +183,8 @@ export const tarifasAereas = {
     },
     'panama': 15.0,
     'china': {
-        'Zona 1': 23.0,  // USD por kilogramo
-        'Zona 2': 25.0   // USD por kilogramo
+        'Zona 1': 24.0,  // USD por kilogramo
+        'Zona 2': 26.0   // USD por kilogramo
     }
 };
 
